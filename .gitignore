@@ -3,3 +3,6 @@
 # Example .gitignore files: https://github.com/github/gitignore
 /bower_components/
 /node_modules/
+/DWES.PHP_Practica_BD_MySQL.pdf
+/Pagination.php
+/indexPagination.php
