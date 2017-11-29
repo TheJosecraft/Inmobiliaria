@@ -149,7 +149,7 @@
         $modificar = mysqli_query($conexion, $cons_mod);
         mysqli_close($conexion);
         ?>
-        <meta http-equiv="refresh" content="0;url=inmuebles.php?e=1">
+        <meta http-equiv="refresh" content="0;url=../../inmuebles.php?e=1">
         <?php
     }
 

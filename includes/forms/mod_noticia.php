@@ -127,7 +127,7 @@
         $modificar = mysqli_query($conexion, $cons_mod);
         mysqli_close($conexion);
         ?>
-        <meta http-equiv="refresh" content="0;url=noticias.php?e=3">
+        <meta http-equiv="refresh" content="0;url=../../noticias.php?e=3">
         <?php
 
     }

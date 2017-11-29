@@ -76,8 +76,8 @@
 
         $colorLaborales = "#E8FCCF";
         $colorFines = "#96E072";
-        $colorFestivos = "#3DA35D";
-        $colorActual = "#E30606";
+        $colorFestivos = "#FF8080";
+        $colorActual = "#3DA35D";
 
         $celdas = 0;
         $cont = 0;

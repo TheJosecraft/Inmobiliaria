@@ -372,6 +372,14 @@
         $rutaInmuebles = $rutaImg."inmuebles/";
         $nombreImagen = "";
 
+        $isDireccion = false;
+
+        if(preg_match('`^[a-zA-Z0-9 ,ºáéíóúÁÉÍÓÚñÑ]{1,50}$`', $direccion)){
+            $isDireccion = true;
+        }else{
+            $direccion = "Dirección errónea";
+        }
+
         if (!file_exists($rutaImg))
         {
             mkdir($rutaImg);
