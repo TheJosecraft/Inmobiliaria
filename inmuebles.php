@@ -222,26 +222,22 @@
 
                                             </div>
                                             <br>
-                                            <div class="row">
-                                                <div class="col-xs-6">
+                                            <div class="row center-block">
+                                                <div class="col-xs-12">
 
-                                                    <div class="col-xs-6"><span>
-                                                        <a class="btn btn-m" href="includes/forms/mod_inmueble.php?id=<?php echo $fila['id'] ?>">
+                                                    <div class="col-xs-4 text-center"><span>
+                                                        <a class="btn-m" href="includes/forms/mod_inmueble.php?id=<?php echo $fila['id'] ?>">
                                                         <span class="fa fa-pencil"></span></a>
                                                     </span>
                                                     </div>
-                                                    <div class="col-xs-6"><span class="pull-left">
-                                                        <a class="btn btn-r" href="includes/forms/del_inmueble.php?id=<?php echo $fila['id'] ?>">
+                                                    <div class="col-xs-4 text-center">
+                                                        <a class="btn-r" href="includes/forms/del_inmueble.php?id=<?php echo $fila['id'] ?>">
                                                         <span class="fa fa-trash"></span></a>
-                                                    </span>
                                                     </div>
-
-
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <span class="pull-right">
-                                                        <a class="btn btn-e" href="inmueble.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-eye"></span></a>
-                                                    </span>
+                                                    <div class="col-xs-4 text-center">
+                                                            <a class="btn-e" href="inmueble.php?id=<?php echo $fila['id'] ?>">
+                                                            <span class="fa fa-eye"></span></a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
