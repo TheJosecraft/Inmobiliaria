@@ -17,8 +17,6 @@
     <?php
     include 'funciones.php';
     menu(2);
-    $pag = 0;
-    $numNoticias = 0;
     ?>
 
         <div class="container">
@@ -49,183 +47,54 @@
             <br>
             <?php
 
+            $pag = 0;
+
+            $numNoticias = 0;
+
+            $fecha = date('Y-m-d');
 
             if(isset($_GET['pagAnterior'])){
                 $pag = $_GET['pagAnterior'];
 
                 $limite = 6 * $pag;
-                ?>
 
-                <div class="row text-left">
-                    <?php
-
-                        include 'conexion.php';
-
-                        $fecha = date('Y-m-d');
-
-                        $cons_ult_not = "select * from noticias
+                $cons_ult_not = "select * from noticias
                                         where fecha <= '$fecha'
                                         order by id DESC
                                         limit $limite, 6";
 
-                        $noticias = mysqli_query($conexion, $cons_ult_not);
-                        while($fila = mysqli_fetch_array($noticias)){
-                        ?>
-                        <div class="col-lg-6 col-md-12">
-                            <div class="noticia">
-                                <div>
-                                    <img class="img-responsive img-rounded" src="img/noticias/<?php echo $fila['imagen']; ?>" alt="">
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-sm-8">
-                                            <span class="h3"><?php echo $fila['titular']; ?> <a href="includes/forms/mod_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-pencil btn-m"></span></a> <a href="includes/forms/del_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-trash btn-r"></span> </a></span>
-                                        </div>
+                noticias($cons_ult_not, $numNoticias);
 
-                                        <div class="col-sm-4">
-                                            <span class="pull-right"><strong><span class="fa fa-calendar"></span> <?php $fecha = strtotime($fila['fecha']); echo date('d/m/Y', $fecha) ?></strong></span>
-                                        </div>
-                                    </div>
-                                    <p><?php echo substr($fila['contenido'], 0, 280); ?> <span class="pull-right"><a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más</a></span></p>
-                                </div>
-                                <br>
-                            </div>
-                        </div>
-
-                        <?php
-                        $numNoticias++;
-                        }
             }elseif(isset($_GET['pagSiguiente'])){
 
                 $pag = $_GET['pagSiguiente'];
 
                 $limite = 6 * $pag;
-                ?>
-                <div class="row text-left">
-                    <?php
 
-                        include 'conexion.php';
-                        $fecha = date('Y-m-d');
-                        $cons_ult_not = "select * from noticias
+                $cons_ult_not = "select * from noticias
                                         where fecha <= '$fecha'
                                         order by id DESC
                                         limit $limite, 6";
 
-                        $noticias = mysqli_query($conexion, $cons_ult_not);
-                        while($fila = mysqli_fetch_array($noticias)){
-                        ?>
-                        <div class="col-lg-6 col-md-12">
-                            <div class="noticia">
-                                <div>
-                                    <img class="img-responsive img-rounded" src="img/noticias/<?php echo $fila['imagen']; ?>" alt="">
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-sm-8">
-                                            <span class="h3"><?php echo $fila['titular']; ?> <a href="includes/forms/mod_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-pencil btn-m"></span></a> <a href="includes/forms/del_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-trash btn-r"></span> </a></span>
-                                        </div>
+                noticias($cons_ult_not, $numNoticias);
 
-                                        <div class="col-sm-4">
-                                            <span class="pull-right"><strong><span class="fa fa-calendar"></span> <?php $fecha = strtotime($fila['fecha']); echo date('d/m/Y', $fecha) ?></strong></span>
-                                        </div>
-                                    </div>
-                                    <p><?php echo substr($fila['contenido'], 0, 280); ?> <span class="pull-right"><a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más</a></span></p>
-                                </div>
-                                <br>
-                            </div>
-                        </div>
-
-                        <?php
-                            $numNoticias++;
-                            }
             }elseif(isset($_POST['enviarBuscar'])){
                 $busqueda = $_POST['buscar'];
-                ?>
 
-                <div class="row text-left">
-                    <?php
-
-                        include 'conexion.php';
-                        $fecha = date('Y-m-d');
-                        $cons_ult_not = "select * from noticias
+                $cons_ult_not = "select * from noticias
                                         where fecha <= '$fecha'
                                         and titular like '%$busqueda%'
                                         order by id DESC
                                         limit 6";
 
-                        $noticias = mysqli_query($conexion, $cons_ult_not);
-                        while($fila = mysqli_fetch_array($noticias)){
-                        ?>
-                        <div class="col-lg-6 col-md-12">
-                            <div class="noticia">
-                                <div>
-                                    <img class="img-responsive img-rounded" src="img/noticias/<?php echo $fila['imagen']; ?>" alt="">
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-sm-8">
-                                            <span class="h3"><?php echo $fila['titular']; ?> <a href="includes/forms/mod_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-pencil btn-m"></span></a> <a href="includes/forms/del_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-trash btn-r"></span> </a></span>
-                                        </div>
-
-                                        <div class="col-sm-4">
-                                            <span class="pull-right"><strong><span class="fa fa-calendar"></span> <?php $fecha = strtotime($fila['fecha']); echo date('d/m/Y', $fecha) ?></strong></span>
-                                        </div>
-                                    </div>
-                                    <p><?php echo substr($fila['contenido'], 0, 280); ?> <span class="pull-right"><a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más</a></span></p>
-                                </div>
-                                <br>
-                            </div>
-                        </div>
-
-                        <?php
-                            $numNoticias++;
-                }
-
-                ?>
-                </div>
-
-                <?php
+                noticias($cons_ult_not, $numNoticias);
             }else{
-                ?>
 
-                <div class="row text-left">
-                    <?php
-
-                        include 'conexion.php';
-                        $fecha = date('Y-m-d');
-                        $cons_ult_not = "select * from noticias
+                $cons_ult_not = "select * from noticias
                                         where fecha <= '$fecha'
                                         order by id DESC
                                         limit 6";
-
-                        $noticias = mysqli_query($conexion, $cons_ult_not);
-                        while($fila = mysqli_fetch_array($noticias)){
-                        ?>
-                        <div class="col-lg-6 col-md-12">
-                            <div class="noticia">
-                                <div>
-                                    <img class="img-responsive img-rounded" src="img/noticias/<?php echo $fila['imagen']; ?>" alt="">
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-sm-8">
-                                            <span class="h3"><?php echo $fila['titular']; ?> <a href="includes/forms/mod_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-pencil btn-m"></span></a> <a href="includes/forms/del_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-trash btn-r"></span> </a></span>
-                                        </div>
-
-                                        <div class="col-sm-4">
-                                            <span class="pull-right"><strong><span class="fa fa-calendar"></span> <?php $fecha = strtotime($fila['fecha']); echo date('d/m/Y', $fecha) ?></strong></span>
-                                        </div>
-                                    </div>
-                                    <p><?php echo substr($fila['contenido'], 0, 280); ?> <span class="pull-right"><a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más</a></span></p>
-                                </div>
-                                <br>
-                            </div>
-                        </div>
-
-                        <?php
-                            $numNoticias++;
-                }
-
-                ?>
-                </div>
-
-                <?php
+                noticias($cons_ult_not, $numNoticias);
             }
 
             $pagAnterior = $pag - 1;
@@ -260,7 +129,6 @@
 
                 </div>
             </div>
-        </div>
         <?php
         include 'conexion.php';
 
@@ -318,7 +186,6 @@
                         </div>
                     </div>
                 </div>
-        </div>
         <?php include 'conexion.php';
     if (isset($_POST['enviarInsNoticia']))
     {
@@ -372,8 +239,48 @@
         <meta http-equiv="refresh" content="0;url=noticias.php?e=1">
         <?php
     }
-    ?>
-        <?php
+
+    function noticias($cons, &$numNoticias){
+        ?>
+
+                <div class="row text-left">
+                    <?php
+
+                        include 'conexion.php';
+                        $fecha = date('Y-m-d');
+                        $noticias = mysqli_query($conexion, $cons);
+                        while($fila = mysqli_fetch_array($noticias)){
+                        ?>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="noticia">
+                                <div>
+                                    <img class="img-responsive img-rounded" src="img/noticias/<?php echo $fila['imagen']; ?>" alt="">
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <span class="h3"><?php echo $fila['titular']; ?> <a href="includes/forms/mod_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-pencil btn-m"></span></a> <a href="includes/forms/del_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-trash btn-r"></span> </a></span>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <span class="pull-right"><strong><span class="fa fa-calendar"></span> <?php $fecha = strtotime($fila['fecha']); echo date('d/m/Y', $fecha) ?></strong></span>
+                                        </div>
+                                    </div>
+                                    <p><?php echo substr($fila['contenido'], 0, 280); ?> <span class="pull-right"><a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más</a></span></p>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+
+                        <?php
+                        $numNoticias++;
+                }
+
+                ?>
+                </div>
+
+                <?php
+    }
+
     footer();
     ?>
 </body>
