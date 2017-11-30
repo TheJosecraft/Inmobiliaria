@@ -93,7 +93,7 @@ function footer ()
     ?>
 
         <footer class="text-center footer navbar-fixed-bottom">
-            <p><strong>&copy;</strong> EAG 2017</p>
+            <p><strong>&copy;</strong> EAG 2017 - Realizado por José Carlos Raya León</p>
         </footer>
 
         <?php
@@ -124,7 +124,7 @@ function img_random ()
 ?>
             <img class="img-responsive center-block" src="img/inmuebles/<?php echo $imagenes[$aleatorio]; ?>" alt="">
             <div class="carousel-caption">
-                <h3><?php echo $direcciones[$aleatorio] ?></h3>
+                <h2><?php echo $direcciones[$aleatorio] ?></h2>
             </div>
             <?php
 }
@@ -170,17 +170,11 @@ function ult_noticias(){
                         <?php echo substr($fila['contenido'], 0, 280); ?> <a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más...</a> </p>
 
                 </div>
-
-
                 <?php
     }
 ?>
         </div>
     </div>
     <?php
-}
-
-function precio($p){
-    return sprintf('%01.2f', $p);
 }
 ?>
