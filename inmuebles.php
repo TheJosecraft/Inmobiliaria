@@ -206,7 +206,7 @@
                                             </div>
                                             <br>
                                             <div class="row text-center">
-                                                <h4><?php echo precio($fila['precio']); ?> €</h4>
+                                                <h4><?php echo $fila['precio']; ?> €</h4>
                                             </div>
                                             <div class="row text-center">
                                                <?php
