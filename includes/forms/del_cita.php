@@ -14,7 +14,7 @@
     <?php
     include '../../conexion.php';
 
-    $id = $_POST['id'];
+    $id = $_GET['id'];
 
     include '../../conexion.php';
     $cons_del_inm = "delete from citas where id = $id";

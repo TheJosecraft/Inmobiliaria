@@ -22,7 +22,7 @@
 
          $cons_cita = "select *
                             from citas
-                            where id = $_POST[id]";
+                            where id = $_GET[id]";
             if (!$cons_cita)
             {
                 echo "Hay un error en la consulta";

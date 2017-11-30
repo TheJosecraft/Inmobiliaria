@@ -342,6 +342,11 @@
                     </div>
                     <?php
                     if(isset($_GET['dia'])){
+
+                        $fecha = mktime(0,0,0, $mes, $dia, $anio);
+
+                        $fecha = date('Y-m-d', $fecha);
+
                         ?>
 
                         <div class="row">
@@ -358,13 +363,7 @@
                                 <tbody>
 
 
-                                    <?php
-
-
-                        $fecha = mktime(0,0,0, $mes, $dia, $anio);
-
-                        $fecha = date('Y-m-d', $fecha);
-
+                        <?php
                         $con_sel_cit = "select * from citas
                                         where fecha = '$fecha'
                                         order by hora";
@@ -374,6 +373,11 @@
 
                         $datos = mysqli_query($conexion, $con_sel_cit);
                         while($fila = mysqli_fetch_array($datos, MYSQLI_ASSOC)){
+
+                            $fechaHoy = date('Y-m-d H:i:s');
+
+                            $fechaCita = $fila['fecha']." ".$fila['hora'];
+
                             ?>
                             <tr>
                                 <td>
@@ -416,30 +420,27 @@
                                     <?php echo $fila['hora']; ?>
                                 </td>
                                 <td>
-                                    <form action="includes/forms/mod_cita.php" method="post">
-                                        <input type="hidden" name="id" value="<?php echo $fila['id'] ?>">
-                                        <button class="btn-m" type="submit" name="enviarModCit">
+                                   <?php
+
+                                    if(strtotime($fechaHoy) <= strtotime($fechaCita)){
+                                        ?>
+                                        <a class="btn-m" href="includes/forms/mod_cita.php?id=<?php echo $fila['id'] ?>">
                                             <span class="fa fa-pencil"></span>
-                                        </button>
-                                    </form>
+                                        </a>
+
+                                        <?php
+
+                                    }
+                                    ?>
+
                                 </td>
                                 <td>
                                     <?php
-
-                                    $fechaHoy = date('Y-m-d H:i:s');
-
-                                    $fechaCita = $fila['fecha']." ".$fila['hora'];
-
                                     if(strtotime($fechaHoy) <= strtotime($fechaCita)){
                                        ?>
-
-                                        <form action="includes/forms/del_cita.php" method="post">
-                                            <input type="hidden" name="id" value="<?php echo $fila['id']; ?>">
-                                            <button class="btn-r" type="submit" name="enviarDelCit">
-                                                        <span class="fa fa-trash"></span>
-                                                    </button>
-                                        </form>
-
+                                        <a class="btn-r" href="includes/forms/del_cita.php?id=<?php echo $fila['id'] ?>">
+                                            <span class="fa fa-trash"></span>
+                                        </a>
                                         <?php
                                     }
                                     ?>
@@ -473,11 +474,8 @@
 
                                             <?php
                         $busqueda = $_GET['buscar'];
-//                        $fecha = mktime(0,0,0, $mes, $dia, $anio);
-//
-//                        $fecha = date('Y-m-d', $fecha);
 
-                        $con_sel_cit = "select cit.*, cli.id, cli.nombre
+                        $con_sel_cit = "select cit.id cit_id, cit.fecha, cit.hora, cit.motivo, cit.lugar, cit.id_cliente, cli.id, cli.nombre
                                     from citas cit, clientes cli
                                     where cit.id_cliente = cli.id
                                     and (cit.fecha like '%$busqueda%'
@@ -491,6 +489,11 @@
 
                         $datos = mysqli_query($conexion, $con_sel_cit);
                         while($fila = mysqli_fetch_array($datos, MYSQLI_ASSOC)){
+
+                            $fechaHoy = date('Y-m-d H:i:s');
+
+                            $fechaCita = $fila['fecha']." ".$fila['hora'];
+
                             ?>
                             <tr>
                                 <td>
@@ -536,33 +539,30 @@
                                     <?php echo $fila['fecha']; ?>
                                 </td>
                                 <td>
-                                    <form action="includes/forms/mod_cita.php" method="post">
-                                        <input type="hidden" name="id" value="<?php echo $fila['id'] ?>">
-                                        <button class="btn-m" type="submit" name="enviarModCit">
-                                    <span class="fa fa-pencil"></span>
-                                </button>
-                                    </form>
+                                   <?php
+
+                                    if(strtotime($fechaHoy) <= strtotime($fechaCita)){
+                                        ?>
+                                        <a class="btn-m" href="includes/forms/mod_cita.php?id=<?php echo $fila['cit_id'] ?>">
+                                            <span class="fa fa-pencil"></span>
+                                        </a>
+
+                                        <?php
+
+                                    }
+                                    ?>
+
                                 </td>
                                 <td>
                                     <?php
-
-                            $fechaHoy = date('Y-m-d H:i:s');
-
-                            $fechaCita = $fila['fecha']." ".$fila['hora'];
-
-                            if(strtotime($fechaHoy) <= strtotime($fechaCita)){
-                               ?>
-
-                                        <form action="includes/forms/del_cita.php" method="post">
-                                            <input type="hidden" name="id" value="<?php echo $fila['id']; ?>">
-                                            <button class="btn-r" type="submit" name="enviarDelCit">
-                                                <span class="fa fa-trash"></span>
-                                            </button>
-                                        </form>
-
+                                    if(strtotime($fechaHoy) <= strtotime($fechaCita)){
+                                       ?>
+                                        <a class="btn-r" href="includes/forms/del_cita.php?id=<?php echo $fila['cit_id'] ?>">
+                                            <span class="fa fa-trash"></span>
+                                        </a>
                                         <?php
-                            }
-                            ?>
+                                    }
+                                    ?>
 
                                 </td>
                             </tr>
@@ -602,6 +602,11 @@
 
                         $datos = mysqli_query($conexion, $con_sel_cit);
                         while($fila = mysqli_fetch_array($datos, MYSQLI_ASSOC)){
+
+                            $fechaHoy = date('Y-m-d H:i:s');
+
+                            $fechaCita = $fila['fecha']." ".$fila['hora'];
+
                             ?>
                             <tr>
                                 <td>
@@ -644,30 +649,27 @@
                                     <?php echo $fila['hora']; ?>
                                 </td>
                                 <td>
-                                    <form action="includes/forms/mod_cita.php" method="post">
-                                        <input type="hidden" name="id" value="<?php echo $fila['id'] ?>">
-                                        <button class="btn-m" type="submit" name="enviarModCit">
+                                   <?php
+
+                                    if(strtotime($fechaHoy) <= strtotime($fechaCita)){
+                                        ?>
+                                        <a class="btn-m" href="includes/forms/mod_cita.php?id=<?php echo $fila['id'] ?>">
                                             <span class="fa fa-pencil"></span>
-                                        </button>
-                                    </form>
+                                        </a>
+
+                                        <?php
+
+                                    }
+                                    ?>
+
                                 </td>
                                 <td>
                                     <?php
-
-                                    $fechaHoy = date('Y-m-d H:i:s');
-
-                                    $fechaCita = $fila['fecha']." ".$fila['hora'];
-
                                     if(strtotime($fechaHoy) <= strtotime($fechaCita)){
                                        ?>
-
-                                        <form action="includes/forms/del_cita.php" method="post">
-                                            <input type="hidden" name="id" value="<?php echo $fila['id']; ?>">
-                                            <button class="btn-r" type="submit" name="enviarDelCit">
-                                                        <span class="fa fa-trash"></span>
-                                                    </button>
-                                        </form>
-
+                                        <a class="btn-r" href="includes/forms/del_cita.php?id=<?php echo $fila['id'] ?>">
+                                            <span class="fa fa-trash"></span>
+                                        </a>
                                         <?php
                                     }
                                     ?>
