@@ -23,7 +23,7 @@
 
          $cons_cliente = "select *
                             from clientes
-                            where id = $_POST[id]";
+                            where id = $_GET[id]";
             if (!$cons_cliente)
             {
                 echo "Hay un error en la consulta";
