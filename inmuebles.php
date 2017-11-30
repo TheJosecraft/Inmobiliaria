@@ -99,32 +99,45 @@
                                                 </div>
                                             </div>
                                             <br>
-                                            <div class="row">
-                                                <div class="col-md-12 text-center">
-                                                    <h4><?php echo precio($fila['precio']); ?> €</h4>
-                                                </div>
+                                            <div class="row text-center">
+                                                <h4><?php echo precio($fila['precio']); ?> €</h4>
+                                            </div>
+                                            <div class="row text-center">
+                                               <?php
+
+                                                    include 'conexion.php';
+                                                        $cons_nombres = "select nombre, apellidos from clientes
+                                                                            where id = $fila[id_cliente]";
+                                                        $nombres = mysqli_query($conexion, $cons_nombres);
+                                                        $nombre = mysqli_fetch_array($nombres);
+
+
+                                                    if($fila['id_cliente'] != 0){
+                                                    ?>
+                                                        <h5><?php echo $nombre['nombre']." ".$nombre['apellidos'] ?></h5>
+                                                        <?php
+                                                    }else{
+                                                        echo '<h5>&nbsp</h5>';
+                                                    }
+                                                ?>
                                             </div>
                                             <br>
-                                            <div class="row">
-                                                <div class="col-md-6">
+                                            <div class="row center-block">
+                                                <div class="col-xs-12">
 
-                                                    <div class="col-md-6"><span>
-                                                        <a class="btn btn-m" href="includes/forms/mod_inmueble.php?id=<?php echo $fila['id'] ?>">
+                                                    <div class="col-xs-4 text-center"><span>
+                                                        <a class="btn-m" href="includes/forms/mod_inmueble.php?id=<?php echo $fila['id'] ?>">
                                                         <span class="fa fa-pencil"></span></a>
                                                     </span>
                                                     </div>
-                                                    <div class="col-md-6"><span class="pull-left">
-                                                        <a class="btn btn-r" href="includes/forms/del_inmueble.php?id=<?php echo $fila['id'] ?>">
+                                                    <div class="col-xs-4 text-center">
+                                                        <a class="btn-r" href="includes/forms/del_inmueble.php?id=<?php echo $fila['id'] ?>">
                                                         <span class="fa fa-trash"></span></a>
-                                                    </span>
                                                     </div>
-
-
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <span class="pull-right">
-                                                        <a class="btn btn-e" href="inmueble.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-eye"></span></a>
-                                                    </span>
+                                                    <div class="col-xs-4 text-center">
+                                                            <a class="btn-e" href="inmueble.php?id=<?php echo $fila['id'] ?>">
+                                                            <span class="fa fa-eye"></span></a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -192,34 +205,27 @@
                                                 </div>
                                             </div>
                                             <br>
-                                            <div class="row">
-                                               <?php if($fila['id_cliente'] != 0){
-                                                        ?>
-                                                        <div class="col-md-6 text-center">
-                                                    <h4><?php echo precio($fila['precio']); ?> €</h4>
-                                                </div>
-                                                <div class="col-md-6 text-center">
-                                                    <h4><?php
-                                                        include 'conexion.php';
+                                            <div class="row text-center">
+                                                <h4><?php echo precio($fila['precio']); ?> €</h4>
+                                            </div>
+                                            <div class="row text-center">
+                                               <?php
+
+                                                    include 'conexion.php';
                                                         $cons_nombres = "select nombre, apellidos from clientes
                                                                             where id = $fila[id_cliente]";
                                                         $nombres = mysqli_query($conexion, $cons_nombres);
                                                         $nombre = mysqli_fetch_array($nombres);
-                                                        echo $nombre['nombre']." ".$nombre['apellidos'];
 
 
-
-                                                    ?></h4>
-                                                </div>
+                                                    if($fila['id_cliente'] != 0){
+                                                    ?>
+                                                        <h5><?php echo $nombre['nombre']." ".$nombre['apellidos'] ?></h5>
                                                         <?php
                                                     }else{
-                                                        ?>
-                                                        <div class="col-md-12 text-center">
-                                                    <h4><?php echo precio($fila['precio']); ?> €</h4>
-                                                </div>
-                                                        <?php
-                                                    } ?>
-
+                                                        echo '<h5>&nbsp</h5>';
+                                                    }
+                                                ?>
                                             </div>
                                             <br>
                                             <div class="row center-block">
