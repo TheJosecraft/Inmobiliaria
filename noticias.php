@@ -77,14 +77,15 @@
                                     <img class="img-responsive img-rounded" src="img/noticias/<?php echo $fila['imagen']; ?>" alt="">
                                     <br>
                                     <div class="row">
-                                        <div class="col-sm-6">
-                                             <h3><?php echo $fila['titular']; ?></h3><span>Hola</span>
+                                        <div class="col-sm-8">
+                                            <span class="h3"><?php echo $fila['titular']; ?> <a href="includes/forms/mod_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-pencil btn-m"></span></a> <a href="includes/forms/del_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-trash btn-r"></span> </a></span>
                                         </div>
 
-                                        <div class="col-sm-6">
-                                            <?php echo substr($fila['contenido'], 0, 280); ?><span class="pull-right"><a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más</a></span>
+                                        <div class="col-sm-4">
+                                            <span class="pull-right"><strong><span class="fa fa-calendar"></span> <?php $fecha = strtotime($fila['fecha']); echo date('d/m/Y', $fecha) ?></strong></span>
                                         </div>
                                     </div>
+                                    <p><?php echo substr($fila['contenido'], 0, 280); ?> <span class="pull-right"><a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más</a></span></p>
                                 </div>
                                 <br>
                             </div>
@@ -118,14 +119,15 @@
                                     <img class="img-responsive img-rounded" src="img/noticias/<?php echo $fila['imagen']; ?>" alt="">
                                     <br>
                                     <div class="row">
-                                        <div class="col-sm-6">
-                                             <h3><?php echo $fila['titular']; ?></h3><span>Hola</span>
+                                        <div class="col-sm-8">
+                                            <span class="h3"><?php echo $fila['titular']; ?> <a href="includes/forms/mod_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-pencil btn-m"></span></a> <a href="includes/forms/del_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-trash btn-r"></span> </a></span>
                                         </div>
 
-                                        <div class="col-sm-6">
-                                            <span class="pull-right"><a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más</a></span>
+                                        <div class="col-sm-4">
+                                            <span class="pull-right"><strong><span class="fa fa-calendar"></span> <?php $fecha = strtotime($fila['fecha']); echo date('d/m/Y', $fecha) ?></strong></span>
                                         </div>
                                     </div>
+                                    <p><?php echo substr($fila['contenido'], 0, 280); ?> <span class="pull-right"><a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más</a></span></p>
                                 </div>
                                 <br>
                             </div>
@@ -158,14 +160,15 @@
                                     <img class="img-responsive img-rounded" src="img/noticias/<?php echo $fila['imagen']; ?>" alt="">
                                     <br>
                                     <div class="row">
-                                        <div class="col-sm-6">
-                                            <h3><?php echo $fila['titular']; ?></h3><span>Hola</span>
+                                        <div class="col-sm-8">
+                                            <span class="h3"><?php echo $fila['titular']; ?> <a href="includes/forms/mod_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-pencil btn-m"></span></a> <a href="includes/forms/del_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-trash btn-r"></span> </a></span>
                                         </div>
 
-                                        <div class="col-sm-6">
-                                            <span class="pull-right"><a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más</a></span>
+                                        <div class="col-sm-4">
+                                            <span class="pull-right"><strong><span class="fa fa-calendar"></span> <?php $fecha = strtotime($fila['fecha']); echo date('d/m/Y', $fecha) ?></strong></span>
                                         </div>
                                     </div>
+                                    <p><?php echo substr($fila['contenido'], 0, 280); ?> <span class="pull-right"><a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más</a></span></p>
                                 </div>
                                 <br>
                             </div>
