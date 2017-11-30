@@ -290,15 +290,18 @@
 
     ?>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 center-block">
                         <ul class="legend">
                             <li><span class="laborales"></span> Laborales</li>
                             <li><span class="fines"></span> Fines de Semana</li>
                             <li><span class="cita"></span> Días con cita</li>
-                            <li><span class="actual"></span> Día actual</li>
+                            <li><span class="actual"></span> Día actual *</li>
                         </ul>
-
                     </div>
+
+                </div>
+                <div class="row">
+                    <h6>* Si hay una o más citas el color será el de días con cita</h6>
                 </div>
                 </div>
                 </div>
@@ -455,24 +458,6 @@
                             <?php
 
                     }elseif(isset($_GET['enviarBuscar'])){
-                        ?>
-
-                <div class="row">
-                    <table class="table">
-                        <thead>
-                            <th>Motivo</th>
-                            <th>Lugar</th>
-                            <th>Cliente</th>
-                            <th>Teléfono</th>
-                            <th>Hora</th>
-                            <th>Fecha</th>
-                            <th>Modificar</th>
-                            <th>Eliminar</th>
-                        </thead>
-                        <tbody>
-
-
-                                            <?php
                         $busqueda = $_GET['buscar'];
 
                         $con_sel_cit = "select cit.id cit_id, cit.fecha, cit.hora, cit.motivo, cit.lugar, cit.id_cliente, cli.id, cli.nombre
@@ -482,12 +467,34 @@
                                     or cli.nombre like '%$busqueda%')
                                     order by hora";
 
-
-
-
                         include 'conexion.php';
 
                         $datos = mysqli_query($conexion, $con_sel_cit);
+
+                        if(mysqli_num_rows($datos) == 0){
+                            ?>
+                                <h2><span class="fa fa-info-circle text-info"></span> No se han encontrado resultados</h2>
+                            <?php
+                        }else{
+
+                        ?>
+
+                        <div class="row">
+                            <table class="table">
+                                <thead>
+                                    <th>Motivo</th>
+                                    <th>Lugar</th>
+                                    <th>Cliente</th>
+                                    <th>Teléfono</th>
+                                    <th>Hora</th>
+                                    <th>Fecha</th>
+                                    <th>Modificar</th>
+                                    <th>Eliminar</th>
+                                </thead>
+                                <tbody>
+
+
+                    <?php
                         while($fila = mysqli_fetch_array($datos, MYSQLI_ASSOC)){
 
                             $fechaHoy = date('Y-m-d H:i:s');
@@ -571,7 +578,9 @@
                             ?>
                         </tbody>
                     </table>
+                </div>
                                     <?php
+                        }
                     }else{
                         ?>
 
@@ -790,11 +799,15 @@
         mysqli_close($conexion);
                 ?>
                        <meta http-equiv="refresh" content="0;url=citas.php?e=2">
+
                         <?php
             }
+            ?>
+            <div class="row">
+            <?php
             footer();
             ?>
-        </div>
+            </div>
     </div>
 </body>
 
