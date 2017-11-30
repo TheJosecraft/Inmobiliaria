@@ -97,28 +97,28 @@
                                     <div class="modal-body">
                                         <form action="#" method="post">
                                             <div class="form-group">
-                                                <label for="">Id</label>
+                                                <label for="id">Id</label>
                                                 <input class="form-control" type="text" name="id" value="<?php echo $id[0];?>" readonly>
                                             </div>
                                             <div class="form-group">
-                                                <label for="">Nombre</label>
+                                                <label for="nombre">Nombre</label>
                                                 <input class="form-control" type="text" id="nombre" name="nombre"><span style="display:none"></span>
                                             </div>
                                             <div class="form-group">
-                                                <label for="">Apellidos</label>
-                                                <input class="form-control" type="text" name="apellidos">
+                                                <label for="apellidos">Apellidos</label>
+                                                <input class="form-control" type="text" id="apellidos" name="apellidos"><span style="display:none"></span>
                                             </div>
                                             <div class="form-group">
-                                                <label for="">Dirección</label>
-                                                <input class="form-control" type="text" name="direccion">
+                                                <label for="direccion">Dirección</label>
+                                                <input class="form-control" type="text" id="direccion" name="direccion"><span style="display:none"></span>
                                             </div>
                                             <div class="form-group">
-                                                <label for="">Teléfono 1</label>
-                                                <input class="form-control" type="text" name="telefono1">
+                                                <label for="telefono1">Teléfono 1</label>
+                                                <input class="form-control" type="text" id="telefono1" name="telefono1"><span style="display:none"></span>
                                             </div>
                                             <div class="form-group">
-                                                <label for="">Telefono 2</label>
-                                                <input class="form-control" type="text" name="telefono2">
+                                                <label for="telefono2">Teléfono 2</label>
+                                                <input class="form-control" type="text" id="telefono2" name="telefono2"><span style="display:none"></span>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

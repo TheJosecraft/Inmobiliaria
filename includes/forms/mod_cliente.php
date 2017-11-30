@@ -10,10 +10,6 @@
     <link rel="stylesheet" href="../../css/bootstrap.css">
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/font-awesome.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap.js"></script>
-    <script type="text/javascript" src="../../js/main.js"></script>
-
 </head>
 
 <body>
@@ -47,7 +43,7 @@
                         </div>
                         <div class=form-group>
                             <label for="nombre">Nombre</label>
-                            <input class="form-control" type="text" id="nombre" name="nombre" value="<?php echo $datos['nombre'] ?>">
+                            <input class="form-control" type="text" id="nombre" name="nombre" value="<?php echo $datos['nombre'] ?>"><span style="display:none"></span>
                         </div>
                         <div class=form-group>
                             <label for="apellidos">Apellidos</label>
@@ -106,6 +102,9 @@
             <?php
     footer();
     ?>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../js/main.js"></script>
 </body>
 
 </html>
