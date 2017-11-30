@@ -13,19 +13,21 @@
 <body>
     <?php
     include 'funciones.php';
-
+    ?>
+    <div class="row">
+    <?php
     menu(3);
     ?>
+    </div>
         <div class="container">
-
-            <h1>Clientes</h1>
             <div class="row">
+               <h1>Clientes</h1>
                 <div class="col-xs-6">
                     <a class="btn bg-primary" data-toggle="modal" data-target="#insCli"><span class="fa fa-user-o"></span> Nuevo Cliente</a>
                 </div>
 
                 <div class="col-xs-6 text-right">
-                    <form class="form-inline" action="#" method="post">
+                    <form class="form-inline" action="#" method="get">
                         <div class="input-group col-xs-6">
                             <input class="form-control" type="text" name="buscar" placeholder="Nombre, apellidos o teléfono">
 
@@ -40,12 +42,12 @@
             </div>
             <br>
             <?php
-            if(isset($_POST['enviarBuscar'])){
+            if(isset($_GET['enviarBuscar'])){
 
-                $busqueda = $_POST['buscar'];
+                $busqueda = $_GET['buscar'];
 
                 include 'conexion.php';
-                    $cons_bus_cli = "select *
+                $cons_bus_cli = "select *
                                     from clientes
                                     where nombre like '%$busqueda%'
                                     or apellidos like '%$busqueda%'
@@ -53,127 +55,19 @@
                                     or telefono2 like '%$busqueda%'
                                     and nombre not like '%disponible%'";
 
-                    $clientes = mysqli_query($conexion, $cons_bus_cli);
+                $clientes = mysqli_query($conexion, $cons_bus_cli);
+
                 if(mysqli_num_rows($clientes) == 0){
                     ?>
                     <h2><span class="fa fa-info-circle text-info"></span> No se han encontrado resultados</h2>
                     <?php
                 }else{
-
-
-                ?>
-                <div class="row">
-
-
-                    <table class="table table-hover">
-                        <thead>
-                            <th>Nombre</th>
-                            <th>Apellidos</th>
-                            <th>Dirección</th>
-                            <th>Teléfono 1</th>
-                            <th>Teléfono 2</th>
-                            <th>Modificar</th>
-                        </thead>
-                        <tbody>
-                            <?php
-                    while($fila = mysqli_fetch_array($clientes, MYSQLI_ASSOC)){
-                        ?>
-
-                                <tr>
-                                    <td>
-                                        <?php echo $fila['nombre']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $fila['apellidos']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $fila['direccion']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $fila['telefono1']; ?>
-                                    </td>
-                                    <td>
-                                        <?php echo $fila['telefono2']; ?>
-                                    </td>
-                                    <td>
-                                        <form action="includes/forms/mod_cliente.php" method="post">
-                                            <input type="hidden" name=id value="<?php echo $fila['id'] ?>">
-                                            <button class="btn-m" type="submit" name="enviar">
-                                            <span class="fa fa-pencil"></span>
-                                        </button>
-                                        </form>
-                                    </td>
-                                </tr>
-
-                                <?php
-                    }
-
-                    mysqli_close($conexion);
-                    ?>
-                        </tbody>
-                    </table>
-                </div>
-                <?php
+                    tablaClientes($cons_bus_cli, $busqueda, true);
                 }
             }else{
-                ?>
-                    <div class="row">
-                        <table class="table table-hover">
-                            <thead>
-                                <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>Dirección</th>
-                                <th>Teléfono 1</th>
-                                <th>Teléfono 2</th>
-                                <th>Modificar</th>
-                            </thead>
-                            <tbody>
-                                <?php
-
-                    include 'conexion.php';
-                    $cons_clientes = "select * from clientes
+                $cons_clientes = "select * from clientes
                                         where nombre not like 'disponible'";
-                    $clientes = mysqli_query($conexion, $cons_clientes);
-                    while($fila = mysqli_fetch_array($clientes, MYSQLI_ASSOC)){
-                        ?>
-
-                                    <tr>
-                                        <td>
-                                            <?php echo $fila['nombre']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $fila['apellidos']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $fila['direccion']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $fila['telefono1']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $fila['telefono2']; ?>
-                                        </td>
-                                        <td>
-                                            <form action="includes/forms/mod_cliente.php" method="post">
-                                                <input type="hidden" name=id value="<?php echo $fila['id'] ?>">
-                                                <button class="btn-m" type="submit" name="enviar">
-                                            <span class="fa fa-pencil"></span>
-                                        </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-
-                                    <?php
-
-                    }
-
-                    mysqli_close($conexion);
-                    ?>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <?php
+                tablaClientes($cons_clientes);
             }
 
             include 'conexion.php';
@@ -260,11 +154,70 @@
                             <?php
 
     }
+
+    function tablaClientes($cons, $busq = ""){
+
+        ?>
+                    <div class="row">
+                        <table class="table table-hover">
+                            <thead>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>Dirección</th>
+                                <th>Teléfono 1</th>
+                                <th>Teléfono 2</th>
+                                <th>Modificar</th>
+                            </thead>
+                            <tbody>
+                                <?php
+
+                    include 'conexion.php';
+
+                    $clientes = mysqli_query($conexion, $cons);
+                    while($fila = mysqli_fetch_array($clientes, MYSQLI_ASSOC)){
+                        ?>
+
+                                    <tr>
+                                        <td>
+                                            <?php echo $fila['nombre']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $fila['apellidos']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $fila['direccion']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $fila['telefono1']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $fila['telefono2']; ?>
+                                        </td>
+                                        <td>
+                                            <a class="btn-m" href="includes/forms/mod_cliente.php?id=<?php echo $fila['id'] ?>">
+                                            <span class="fa fa-pencil"></span></a>
+                                        </td>
+                                    </tr>
+
+                                    <?php
+
+                    }
+
+                    mysqli_close($conexion);
+                    ?>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <?php
+    }
     ?>
         </div>
+        <div class="row">
         <?php
     footer();
     ?>
+    </div>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script type="text/javascript" src="js/bootstrap.js"></script>
             <script type="text/javascript" src="js/main.js"></script>
