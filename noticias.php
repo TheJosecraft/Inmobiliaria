@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="col-xs-6 text-right">
-                            <form class="form-inline" action="#" method="post">
+                            <form class="form-inline" action="#" method="get">
                                 <div class="input-group">
                                     <input class="form-control" type="text" name="buscar" placeholder="Titular">
 
@@ -78,8 +78,8 @@
 
                 noticias($cons_ult_not, $numNoticias);
 
-            }elseif(isset($_POST['enviarBuscar'])){
-                $busqueda = $_POST['buscar'];
+            }elseif(isset($_GET['enviarBuscar'])){
+                $busqueda = $_GET['buscar'];
 
                 $cons_ult_not = "select * from noticias
                                         where fecha <= '$fecha'
