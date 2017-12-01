@@ -241,4 +241,8 @@ img {
     padding-bottom: 38px;
 }
 
+.has-feedback label ~ .form-control-feedback{
+    top: 35px !important;
+}
+
 

@@ -350,6 +350,21 @@
 
                         $fecha = date('Y-m-d', $fecha);
 
+
+                        $con_sel_cit = "select * from citas
+                                        where fecha = '$fecha'
+                                        order by hora";
+
+
+                        include 'conexion.php';
+
+                        $datos = mysqli_query($conexion, $con_sel_cit);
+                        if(mysqli_num_rows($datos) == 0){
+                            ?>
+                                <h2><span class="fa fa-info-circle text-info"></span> No se han encontrado resultados</h2>
+                            <?php
+                        }else{
+
                         ?>
 
                         <div class="row">
@@ -367,14 +382,6 @@
 
 
                         <?php
-                        $con_sel_cit = "select * from citas
-                                        where fecha = '$fecha'
-                                        order by hora";
-
-
-                        include 'conexion.php';
-
-                        $datos = mysqli_query($conexion, $con_sel_cit);
                         while($fila = mysqli_fetch_array($datos, MYSQLI_ASSOC)){
 
                             $fechaHoy = date('Y-m-d H:i:s');
@@ -456,7 +463,7 @@
                     </tbody>
                 </table>
                             <?php
-
+                        }
                     }elseif(isset($_GET['enviarBuscar'])){
                         $busqueda = $_GET['buscar'];
 
@@ -582,7 +589,23 @@
                                     <?php
                         }
                     }else{
-                        ?>
+
+                        $fecha = date('Y-m-d');
+
+                        $con_sel_cit = "select * from citas
+                                        where fecha = '$fecha'
+                                        order by hora";
+
+
+                        include 'conexion.php';
+
+                        $datos = mysqli_query($conexion, $con_sel_cit);
+                         if(mysqli_num_rows($datos) == 0){
+                            ?>
+                                <h2><span class="fa fa-info-circle text-info"></span> No se han encontrado resultados</h2>
+                            <?php
+                        }else{
+                         ?>
 
                         <div class="row">
                             <table class="table">
@@ -600,16 +623,6 @@
 
                                     <?php
 
-                        $fecha = date('Y-m-d');
-
-                        $con_sel_cit = "select * from citas
-                                        where fecha = '$fecha'
-                                        order by hora";
-
-
-                        include 'conexion.php';
-
-                        $datos = mysqli_query($conexion, $con_sel_cit);
                         while($fila = mysqli_fetch_array($datos, MYSQLI_ASSOC)){
 
                             $fechaHoy = date('Y-m-d H:i:s');
@@ -691,6 +704,7 @@
                     </tbody>
                 </table>
                             <?php
+                         }
                     }
                     ?>
 
