@@ -6,20 +6,17 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../../css/bootstrap.css">
-    <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/font-awesome.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap.js"></script>
+    <title>Modificar cita</title>
+    <?php
+    include '../funciones.php';
+    cabecera();
+    ?>
 
 </head>
 
 <body>
 
     <?php
-        include '../../conexion.php';
-
          $cons_cita = "select *
                             from citas
                             where id = $_GET[id]";
@@ -28,18 +25,17 @@
                 echo "Hay un error en la consulta";
             }?>
     <?php
-        include 'funciones.php';
 
         menu(5);
 
-        $datos = mysqli_query($conexion, $cons_cita);
-            $datos = mysqli_fetch_array($datos, MYSQLI_ASSOC);
-            mysqli_close($conexion);
+        $datos = db_query($cons_cita);
+        $datos = mysqli_fetch_array($datos, MYSQLI_ASSOC);
+        db_close();
         ?>
         <div class="container">
         <h1>Modificar cita</h1>
 
-                    <form action=# method="post" enctype="multipart/form-data">
+                    <form action="#" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="">Id</label>
                             <input class="form-control" type="text" name="id" value="<?php echo $datos['id'] ?>" readonly>
@@ -57,17 +53,20 @@
                             <select class="form-control" name="id_cliente" id="">
                         <?php
 
-                            include '../../conexion.php';
-                            $cons_idCliente = "select id, nombre, apellidos
-                                                from clientes
-                                                where id > 0";
+                            $cliente = db_query("select id, nombre, apellidos from clientes where id > 0");
+                            while($fila = mysqli_fetch_array($cliente)){
+                                if ($fila['id'] == $datos['id_cliente'])
+                                {
+                                    echo "<option value=$fila[id] selected>$fila[nombre] $fila[apellidos]</option>";
+                                }
+                                else
+                                {
+                                    echo "<option value=$fila[id]>$fila[nombre] $fila[apellidos]</option>";
+                                }
 
-                            $id_Cliente = mysqli_query($conexion, $cons_idCliente);
-                            while($fila = mysqli_fetch_array($id_Cliente)){
-                                echo "<option value=$fila[id]>$fila[nombre] $fila[apellidos]</option>";
                             }
 
-                            mysqli_close($conexion);
+                            db_close();
                         ?>
                     </select>
                         </div>
@@ -94,26 +93,22 @@
         $hora = $_POST['hora'];
         $fecha = $_POST['fecha'];
 
-//        echo $nombre.'</br>';
-//        echo $apellidos.'</br>';
-//        echo $direccion.'</br>';
-//        echo $telefono1.'</br>';
-//        echo $telefono2.'</br>';
 
         $cons_mod = "update citas
                     set motivo = '$motivo',
                     lugar = '$lugar',
-                    cliente = $cliente,
+                    id_cliente = $cliente,
                     hora = '$hora',
                     fecha = '$fecha'
                     where id = $id";
 
-        include '../../conexion.php';
-        $modificar = mysqli_query($conexion, $cons_mod);
-        mysqli_close($conexion);
+        db_query($cons_mod);
+        db_close();
 
         echo '<h2 class=text-center>Los datos se han actualizado correctamente</h2>';
-        header("refresh:2;url=../../citas.php");
+        ?>
+        <meta http-equiv="refresh" content="2;url=citas.php?e=1">
+        <?php
     }
 
     ?>

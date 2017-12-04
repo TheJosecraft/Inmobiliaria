@@ -7,19 +7,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar inmueble</title>
-    <link rel="stylesheet" href="../../css/bootstrap.css">
-    <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/font-awesome.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap.js"></script>
-
+    <?php
+    include '../funciones.php';
+    cabecera();
+    ?>
 </head>
 
 <body>
 
     <?php
-        include '../../conexion.php';
-
          $cons_cliente = "select *
                             from inmuebles
                             where id = $_GET[id]";
@@ -28,7 +24,6 @@
                 echo "Hay un error en la consulta";
             }?>
         <?php
-        include 'funciones.php';
 
         menu(4);
         ?>
@@ -36,9 +31,9 @@
                 <h1>Modificar inmueble</h1>
 
                 <?php
-            $datos = mysqli_query($conexion, $cons_cliente);
+            $datos = db_query($cons_cliente);
             $datos = mysqli_fetch_array($datos, MYSQLI_ASSOC);
-            mysqli_close($conexion);
+            db_close();
             ?>
                     <form action=# method="post" enctype="multipart/form-data">
                         <div class="form-group">
@@ -61,17 +56,19 @@
                             <label for="">Cliente</label>
                             <select class="form-control" name="id_cliente" id="">
                         <?php
-
-                            include '../../conexion.php';
                             $cons_idCliente = "select id, nombre, apellidos
                                                 from clientes";
 
-                            $id_Cliente = mysqli_query($conexion, $cons_idCliente);
+                            $id_Cliente = db_query($cons_idCliente);
                             while($fila = mysqli_fetch_array($id_Cliente)){
-                                echo "<option value=$fila[id]>$fila[nombre] $fila[apellidos]</option>";
-                            }
+                                if($datos['id_cliente'] == $fila['id']){
+                                    echo "<option value=$fila[id] selected>$fila[nombre] $fila[apellidos]</option>";
+                                }else{
+                                    echo "<option value=$fila[id]>$fila[nombre] $fila[apellidos]</option>";
+                                }
 
-                            mysqli_close($conexion);
+                            }
+                            db_close();
                         ?>
                     </select>
                         </div>
@@ -100,15 +97,11 @@
 
         $imagen = $_FILES['imagen'];
 
-        echo $imagen['name'];
-
         $rutaImg = "../../img/";
         $rutaInmuebles = $rutaImg."inmuebles/";
         $nombreImagen = "";
 
         if($imagen['name'] != ""){
-
-//            unlink($rutaImg.$rutaInmuebles.$viejaImagen);
 
             switch ($imagen['type'])
             {
@@ -144,12 +137,10 @@
                     where id = $id";
         }
 
-
-        include '../../conexion.php';
-        $modificar = mysqli_query($conexion, $cons_mod);
-        mysqli_close($conexion);
+        db_query($cons_mod);
+        db_close();
         ?>
-        <meta http-equiv="refresh" content="0;url=../../inmuebles.php?e=1">
+        <meta http-equiv="refresh" content="0;url=inmuebles.php?e=1">
         <?php
     }
 

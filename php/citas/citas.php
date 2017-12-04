@@ -677,14 +677,9 @@
                 $cliente = $_POST['cliente'];
                 $hora = $_POST['hora'];
                 $fecha = $_POST['fecha'];
-                $cons_ins_cita = "insert into citas values (null,
-                                                            '$fecha',
-                                                            '$hora',
-                                                            '$motivo',
-                                                            '$lugar',
-                                                            $cliente)";
-        db_query($cons_ins_cita);
-        db_close();
+
+                db_query("insert into citas values (null, '$fecha', '$hora', '$motivo', '$lugar', $cliente)");
+                db_close();
                 ?>
                        <meta http-equiv="refresh" content="0;url=citas.php?e=2">
 

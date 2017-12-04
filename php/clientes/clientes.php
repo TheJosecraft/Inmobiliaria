@@ -42,14 +42,13 @@
             if(isset($_GET['enviarBuscar'])){
                 $busqueda = $_GET['buscar'];
 
-                $cons_bus_cli = "select *
+                $clientes = db_query("select *
                                     from clientes
                                     where nombre like '%$busqueda%'
                                     or apellidos like '%$busqueda%'
                                     or telefono1 like '%$busqueda%'
                                     or telefono2 like '%$busqueda%'
-                                    and nombre not like '%disponible%'";
-                $clientes = db_query($cons_bus_cli);
+                                    and nombre not like '%disponible%'");
                 if(mysqli_num_rows($clientes) == 0){
                     ?>
                     <h2><span class="fa fa-info-circle text-info"></span> No se han encontrado resultados</h2>

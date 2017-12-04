@@ -11,7 +11,7 @@ function menu ($pag = 1)
                <span class="icon-bar"></span>
                <span class="icon-bar"></span>
            </button>
-                <a class="navbar-brand" href=".">Inmobiliaria</a>
+                <a class="navbar-brand" href="#">Inmobiliaria</a>
             </div>
             <nav class="navbar-collapse collapse" id="menu">
                 <div class="container-fluid">
@@ -28,48 +28,48 @@ function menu ($pag = 1)
                             <?php
                         }elseif($pag == 2){
                             ?>
-                                <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
-                                <li class="active"><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
-                                <li><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
-                                <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
-                                <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
-                                <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+                            <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li class="active"><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
+                            <li><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
+                            <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
+                            <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
+                            <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                                 <?php
                         }elseif($pag == 3){
                             ?>
-                                    <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
-                                    <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
-                                    <li class="active"><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
-                                    <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
-                                    <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
-                                    <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+                            <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
+                            <li class="active"><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
+                            <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
+                            <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
+                            <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                                     <?php
                         }elseif($pag == 4){
                             ?>
-                                        <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
-                                        <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
-                                        <li><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
-                                        <li class="active"><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
-                                        <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
-                                        <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+                            <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
+                            <li><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
+                            <li class="active"><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
+                            <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
+                            <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                                         <?php
                         }elseif($pag == 5){
                             ?>
-                                            <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
-                                            <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
-                                            <li><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
-                                            <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
-                                            <li class="active"><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
-                                            <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+                            <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
+                            <li><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
+                            <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
+                            <li class="active"><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
+                            <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                                             <?php
                         }elseif($pag == 6){
                             ?>
-                                                <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
-                                                <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
-                                                <li><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
-                                                <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
-                                                <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
-                                                <li class="active"><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+                            <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
+                            <li><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
+                            <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
+                            <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
+                            <li class="active"><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                                                 <?php
                         }
                         ?>
@@ -135,7 +135,7 @@ function db_query($consulta) {
     $resultado = mysqli_query($conexion, $consulta);
 
     if($resultado === false) {
-        db_error();
+        echo db_error();
     } else {
         return $resultado;
     }

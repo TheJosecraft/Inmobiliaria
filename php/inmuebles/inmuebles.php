@@ -42,18 +42,16 @@
                     <?php
             if(isset($_POST['buscar'])){
 
-            include '../conexion.php';
             $busqueda = $_POST['buscar'];
 
-                    include '../conexion.php';
-                    $cons_bus_inm = "select inm.id id_inm, inm.direccion, inm.descripcion, inm.precio, inm.id_cliente, inm.imagen, cli.id, cli.nombre
+                    $cons_bus_inm = "select inm.id id_inm, inm.direccion, inm.descripcion, inm.precio, inm.id_cliente, inm.imagen, cli.nombre
                                     from inmuebles inm, clientes cli
                                     where inm.id_cliente = cli.id
                                     and (inm.direccion like '%$busqueda%'
                                     or cli.nombre like '%$busqueda%'
                                     or inm.precio like '%$busqueda%')";
 
-                    $inmuebles = mysqli_query($conexion, $cons_bus_inm);
+                    $inmuebles = db_query($cons_bus_inm);
                   ?>
             <div class="row">
             <?php
@@ -101,11 +99,9 @@
                                             </div>
                                             <div class="row text-center">
                                                <?php
-
-                                                    include '../conexion.php';
                                                         $cons_nombres = "select nombre, apellidos from clientes
                                                                             where id = $fila[id_cliente]";
-                                                        $nombres = mysqli_query($conexion, $cons_nombres);
+                                                        $nombres = db_query($cons_nombres);
                                                         $nombre = mysqli_fetch_array($nombres);
 
 
@@ -123,16 +119,16 @@
                                                 <div class="col-xs-12">
 
                                                     <div class="col-xs-4 text-center"><span>
-                                                        <a class="btn-m" href="mod_inmueble.php?id=<?php echo $fila['id'] ?>">
+                                                        <a class="btn-m" href="mod_inmueble.php?id=<?php echo $fila['id_inm'] ?>">
                                                         <span class="fa fa-pencil"></span></a>
                                                     </span>
                                                     </div>
                                                     <div class="col-xs-4 text-center">
-                                                        <a class="btn-r" href="del_inmueble.php?id=<?php echo $fila['id'] ?>">
+                                                        <a class="btn-r" href="del_inmueble.php?id=<?php echo $fila['id_inm'] ?>">
                                                         <span class="fa fa-trash"></span></a>
                                                     </div>
                                                     <div class="col-xs-4 text-center">
-                                                            <a class="btn-e" href="inmueble.php?id=<?php echo $fila['id'] ?>">
+                                                            <a class="btn-e" href="inmueble.php?id=<?php echo $fila['id_inm'] ?>">
                                                             <span class="fa fa-eye"></span></a>
                                                     </div>
                                                 </div>
@@ -148,15 +144,14 @@
                                 }
             }
 
-            mysqli_close($conexion);
+            db_close();
             ?>
 
                         <?php
             }else{
 
-            include '../conexion.php';
             $cons_inmuebles = "select * from inmuebles";
-            $inmuebles = mysqli_query($conexion, $cons_inmuebles);
+            $inmuebles = db_query($cons_inmuebles);
 
             ?>
             <div class="row">
@@ -207,11 +202,9 @@
                                             </div>
                                             <div class="row text-center">
                                                <?php
-
-                                                    include '../conexion.php';
                                                         $cons_nombres = "select nombre, apellidos from clientes
                                                                             where id = $fila[id_cliente]";
-                                                        $nombres = mysqli_query($conexion, $cons_nombres);
+                                                        $nombres = db_query($cons_nombres);
                                                         $nombre = mysqli_fetch_array($nombres);
 
 
@@ -255,34 +248,14 @@
 
             }
 
-            mysqli_close($conexion);
+            db_close();
             }
         ?>
                 </div>
-                    <?php
-                if (isset($_POST['enviarDelInm']))
-                {
-                    include '../conexion.php';
-
-                    $id = $_POST['id'];
-
-                    $cons_del_inm = "delete from inmuebles where id = $id";
-
-                    mysqli_query($conexion, $cons_del_inm);
-                    mysqli_close($conexion);
-
-                    ?>
-                       <meta http-equiv="refresh" content="0;url=inmuebles.php?e=2">
-                        <?php
-                }
-    ?>
-
             </div>
 
 
             <?php
-
-            include '../conexion.php';
 
             $cons_auto_inc = "SELECT AUTO_INCREMENT
                         FROM information_schema.TABLES
@@ -293,7 +266,7 @@
     {
         echo "Hay errores en la consulta";
     }else{
-        $fila = mysqli_query($conexion, $cons_auto_inc);
+        $fila = db_query($cons_auto_inc);
         $id = mysqli_fetch_array($fila);
     }
             ?>
@@ -325,18 +298,17 @@
                                         <label for="">Cliente</label>
                                         <select class="form-control" name="cliente" id="">
                         <?php
-                            mysqli_close($conexion);
+                            db_close();
 
-                            include 'conexion.php';
                             $cons_idCliente = "select id, nombre, apellidos
                                                 from clientes";
 
-                            $id_Cliente = mysqli_query($conexion, $cons_idCliente);
+                            $id_Cliente = db_query($cons_idCliente);
                             while($fila = mysqli_fetch_array($id_Cliente)){
                                 echo "<option value=$fila[id]>$fila[nombre] $fila[apellidos]</option>";
                             }
 
-                            mysqli_close($conexion);
+                            db_close();
                         ?>
                     </select>
                                     </div>
@@ -356,7 +328,7 @@
                     </div>
                 </div>
         </div>
-        <?php include '../conexion.php';
+        <?php
     if (isset($_POST['enviarInsInmueble']))
     {
         $id = $_POST['id'];
@@ -367,7 +339,7 @@
 
         $imagen = $_FILES['imagen'];
 
-        $rutaImg = "img/";
+        $rutaImg = "../../img/";
         $rutaInmuebles = $rutaImg."inmuebles/";
         $nombreImagen = "";
 
@@ -413,8 +385,8 @@
                                                             '$nombreImagen')";
 
 
-        mysqli_query($conexion, $cons_ins_inmueble);
-        mysqli_close($conexion);
+        db_query($cons_ins_inmueble);
+        db_close();
 
         ?>
         <meta http-equiv="refresh" content="0;url=inmuebles.php?e=1">

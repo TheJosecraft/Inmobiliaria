@@ -3,32 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include '../funciones.php'; ?>
     <title><?php
 
-        $cons_sel_nom = "select titular from noticias
-                        where id = $_GET[id]";
-        include '../conexion.php';
-        $titulos = mysqli_query($conexion, $cons_sel_nom);
+        $titulos = db_query("select titular from noticias where id = $_GET[id]");
         $titulo = mysqli_fetch_array($titulos);
 
         echo $titulo[0];
-        mysqli_close($conexion);
+        db_close();
         ?></title>
 
-        <?php include '../funciones.php';
-        cabecera();
-        ?>
+        <?php cabecera(); ?>
 </head>
 <body>
    <?php
 
     menu();
-
-     $cons_sel_nom = "select * from noticias
-                        where id = $_GET[id]";
-        include '../conexion.php';
-        $datos = mysqli_query($conexion, $cons_sel_nom);
-
+        $datos = db_query("select * from noticias where id = $_GET[id]");
     ?>
     <div class="container text-center">
        <?php
@@ -38,9 +29,8 @@
         <h1><?php echo $fila['titular'] ?></h1>
         <p class="text-left"><?php echo $fila['contenido'] ?></p>
         <?php
-
-            }
-            footer();
+        }
+    footer();
         ?>
     </div>
 </body>

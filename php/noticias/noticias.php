@@ -128,7 +128,6 @@
                 </div>
             </div>
         <?php
-        include '../conexion.php';
 
             $cons_auto_inc = "SELECT AUTO_INCREMENT
                         FROM information_schema.TABLES
@@ -139,10 +138,10 @@
             {
                 echo "Hay errores en la consulta";
             }else{
-                $fila = mysqli_query($conexion, $cons_auto_inc);
+                $fila = db_query($cons_auto_inc);
                 $id = mysqli_fetch_array($fila);
             }
-            mysqli_close($conexion);
+            db_close();
         ?>
         <div class="modal fade" id="insNot" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -184,7 +183,7 @@
                         </div>
                     </div>
                 </div>
-        <?php include '../conexion.php';
+        <?php
     if (isset($_POST['enviarInsNoticia']))
     {
         $id = $_POST['id'];
@@ -193,7 +192,7 @@
         $imagen = $_FILES['imagen'];
         $fecha = $_POST['fecha'];
 
-        $rutaImg = "img/";
+        $rutaImg = "../../img/";
         $rutaNoticias = $rutaImg."noticias/";
         $nombreImagen = "";
 
@@ -230,8 +229,8 @@
                                                             '$fecha')";
 
 
-        mysqli_query($conexion, $cons_ins_noticia);
-        mysqli_close($conexion);
+        db_query($cons_ins_noticia);
+        db_close($conexion);
 
         ?>
         <meta http-equiv="refresh" content="0;url=noticias.php?e=1">
@@ -256,7 +255,7 @@
                                     <br>
                                     <div class="row">
                                         <div class="col-sm-8">
-                                            <span class="h3"><?php echo $fila['titular']; ?> <a href="includes/forms/mod_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-pencil btn-m"></span></a> <a href="includes/forms/del_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-trash btn-r"></span> </a></span>
+                                            <span class="h3"><?php echo $fila['titular']; ?> <a href="mod_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-pencil btn-m"></span></a> <a href="del_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-trash btn-r"></span> </a></span>
                                         </div>
 
                                         <div class="col-sm-4">

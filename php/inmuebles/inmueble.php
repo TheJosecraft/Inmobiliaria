@@ -3,39 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php
-
-        $cons_sel_nom = "select direccion from inmuebles
-                        where id = $_GET[id]";
-        include 'conexion.php';
-        $titulos = mysqli_query($conexion, $cons_sel_nom);
+    <?php include '../funciones.php'; ?>
+    <title>
+       <?php
+        $titulos = db_query("select direccion from inmuebles where id = $_GET[id]");
         $titulo = mysqli_fetch_array($titulos);
 
         echo $titulo[0];
-        mysqli_close($conexion);
+        db_close();
         ?></title>
-            <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/font-awesome.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
+
+        <?php cabecera(); ?>
 </head>
 <body>
    <?php
-    include 'funciones.php';
     menu();
 
-     $cons_sel_nom = "select * from inmuebles
-                        where id = $_GET[id]";
-        include 'conexion.php';
-        $datos = mysqli_query($conexion, $cons_sel_nom);
+    $datos = db_query("select * from inmuebles where id = $_GET[id]");
 
     ?>
     <div class="container text-center">
        <?php
         while($fila = mysqli_fetch_array($datos, MYSQLI_ASSOC)){
         ?>
-        <img class="img-responsive center-block" src="img/inmuebles/<?php echo $fila['imagen'] ?>" alt="" width="70%">
+        <img class="img-responsive center-block" src="../../img/inmuebles/<?php echo $fila['imagen'] ?>" alt="" width="70%">
         <h1><?php echo $fila['direccion'] ?></h1>
         <div class="row">
             <div class="col-sm-3">

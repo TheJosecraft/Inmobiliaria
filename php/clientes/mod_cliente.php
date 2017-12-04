@@ -89,7 +89,7 @@
         db_close();
 
         ?>
-        <meta http-equiv="refresh" content="0;url=../../clientes.php?e=1">
+        <meta http-equiv="refresh" content="0;url=clientes.php?e=1">
         <?php
     }
 

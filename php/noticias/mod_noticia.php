@@ -7,19 +7,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar inmueble</title>
-    <link rel="stylesheet" href="../../css/bootstrap.css">
-    <link rel="stylesheet" href="../../css/main.css">
-    <link rel="stylesheet" href="../../css/font-awesome.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="../../js/bootstrap.js"></script>
+    <?php
+    include '../funciones.php';
+    cabecera();
+    ?>
 
 </head>
 
 <body>
 
     <?php
-        include '../../conexion.php';
-
          $cons_cliente = "select *
                             from noticias
                             where id = $_GET[id]";
@@ -28,7 +25,6 @@
                 echo "Hay un error en la consulta";
             }?>
         <?php
-        include 'funciones.php';
 
         menu(2);
         ?>
@@ -36,9 +32,9 @@
                 <h1>Modificar noticia</h1>
 
                 <?php
-            $datos = mysqli_query($conexion, $cons_cliente);
+            $datos = db_query($cons_cliente);
             $datos = mysqli_fetch_array($datos, MYSQLI_ASSOC);
-            mysqli_close($conexion);
+            db_close();
             ?>
                     <form action="#" method="post" enctype="multipart/form-data">
                         <div class="form-group">
@@ -80,15 +76,11 @@
 
         $imagen = $_FILES['imagen'];
 
-        echo $imagen['name'];
-
         $rutaImg = "../../img/";
         $rutaNoticias = $rutaImg."noticias/";
         $nombreImagen = "";
 
         if($imagen['name'] != ""){
-
-//            unlink($rutaImg.$rutaInmuebles.$viejaImagen);
 
             switch ($imagen['type'])
             {
@@ -117,17 +109,15 @@
             $cons_mod = "update noticias
                     set titular = '$titular',
                     contenido = '$contenido',
-                    imagen = '$viejaImagen'.
+                    imagen = '$viejaImagen',
                     fecha = '$fecha'
                     where id = $id";
         }
 
-
-        include '../../conexion.php';
-        $modificar = mysqli_query($conexion, $cons_mod);
-        mysqli_close($conexion);
+        db_query($cons_mod);
+        db_close();
         ?>
-        <meta http-equiv="refresh" content="0;url=../../noticias.php?e=3">
+        <meta http-equiv="refresh" content="0;url=noticias.php?e=3">
         <?php
 
     }
