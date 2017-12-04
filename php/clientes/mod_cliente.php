@@ -16,7 +16,6 @@
 <body>
 
     <?php
-        include '../conexion.php';
 
          $cons_cliente = "select *
                             from clientes
@@ -32,7 +31,7 @@
                 <h1>Modificar cliente</h1>
 
                 <?php
-            $datos = mysqli_query($conexion, $cons_cliente);
+            $datos = db_query($cons_cliente);
             $datos = mysqli_fetch_array($datos, MYSQLI_ASSOC);
             ?>
                     <form action=# method=post>
@@ -67,7 +66,7 @@
 
                     </form>
                     <?php
-            mysqli_close($conexion);
+            db_close();
 
     if (isset($_POST['enviarModCliente']))
     {
@@ -86,9 +85,8 @@
                     telefono2 = '$telefono2'
                     where id = $id";
 
-        include '../conexion.php';
-        $modificar = mysqli_query($conexion, $cons_mod);
-        mysqli_close($conexion);
+        $modificar = db_query($cons_mod);
+        db_close();
 
         ?>
         <meta http-equiv="refresh" content="0;url=../../clientes.php?e=1">

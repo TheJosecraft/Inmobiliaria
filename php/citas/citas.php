@@ -211,9 +211,8 @@
     }
     function isCita($a, $m, $d){
         $c = array();
-        include '../../conexion.php';
         $cons_sel_fecha = "select fecha from citas";
-        $fechas = mysqli_query($conexion, $cons_sel_fecha);
+        $fechas = db_query($cons_sel_fecha);
         while($fila = mysqli_fetch_array($fechas)){
             $fecha = strtotime($fila['fecha']);
             $anio = date('Y', $fecha);
@@ -298,8 +297,7 @@
                         $con_sel_cit = "select * from citas
                                         where fecha = '$fecha'
                                         order by hora";
-                        include '../../conexion.php';
-                        $datos = mysqli_query($conexion, $con_sel_cit);
+                        $datos = db_query($con_sel_cit);
                         if(mysqli_num_rows($datos) == 0){
                             ?>
                                 <h2><span class="fa fa-info-circle text-info"></span> No se han encontrado resultados</h2>
@@ -338,11 +336,10 @@
                                         $cons_sel_cli = "select id, nombre, apellidos
                                         from clientes
                                         where id = $fila[id_cliente]";
-                                        include '../conexion.php';
-                                        $nombres = mysqli_query($conexion, $cons_sel_cli);
+                                        $nombres = db_query($cons_sel_cli);
                                         $nombre = mysqli_fetch_array($nombres);
                                             echo $nombre['nombre']." ".$nombre['apellidos'];
-                                        mysqli_close($conexion);
+                                        db_close();
                                      ?>
                                 </td>
                                 <td>
@@ -350,11 +347,10 @@
                                         $cons_sel_cli = "select id, telefono1
                                         from clientes
                                         where id = $fila[id_cliente]";
-                                        include '../conexion.php';
-                                        $nombres = mysqli_query($conexion, $cons_sel_cli);
+                                        $nombres = db_query($cons_sel_cli);
                                         $nombre = mysqli_fetch_array($nombres);
                                             echo $nombre['telefono1'];
-                                        mysqli_close($conexion);
+                                        db_close();
                                      ?>
                                 </td>
                                 <td>
@@ -364,7 +360,7 @@
                                    <?php
                                     if(strtotime($fechaHoy) <= strtotime($fechaCita)){
                                         ?>
-                                        <a class="btn-m" href="includes/forms/mod_cita.php?id=<?php echo $fila['id'] ?>">
+                                        <a class="btn-m" href="mod_cita.php?id=<?php echo $fila['id'] ?>">
                                             <span class="fa fa-pencil"></span>
                                         </a>
 
@@ -377,7 +373,7 @@
                                     <?php
                                     if(strtotime($fechaHoy) <= strtotime($fechaCita)){
                                        ?>
-                                        <a class="btn-r" href="includes/forms/del_cita.php?id=<?php echo $fila['id'] ?>">
+                                        <a class="btn-r" href="del_cita.php?id=<?php echo $fila['id'] ?>">
                                             <span class="fa fa-trash"></span>
                                         </a>
                                         <?php
@@ -401,8 +397,7 @@
                                     and (cit.fecha like '%$busqueda%'
                                     or cli.nombre like '%$busqueda%')
                                     order by hora";
-                        include '../../conexion.php';
-                        $datos = mysqli_query($conexion, $con_sel_cit);
+                        $datos = db_query($con_sel_cit);
                         if(mysqli_num_rows($datos) == 0){
                             ?>
                                 <h2><span class="fa fa-info-circle text-info"></span> No se han encontrado resultados</h2>
@@ -442,11 +437,10 @@
                                 $cons_sel_cli = "select id, nombre, apellidos
                                 from clientes
                                 where id = $fila[id_cliente]";
-                                include '../conexion.php';
-                                $nombres = mysqli_query($conexion, $cons_sel_cli);
+                                $nombres = db_query($cons_sel_cli);
                                 $nombre = mysqli_fetch_array($nombres);
                                     echo $nombre['nombre']." ".$nombre['apellidos'];
-                                mysqli_close($conexion);
+                                db_close();
                              ?>
                                 </td>
                                 <td>
@@ -454,11 +448,10 @@
                                 $cons_sel_cli = "select id, telefono1
                                 from clientes
                                 where id = $fila[id_cliente]";
-                                include '../conexion.php';
-                                $nombres = mysqli_query($conexion, $cons_sel_cli);
+                                $nombres = db_query($cons_sel_cli);
                                 $nombre = mysqli_fetch_array($nombres);
                                     echo $nombre['telefono1'];
-                                mysqli_close($conexion);
+                                db_close();
                              ?>
                                 </td>
                                 <td>
@@ -506,8 +499,7 @@
                         $con_sel_cit = "select * from citas
                                         where fecha = '$fecha'
                                         order by hora";
-                        include '../../conexion.php';
-                        $datos = mysqli_query($conexion, $con_sel_cit);
+                        $datos = db_query($con_sel_cit);
                          if(mysqli_num_rows($datos) == 0){
                             ?>
                                 <h2><span class="fa fa-info-circle text-info"></span> No se han encontrado resultados</h2>
@@ -546,11 +538,10 @@
                                         $cons_sel_cli = "select id, nombre, apellidos
                                         from clientes
                                         where id = $fila[id_cliente]";
-                                        include '../conexion.php';
-                                        $nombres = mysqli_query($conexion, $cons_sel_cli);
+                                        $nombres = db_query($cons_sel_cli);
                                         $nombre = mysqli_fetch_array($nombres);
                                             echo $nombre['nombre']." ".$nombre['apellidos'];
-                                        mysqli_close($conexion);
+                                        db_close();
                                      ?>
                                 </td>
                                 <td>
@@ -558,11 +549,10 @@
                                         $cons_sel_cli = "select id, telefono1
                                         from clientes
                                         where id = $fila[id_cliente]";
-                                        include '../conexion.php';
-                                        $nombres = mysqli_query($conexion, $cons_sel_cli);
+                                        $nombres = db_query($cons_sel_cli);
                                         $nombre = mysqli_fetch_array($nombres);
                                             echo $nombre['telefono1'];
-                                        mysqli_close($conexion);
+                                        db_close();
                                      ?>
                                 </td>
                                 <td>
@@ -610,7 +600,6 @@
         </div>
     </div>
             <?php
-            include '../../conexion.php';
             $cons_auto_inc = "SELECT AUTO_INCREMENT
                         FROM information_schema.TABLES
                         WHERE TABLE_SCHEMA =  'inmobiliaria'
@@ -619,7 +608,7 @@
             {
                 echo "Hay errores en la consulta";
             }else{
-                $fila = mysqli_query($conexion, $cons_auto_inc);
+                $fila = db_query($cons_auto_inc);
                 $id = mysqli_fetch_array($fila);
             }
         ?>
@@ -650,16 +639,15 @@
                                         <label for="">Cliente</label>
                                         <select class="form-control" name="cliente" id="">
                                         <?php
-                                            mysqli_close($conexion);
-                                            include '../conexion.php';
+                                            db_close();
                                             $cons_idCliente = "select id, nombre, apellidos
                                                                 from clientes
                                                                 where nombre not like 'Disponible'";
-                                            $id_Cliente = mysqli_query($conexion, $cons_idCliente);
+                                            $id_Cliente = db_query($cons_idCliente);
                                             while($fila = mysqli_fetch_array($id_Cliente)){
                                                 echo "<option value=$fila[id]>$fila[nombre] $fila[apellidos]</option>";
                                             }
-                                            mysqli_close($conexion);
+                                            db_close();
                                         ?>
                                 </select>
                                     </div>
@@ -683,7 +671,6 @@
                 </div>
 
                 <?php
-            include '../../conexion.php';
             if(isset($_POST['enviarInsCita'])){
                 $motivo = $_POST['motivo'];
                 $lugar = $_POST['lugar'];
@@ -696,8 +683,8 @@
                                                             '$motivo',
                                                             '$lugar',
                                                             $cliente)";
-        mysqli_query($conexion, $cons_ins_cita);
-        mysqli_close($conexion);
+        db_query($cons_ins_cita);
+        db_close();
                 ?>
                        <meta http-equiv="refresh" content="0;url=citas.php?e=2">
 

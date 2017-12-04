@@ -13,7 +13,6 @@
 <body>
     <div class="row">
     <?php
-    $db = new Db();
     menu(3);
     ?>
     </div>
@@ -41,7 +40,6 @@
             <br>
             <?php
             if(isset($_GET['enviarBuscar'])){
-
                 $busqueda = $_GET['buscar'];
 
                 $cons_bus_cli = "select *
@@ -51,27 +49,30 @@
                                     or telefono1 like '%$busqueda%'
                                     or telefono2 like '%$busqueda%'
                                     and nombre not like '%disponible%'";
-
-                tablaClientes($cons_bus_cli, $db, $busqueda);
-
+                $clientes = db_query($cons_bus_cli);
+                if(mysqli_num_rows($clientes) == 0){
+                    ?>
+                    <h2><span class="fa fa-info-circle text-info"></span> No se han encontrado resultados</h2>
+                    <?php
+                }else{
+                    tablaClientes($cons_bus_cli, $busqueda);
+                }
             }else{
-
                 $cons_clientes = "select * from clientes
                                         where nombre not like 'disponible'";
-                tablaClientes($cons_clientes, $db);
+                tablaClientes($cons_clientes);
             }
-
+            include '../conexion.php';
             $cons_auto_inc = "SELECT AUTO_INCREMENT
                         FROM information_schema.TABLES
                         WHERE TABLE_SCHEMA =  'inmobiliaria'
 	                    and TABLE_NAME = 'clientes'";
-
             if (!$cons_auto_inc)
             {
                 echo "Hay errores en la consulta";
             }else{
-                $id = $db -> query($cons_auto_inc);
-
+                $fila = mysqli_query($conexion, $cons_auto_inc);
+                $id = mysqli_fetch_array($fila);
             }
             ?>
                         <div class="modal fade" id="insCli" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -87,7 +88,7 @@
                                         <form action="#" method="post">
                                             <div class="form-group">
                                                 <label for="id">Id</label>
-                                                <input class="form-control" type="text" name="id" value="<?php echo $id['id'];?>" readonly>
+                                                <input class="form-control" type="text" name="id" value="<?php echo $id[0];?>" readonly>
                                             </div>
                                             <div class="form-group">
                                                 <label for="nombre">Nombre</label>
@@ -121,7 +122,7 @@
                         </div>
 
                         <?php
-
+            db_close();
     if (isset($_POST['enviarInsCliente']))
     {
         $nombre = $_POST['nombre'];
@@ -129,30 +130,16 @@
         $direccion = $_POST['direccion'];
         $telefono1 = $_POST['telefono1'];
         $telefono2 = $_POST['telefono2'];
-
         $cons_ins = "insert into clientes values (null, '$nombre', '$apellidos', '$direccion', '$telefono1', '$telefono2')";
-
-        $insertar = $db -> query($cons_ins);
-
+        $insertar = db_query($cons_ins);
         echo 'Los datos se han introducido correctamente';
-
-        mysqli_close($db -> conectar());
+        db_close();
         ?>
-                        <meta http-equiv="refresh" content="0;url=clientes.php?e=1">
+                            <meta http-equiv="refresh" content="0;url=clientes.php?e=1">
 
                             <?php
-
     }
-
-    function tablaClientes($cons, $db, $busq = ""){
-
-        $clientes = $db -> query($cons);
-
-        if(mysqli_num_rows($clientes) == 0){
-                    ?>
-                    <h2><span class="fa fa-info-circle text-info"></span> No se han encontrado resultados</h2>
-                    <?php
-        }else{
+    function tablaClientes($cons, $busq = ""){
         ?>
                     <div class="row">
                         <table class="table table-hover">
@@ -166,6 +153,8 @@
                             </thead>
                             <tbody>
                                 <?php
+
+                    $clientes = db_query($cons);
                     while($fila = mysqli_fetch_array($clientes, MYSQLI_ASSOC)){
                         ?>
 
@@ -193,25 +182,24 @@
 
                                     <?php
                     }
-                    mysqli_close($db -> conectar());
+                    db_close();
                     ?>
                             </tbody>
                         </table>
                     </div>
 
                     <?php
-        }
-
     }
     ?>
         </div>
         <div class="row">
         <?php
-        footer();
+    footer();
     ?>
     </div>
-
-
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script type="text/javascript" src="js/bootstrap.js"></script>
+            <script type="text/javascript" src="js/main.js"></script>
 </body>
 
 </html>
