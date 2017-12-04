@@ -5,15 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clientes</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/font-awesome.css">
+    <?php include '../funciones.php';
+        cabecera();
+    ?>
 </head>
 
 <body>
-    <?php
-    include 'funciones.php';
-    ?>
     <div class="row">
     <?php
     menu(3);
@@ -70,7 +67,7 @@
                 tablaClientes($cons_clientes);
             }
 
-            include 'conexion.php';
+            include '../conexion.php';
 
             $cons_auto_inc = "SELECT AUTO_INCREMENT
                         FROM information_schema.TABLES
@@ -135,7 +132,7 @@
             mysqli_close($conexion);
     if (isset($_POST['enviarInsCliente']))
     {
-        include 'conexion.php';
+        include '../conexion.php';
         $nombre = $_POST['nombre'];
         $apellidos = $_POST['apellidos'];
         $direccion = $_POST['direccion'];
@@ -171,7 +168,7 @@
                             <tbody>
                                 <?php
 
-                    include 'conexion.php';
+                    include '../conexion.php';
 
                     $clientes = mysqli_query($conexion, $cons);
                     while($fila = mysqli_fetch_array($clientes, MYSQLI_ASSOC)){
@@ -194,7 +191,7 @@
                                             <?php echo $fila['telefono2']; ?>
                                         </td>
                                         <td>
-                                            <a class="btn-m" href="includes/forms/mod_cliente.php?id=<?php echo $fila['id'] ?>">
+                                            <a class="btn-m" href="mod_cliente.php?id=<?php echo $fila['id'] ?>">
                                             <span class="fa fa-pencil"></span></a>
                                         </td>
                                     </tr>

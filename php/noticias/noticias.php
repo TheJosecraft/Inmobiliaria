@@ -5,17 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noticias</title>
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/font-awesome.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <?php include '../funciones.php';
+     cabecera();
+    ?>
 </head>
 
 <body>
 
     <?php
-    include 'funciones.php';
+
     menu(2);
     ?>
 
@@ -130,7 +128,7 @@
                 </div>
             </div>
         <?php
-        include 'conexion.php';
+        include '../conexion.php';
 
             $cons_auto_inc = "SELECT AUTO_INCREMENT
                         FROM information_schema.TABLES
@@ -186,7 +184,7 @@
                         </div>
                     </div>
                 </div>
-        <?php include 'conexion.php';
+        <?php include '../conexion.php';
     if (isset($_POST['enviarInsNoticia']))
     {
         $id = $_POST['id'];
@@ -246,7 +244,7 @@
                 <div class="row text-left">
                     <?php
 
-                        include 'conexion.php';
+                        include '../conexion.php';
                         $fecha = date('Y-m-d');
                         $noticias = mysqli_query($conexion, $cons);
                         while($fila = mysqli_fetch_array($noticias)){
@@ -254,7 +252,7 @@
                         <div class="col-lg-6 col-md-12">
                             <div class="noticia">
                                 <div>
-                                    <img class="img-responsive img-rounded" src="img/noticias/<?php echo $fila['imagen']; ?>" alt="">
+                                    <img class="img-responsive img-rounded" src="../../img/noticias/<?php echo $fila['imagen']; ?>" alt="">
                                     <br>
                                     <div class="row">
                                         <div class="col-sm-8">

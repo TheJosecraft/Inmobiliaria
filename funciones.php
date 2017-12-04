@@ -20,56 +20,56 @@ function menu ($pag = 1)
                         if($pag == 1){
                             ?>
                             <li class="active"><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
-                            <li><a href="noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
-                            <li><a href="clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
-                            <li><a href="inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
-                            <li><a href="citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
-                            <li><a href="contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+                            <li><a href="php/noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
+                            <li><a href="php/clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
+                            <li><a href="php/inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
+                            <li><a href="php/citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
+                            <li><a href="php/contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                             <?php
                         }elseif($pag == 2){
                             ?>
                             <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
-                            <li class="active"><a href="noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
-                            <li><a href="clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
-                            <li><a href="inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
-                            <li><a href="citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
-                            <li><a href="contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+                            <li class="active"><a href="php/noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
+                            <li><a href="php/clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
+                            <li><a href="php/inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
+                            <li><a href="php/citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
+                            <li><a href="php/contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                             <?php
                         }elseif($pag == 3){
                             ?>
-                            <li ><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
-                            <li><a href="noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
-                            <li class="active"><a href="clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
-                            <li><a href="inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
-                            <li><a href="citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
-                            <li><a href="contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+                            <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li><a href="php/noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
+                            <li class="active"><a href="php/clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
+                            <li><a href="php/inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
+                            <li><a href="php/citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
+                            <li><a href="php/contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                             <?php
                         }elseif($pag == 4){
                             ?>
                             <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
-                            <li><a href="noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
-                            <li><a href="clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
-                            <li class="active"><a href="inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
-                            <li><a href="citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
-                            <li><a href="contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+                            <li><a href="php/noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
+                            <li><a href="php/clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
+                            <li class="active"><a href="php/inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
+                            <li><a href="php/citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
+                            <li><a href="php/contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                             <?php
                         }elseif($pag == 5){
                             ?>
                             <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
-                            <li><a href="noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
-                            <li><a href="clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
-                            <li><a href="inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
-                            <li class="active"><a href="citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
-                            <li><a href="contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+                            <li><a href="php/noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
+                            <li><a href="php/clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
+                            <li><a href="php/inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
+                            <li class="active"><a href="php/citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
+                            <li><a href="php/contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                             <?php
                         }elseif($pag == 6){
                             ?>
                             <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
-                            <li><a href="noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
-                            <li><a href="clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
-                            <li><a href="inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
-                            <li><a href="citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
-                            <li class="active"><a href="contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+                            <li><a href="php/noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
+                            <li><a href="php/clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
+                            <li><a href="php/inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
+                            <li><a href="php/citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
+                            <li class="active"><a href="php/contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                             <?php
                         }
                         ?>
@@ -167,7 +167,7 @@ function ult_noticias(){
                     </div>
 
                     <p>
-                        <?php echo substr($fila['contenido'], 0, 280); ?> <a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más...</a> </p>
+                        <?php echo substr($fila['contenido'], 0, 280); ?> <a href="php/noticias/noticia.php?id=<?php echo $fila['id'] ?>">Leer más...</a> </p>
 
                 </div>
                 <?php
