@@ -99,85 +99,6 @@ function footer ()
         </footer>
         <?php
 }
-?>
-
-
-        <?php
-function img_random ()
-{
-    include 'conexion.php';
-
-    $cons_gen_img = "select direccion, imagen from inmuebles";
-
-    $imagen = mysqli_query($conexion, $cons_gen_img);
-
-    $imagenes = array();
-
-    while($fila = mysqli_fetch_array($imagen)){
-        $imagenes[] = $fila['imagen'];
-        $direcciones[] = $fila['direccion'];
-    }
-
-    mysqli_close($conexion);
-
-    $aleatorio = rand(0, (count($imagenes) - 1));
-
-?>
-            <img class="img-responsive center-block" src="img/inmuebles/<?php echo $imagenes[$aleatorio]; ?>" alt="">
-            <div class="carousel-caption">
-                <h2><?php echo $direcciones[$aleatorio] ?></h2>
-            </div>
-            <?php
-}
-?>
-
-<?php
-function ult_noticias(){
-    ?>
-    <div class="container-fluid">
-        <div class="row">
-            <?php
-    include 'conexion.php';
-
-    $fecha = date('Y-m-d');
-
-    $cons_ult_not = "select * from noticias
-                    where fecha <= '$fecha'
-                    order by id DESC
-                    limit 3";
-
-    $noticias = mysqli_query($conexion, $cons_ult_not);
-    while($fila = mysqli_fetch_array($noticias)){
-        ?>
-
-
-                <div class="col-xs-12 col-sm-4">
-                    <img class="img-responsive img-rounded" src="img/noticias/<?php echo $fila['imagen'] ?>" alt="" width="100%" height="300px">
-                    <br>
-                    <div class="row">
-                        <div class="col-sm-6">
-
-                              <span class="h3">
-                                 <?php echo $fila['titular']; ?>
-                              </span>
-                        </div>
-
-                        <div class="col-sm-6">
-                            <span class="pull-right"><strong><i class="glyphicon glyphicon-calendar"></i> <?php $fecha = strtotime($fila['fecha']); echo date('d/m/Y', $fecha) ?></strong></span>
-                        </div>
-                    </div>
-
-                    <p>
-                        <?php echo substr($fila['contenido'], 0, 280); ?> <a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más...</a> </p>
-
-                </div>
-                <?php
-    }
-?>
-        </div>
-    </div>
-    <?php
-}
 
 function cabecera(){
     ?>
@@ -185,5 +106,79 @@ function cabecera(){
     <link rel="stylesheet" href="../../css/main.css">
     <link rel="stylesheet" href="../../css/font-awesome.css">
     <?php
+}
+
+class Db {
+    // La conexión a la base de datos
+    protected static $conexion;
+
+    /**
+     * Conexión a la base de datos
+     *
+     * @return bool falso en caso de fallo / instancia de un objeto mysqli MySQLi si es exitoso
+     */
+    public function conectar() {
+        // Prueba y se conecta a la base de datos
+        if(!isset(self::$conexion)) {
+            self::$conexion = new mysqli('localhost','root','','inmobiliaria');
+        }
+
+        // Si la conexión no es exitosa, maneja el error
+        if(self::$conexion === false) {
+            return false;
+        }
+        $this -> codificacion();
+        return self::$conexion;
+    }
+
+    /**
+     * Consulta a la base de datos
+     *
+     * @param $query Texto de la consulta
+     * @return mixed Resultado de la consulta
+     */
+    public function query($consulta) {
+        // Conectarse a la base de datos
+        $connection = $this -> conectar();
+
+        // Consulta a la base de datos
+        $resultado = $connection -> query($consulta);
+
+        return $resultado;
+    }
+
+    /**
+     * Recupera las filas de la base de datos
+     *
+     * @param $query La consulta
+     * @return bool Falso si falla / array con las filas de la base de datos si es exitoso
+     */
+    public function select($consulta) {
+        $filas = array();
+        $resultado = $this -> query($consulta);
+        if($resultado === false) {
+            return false;
+        }
+        while ($fila = $resultado -> fetch_assoc()) {
+            $filas[] = $fila;
+        }
+        return $filas;
+    }
+
+    /**
+     * Recupera el último error de la base de datos
+     *
+     * @return string Mensaje de error de la base de datos
+     */
+    public function error() {
+        $conexion = $this -> conectar();
+        return $conexion -> error;
+    }
+
+    private function codificacion(){
+
+        mysqli_set_charset(self::$conexion, 'utf8');
+    }
+
 }
 ?>
