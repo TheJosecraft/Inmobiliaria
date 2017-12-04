@@ -56,12 +56,7 @@
 
                 $limite = 6 * $pag;
 
-                $cons_ult_not = "select * from noticias
-                                        where fecha <= '$fecha'
-                                        order by id DESC
-                                        limit $limite, 6";
-
-                noticias($cons_ult_not, $numNoticias);
+                noticias("select * from noticias where fecha <= '$fecha' order by id DESC limit $limite, 6", $numNoticias);
 
             }elseif(isset($_GET['pagSiguiente'])){
 
@@ -69,30 +64,15 @@
 
                 $limite = 6 * $pag;
 
-                $cons_ult_not = "select * from noticias
-                                        where fecha <= '$fecha'
-                                        order by id DESC
-                                        limit $limite, 6";
-
-                noticias($cons_ult_not, $numNoticias);
+                noticias("select * from noticias where fecha <= '$fecha' order by id DESC limit $limite, 6", $numNoticias);
 
             }elseif(isset($_GET['enviarBuscar'])){
                 $busqueda = $_GET['buscar'];
 
-                $cons_ult_not = "select * from noticias
-                                        where fecha <= '$fecha'
-                                        and titular like '%$busqueda%'
-                                        order by id DESC
-                                        limit 6";
-
-                noticias($cons_ult_not, $numNoticias);
+                noticias("select * from noticias where fecha <= '$fecha' and titular like '%$busqueda%' order by id DESC limit 6", $numNoticias);
             }else{
 
-                $cons_ult_not = "select * from noticias
-                                        where fecha <= '$fecha'
-                                        order by id DESC
-                                        limit 6";
-                noticias($cons_ult_not, $numNoticias);
+                noticias("select * from noticias where fecha <= '$fecha' order by id DESC limit 6", $numNoticias);
             }
 
             $pagAnterior = $pag - 1;
@@ -114,7 +94,9 @@
                            </li>
                         <li>
                         <?php
-                            if($numNoticias == 6){
+                            $limite = 6 * ($pag + 1);
+                            $select = db_query("select * from noticias where fecha <= '$fecha' order by id DESC limit $limite, 6");
+                            if($numNoticias == 6 && mysqli_num_rows($select) > 0){
                                ?>
                                <a href="?pagSiguiente=<?php echo $pagSiguiente ?>"><span class="fa fa-arrow-right"></span> Siguiente</a></li>
                                 <?php
@@ -147,7 +129,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Insertar inmueble</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Insertar noticia</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -162,7 +144,7 @@
                                         <input class="form-control" type="text" name="titular"></div>
                                     <div class="form-group">
                                         <label for="">Contenido</label>
-                                        <textarea class="form-control" name="contenido" maxlength="1500"></textarea>
+                                        <textarea class="form-control" name="contenido" maxlength="1500" rows="15"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Imagen</label>
@@ -242,10 +224,9 @@
 
                 <div class="row text-left">
                     <?php
-
-                        include '../conexion.php';
                         $fecha = date('Y-m-d');
-                        $noticias = mysqli_query($conexion, $cons);
+                        $noticias = db_query($cons);
+
                         while($fila = mysqli_fetch_array($noticias)){
                         ?>
                         <div class="col-lg-6 col-md-12">
@@ -254,15 +235,25 @@
                                     <img class="img-responsive img-rounded" src="../../img/noticias/<?php echo $fila['imagen']; ?>" alt="">
                                     <br>
                                     <div class="row">
-                                        <div class="col-sm-8">
+                                        <div class="col-sm-12">
                                             <span class="h3"><?php echo $fila['titular']; ?> <a href="mod_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-pencil btn-m"></span></a> <a href="del_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-trash btn-r"></span> </a></span>
                                         </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-sm-12">
+                                           <p><?php echo substr($fila['contenido'], 0, 280); ?></p>
+                                       </div>
 
-                                        <div class="col-sm-4">
-                                            <span class="pull-right"><strong><span class="fa fa-calendar"></span> <?php $fecha = strtotime($fila['fecha']); echo date('d/m/Y', $fecha) ?></strong></span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <strong><span class="fa fa-calendar"></span> <?php $fecha = strtotime($fila['fecha']); echo date('d/m/Y', $fecha) ?></strong>
+                                        </div>
+                                        <div class="col-sm-6 text-right">
+                                            <a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más</a>
                                         </div>
                                     </div>
-                                    <p><?php echo substr($fila['contenido'], 0, 280); ?> <span class="pull-right"><a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más</a></span></p>
+
                                 </div>
                                 <br>
                             </div>
@@ -270,7 +261,7 @@
 
                         <?php
                         $numNoticias++;
-                }
+                        }
 
                 ?>
                 </div>

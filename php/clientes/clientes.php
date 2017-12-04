@@ -42,13 +42,14 @@
             if(isset($_GET['enviarBuscar'])){
                 $busqueda = $_GET['buscar'];
 
-                $clientes = db_query("select *
+                $cons_bus_cli = "select *
                                     from clientes
                                     where nombre like '%$busqueda%'
                                     or apellidos like '%$busqueda%'
                                     or telefono1 like '%$busqueda%'
                                     or telefono2 like '%$busqueda%'
-                                    and nombre not like '%disponible%'");
+                                    and nombre not like '%disponible%'";
+                $clientes = db_query($cons_bus_cli);
                 if(mysqli_num_rows($clientes) == 0){
                     ?>
                     <h2><span class="fa fa-info-circle text-info"></span> No se han encontrado resultados</h2>
@@ -61,7 +62,6 @@
                                         where nombre not like 'disponible'";
                 tablaClientes($cons_clientes);
             }
-            include '../conexion.php';
             $cons_auto_inc = "SELECT AUTO_INCREMENT
                         FROM information_schema.TABLES
                         WHERE TABLE_SCHEMA =  'inmobiliaria'
@@ -70,7 +70,7 @@
             {
                 echo "Hay errores en la consulta";
             }else{
-                $fila = mysqli_query($conexion, $cons_auto_inc);
+                $fila = db_query($cons_auto_inc);
                 $id = mysqli_fetch_array($fila);
             }
             ?>

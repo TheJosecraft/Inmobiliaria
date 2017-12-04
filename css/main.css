@@ -241,4 +241,9 @@ img {
     padding-bottom: 38px;
 }
 
+div.item .img-responsive {
+    width: 100%;
+    height: 1080px;
+}
+
 

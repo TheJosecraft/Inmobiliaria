@@ -290,7 +290,7 @@
                                         <input class="form-control" type="text" name="direccion"></div>
                                     <div class="form-group">
                                         <label for="">Descripción</label>
-                                        <textarea class="form-control" name="descripcion" maxlength="280"></textarea></div>
+                                        <textarea class="form-control" name="descripcion" maxlength="560" rows="15"></textarea></div>
                                     <div class="form-group">
                                         <label for="">Precio</label>
                                         <input class="form-control" type="text" name="precio"></div>
