@@ -20,10 +20,6 @@
 
 
     <?php
-//    include "includes/forms/ins_cliente.php";
-////    include "includes/forms/mod_cliente.php";
-//    include "includes/forms/ins_inmueble.php";
-//    include 'header.php';
     include 'funciones.php';
 
     menu(1);

@@ -104,11 +104,8 @@ function footer ()
         <?php
 function img_random ()
 {
-    include 'conexion.php';
 
-    $cons_gen_img = "select direccion, imagen from inmuebles";
-
-    $imagen = mysqli_query($conexion, $cons_gen_img);
+    $imagen = db_query("select direccion, imagen from inmuebles");
 
     $imagenes = array();
 
@@ -117,7 +114,7 @@ function img_random ()
         $direcciones[] = $fila['direccion'];
     }
 
-    mysqli_close($conexion);
+    db_close();
 
     $aleatorio = rand(0, (count($imagenes) - 1));
 
@@ -136,20 +133,12 @@ function ult_noticias(){
     <div class="container-fluid">
         <div class="row">
             <?php
-    include 'conexion.php';
 
     $fecha = date('Y-m-d');
 
-    $cons_ult_not = "select * from noticias
-                    where fecha <= '$fecha'
-                    order by id DESC
-                    limit 3";
-
-    $noticias = mysqli_query($conexion, $cons_ult_not);
+    $noticias = db_query("select * from noticias where fecha <= '$fecha' order by id DESC limit 3");
     while($fila = mysqli_fetch_array($noticias)){
         ?>
-
-
                 <div class="col-xs-12 col-sm-4">
                     <img class="img-responsive img-rounded" src="img/noticias/<?php echo $fila['imagen'] ?>" alt="" width="100%" height="300px">
                     <br>
@@ -176,5 +165,50 @@ function ult_noticias(){
         </div>
     </div>
     <?php
+    db_close();
+}
+
+function db_connect() {
+
+    // Define connection as a static variable, to avoid connecting more than once
+    static $conexion;
+
+    // Try and connect to the database, if a connection has not been established yet
+    if(!isset($connection)) {
+        $conexion = mysqli_connect('localhost', 'root', '', 'inmobiliaria');
+    }
+
+    // If connection was not successful, handle the error
+    if($conexion === false) {
+        // Handle error - notify administrator, log to a file, show an error screen, etc.
+        return mysqli_connect_error();
+    }
+    mysqli_set_charset($conexion, 'utf8');
+    return $conexion;
+}
+
+function db_query($consulta) {
+    // Connect to the database
+    $conexion = db_connect();
+
+    // Query the database
+    $resultado = mysqli_query($conexion, $consulta);
+
+    if($resultado === false) {
+        echo db_error();
+    } else {
+        return $resultado;
+    }
+
+}
+
+function db_error() {
+    $conexion = db_connect();
+    return mysqli_error($conexion);
+}
+
+function db_close(){
+    $conexion = db_connect();
+    mysqli_close($conexion);
 }
 ?>
