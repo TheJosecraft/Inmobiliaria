@@ -260,8 +260,9 @@
                         $anio = $_GET['anio'];
                         $mes = $_GET['mes'];
                         $dia = $_GET['dia'];
+                        $fechaInfo = date('d/m/Y', strtotime("$anio-$mes-$dia"));
                         ?>
-                        <h1><span class="fa fa-calendar"></span> Citas <?php echo $dia."/".$mes."/".$anio ?></h1>
+                        <h1><span class="fa fa-calendar"></span> Citas <?php echo $fechaInfo ?></h1>
                         <?php
                     }else{
                         $fechaActual = date('d/m/Y');
@@ -270,7 +271,6 @@
                         <?php
                     }
                     ?>
-<!--                    <h1>Información <?php echo $dia."/".$mes."/".$anio ?></h1>-->
                     <div class="row">
                         <div class="col-xs-6">
                             <a class="btn bg-primary" data-toggle="modal" data-target="#insCit"><span class="fa fa-calendar-plus-o"></span> Nueva Cita</a>
@@ -458,7 +458,7 @@
                                     <?php echo $fila['hora']; ?>
                                 </td>
                                 <td>
-                                    <?php echo $fila['fecha']; ?>
+                                    <?php echo fecha($fila['fecha']); ?>
                                 </td>
                                 <td>
                                    <?php

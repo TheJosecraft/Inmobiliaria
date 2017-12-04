@@ -151,4 +151,8 @@ function db_close(){
     $conexion = db_connect();
     mysqli_close($conexion);
 }
+
+function fecha($f){
+    return date('d/m/Y', strtotime($f));
+}
 ?>
