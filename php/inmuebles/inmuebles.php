@@ -283,20 +283,24 @@
                             <div class="modal-body">
                                 <form action="#" method="post" enctype="multipart/form-data">
                                     <div class="form-group">
-                                        <label for="">Id</label>
-                                        <input class="form-control" type="text" name="id" value="<?php echo $id[0];?>" readonly></div>
+                                        <label for="id">Id</label>
+                                        <input class="form-control" type="text" name="id" value="<?php echo $id[0];?>" readonly><span style="display:none"></span><span style="display:none"></span>
+                                    </div>
                                     <div class="form-group">
-                                        <label for="">Dirección</label>
-                                        <input class="form-control" type="text" name="direccion"></div>
+                                        <label for="direccion">Dirección</label>
+                                        <input class="form-control" type="text" name="direccion" id="direccion"><span style="display:none"></span><span style="display:none"></span>
+                                    </div>
                                     <div class="form-group">
-                                        <label for="">Descripción</label>
-                                        <textarea class="form-control" name="descripcion" maxlength="560" rows="15"></textarea></div>
+                                        <label for="descripcion">Descripción</label>
+                                        <textarea class="form-control" name="descripcion" maxlength="560" rows="15" id="descripcion" ></textarea><span style="display:none"></span><span style="display:none"></span>
+                                    </div>
                                     <div class="form-group">
-                                        <label for="">Precio</label>
-                                        <input class="form-control" type="text" name="precio"></div>
+                                        <label for="precio">Precio</label>
+                                        <input class="form-control" type="text" name="precio" id="precio" ><span style="display:none"></span><span style="display:none"></span>
+                                    </div>
                                     <div class="form-group">
-                                        <label for="">Cliente</label>
-                                        <select class="form-control" name="cliente" id="">
+                                        <label for="cliente">Cliente</label>
+                                        <select class="form-control" name="cliente" id="cliente">
                         <?php
                             db_close();
 
@@ -313,8 +317,8 @@
                     </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Imagen</label>
-                                        <input class="form-control" type="file" name="imagen">
+                                        <label for="imagen">Imagen</label>
+                                        <input class="form-control" type="file" name="imagen" id="imagen"><span style="display:none"></span><span style="display:none"></span>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

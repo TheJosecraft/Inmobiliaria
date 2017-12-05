@@ -41,23 +41,23 @@
                         </div>
                         <div class=form-group>
                             <label for="nombre">Nombre</label>
-                            <input class="form-control" type="text" id="nombre" name="nombre" value="<?php echo $datos['nombre'] ?>"><span style="display:none"></span>
+                            <input class="form-control" type="text" id="nombre" name="nombre" value="<?php echo $datos['nombre'] ?>"><span style="display:none"></span><span style="display:none"></span>
                         </div>
                         <div class=form-group>
                             <label for="apellidos">Apellidos</label>
-                            <input class="form-control" type="text" id="apellidos" name="apellidos" value="<?php echo $datos['apellidos'] ?>"><span style="display:none"></span>
+                            <input class="form-control" type="text" id="apellidos" name="apellidos" value="<?php echo $datos['apellidos'] ?>"><span style="display:none"></span><span style="display:none"></span>
                         </div>
                         <div class=form-group>
                             <label for="direccion">Dirección</label>
-                            <input class="form-control" type="text" id="direccion" name="direccion" value="<?php echo $datos['direccion'] ?>"><span style="display:none"></span>
+                            <input class="form-control" type="text" id="direccion" name="direccion" value="<?php echo $datos['direccion'] ?>"><span style="display:none"></span><span style="display:none"></span>
                         </div>
                         <div class=form-group>
                             <label for="telefono1">Teléfono 1</label>
-                            <input class="form-control" type="text" id="telefono1" name="telefono1" value="<?php echo $datos['telefono1'] ?>"><span style="display:none"></span>
+                            <input class="form-control" type="text" id="telefono1" name="telefono1" value="<?php echo $datos['telefono1'] ?>"><span style="display:none"></span><span style="display:none"></span>
                         </div>
                         <div class=form-group>
                             <label for="telefono2">Telefono 2</label>
-                            <input class="form-control" type="text" id="telefono2" name="telefono2" value="<?php echo $datos['telefono2'] ?>"><span style="display:none"></span>
+                            <input class="form-control" type="text" id="telefono2" name="telefono2" value="<?php echo $datos['telefono2'] ?>"><span style="display:none"></span><span style="display:none"></span>
                         </div>
                         <div class="form-group">
                             <input class="btn btn-primary" type="submit" id="enviar" name="enviarModCliente">

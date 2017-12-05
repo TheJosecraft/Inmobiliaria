@@ -1,18 +1,33 @@
 function Inicio(){
     var inombre = document.querySelector("#nombre");
-    inombre.addEventListener("blur", ValidarNombre);
-
+    
+    if(inombre != null){
+       inombre.addEventListener("blur", ValidarNombre);
+    }
+    
     var iapellidos = document.querySelector("#apellidos");
-    iapellidos.addEventListener("blur", ValidarApellidos);
+    
+    if(iapellidos != null){
+       iapellidos.addEventListener("blur", ValidarApellidos);
+    }
 
     var idireccion = document.querySelector("#direccion");
-    idireccion.addEventListener("blur", ValidarDireccion);
-
+    
+    if(idireccion != null){
+       idireccion.addEventListener("blur", ValidarDireccion);
+    }
+    
     var itelefono1 = document.querySelector("#telefono1");
-    itelefono1.addEventListener("blur", ValidarTelefono1);
+    
+    if(itelefono1 != null){
+       itelefono1.addEventListener("blur", ValidarTelefono1);
+    }
 
     var itelefono2 = document.querySelector("#telefono2");
-    itelefono2.addEventListener("blur", ValidarTelefono2);
+    
+    if(itelefono2 != null){
+        itelefono2.addEventListener("blur", ValidarTelefono2);
+    }       
 }
 
 function ValidarNombre(event){
@@ -84,22 +99,41 @@ function ValidarTelefono1(event){
 //
 //}
 
+function ValidarImagen(event){
+    if(this.value.indexOf(".jpg") == -1 && this.value.type != file){
+        event.preventDefault();
+        Aviso(this,"La imagen no es correcta");
+    }else if(this.value.indexOf(".png") == -1 && this.value.type != file){
+        event.preventDefault();
+        Aviso(this,"La imagen no es correcta");
+    }else{
+        QuitarAviso(this);
+    }
+}
+
 function Aviso(campo, mensaje){
     padre = campo.parentNode;
     padre.className = "form-group has-error has-feedback"
+    span = campo.nextSibling;
+    siguiente = span.nextSibling;
     campo.className += " error_entrada";
-    campo.nextSibling.innerHTML = mensaje;
+    siguiente.innerHTML = mensaje;
+    siguiente.className = "text-danger";
     campo.nextSibling.className = "text-danger fa fa-remove form-control-feedback";
     campo.nextSibling.style.display = "inline-block";
+    siguiente.style.display = "inline-block";
 }
 
 function QuitarAviso(campo){
     padre = campo.parentNode;
+    span = campo.nextSibling;
+    siguiente = span.nextSibling;
     padre.className = "form-group has-success has-feedback"
     campo.className = "form-control";
     campo.nextSibling.className = "fa fa-check form-control-feedback";
     campo.nextSibling.innerHTML = "";
     campo.nextSibling.style.display = "inline-block";
+    siguiente.style.display = "none";
 }
 
 window.addEventListener("load", Inicio);

@@ -134,6 +134,7 @@ img {
     */
 }
 
+/*
 .error_entrada {
     border: 1px solid red;
 }
@@ -141,6 +142,7 @@ img {
 .error_mensaje {
     color: red;
 }
+*/
 
 .inmueble .disponibilidad {
     transform: rotate(35deg);
@@ -215,19 +217,19 @@ img {
 }
 
 .legend .laborales {
-    background-color: #E8FCCF;
+    background-color: #2c3e50;
 }
 
 .legend .fines {
-    background-color: #96E072;
+    background-color: #95a5a6;
 }
 
 .legend .cita {
-    background-color: #FF8080;
+    background-color: #DF5757;
 }
 
 .legend .actual{
-    background-color: #3DA35D;
+    background-color: #18bc9c;
 }
 
 .calendar {

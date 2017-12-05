@@ -92,7 +92,7 @@ function footer ()
 {
     ?>
         <script type="text/javascript" src="../../js/main.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="../../js/jquery.min.js"></script>
         <script type="text/javascript" src="../../js/bootstrap.js"></script>
         <footer class="text-center footer navbar-fixed-bottom">
             <p><strong>&copy;</strong> EAG 2017 - Realizado por José Carlos Raya León</p>

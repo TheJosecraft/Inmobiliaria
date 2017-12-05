@@ -66,9 +66,9 @@
             $mes = $m;
         }
         $anio = $a;
-        $colorLaborales = "#E8FCCF";
-        $colorFines = "#96E072";
-        $colorFestivos = "#FF8080";
+        $colorLaborales = "#2c3e50";
+        $colorFines = "#95a5a6";
+        $colorCitas = "#DF5757";
         $colorActual = "#18bc9c";
         $celdas = 0;
         $cont = 0;
@@ -111,7 +111,7 @@
             {
                 if (isCita($anio, $mes, $i))
                 {
-                    ?><td class="festivo" bgcolor="<?php echo $colorFestivos ?>"><a href="?dia=<?php echo "$i&mes=$mes"?>&anio=<?php echo $anio ?>"><?php echo $i ?></a></td><?php
+                    ?><td class="festivo" bgcolor="<?php echo $colorCitas ?>"><a href="?dia=<?php echo "$i&mes=$mes"?>&anio=<?php echo $anio ?>"><?php echo $i ?></a></td><?php
                 }
                 elseif(date('d') == $i && date('m') == $mes){
                     ?><td class="actual" bgcolor="<?php echo $colorActual ?>"><a href="?dia=<?php echo $i ?>&mes=<?php echo $mes ?>&anio=<?php echo $anio ?>"><?php echo $i ?></a></td><?php
@@ -124,7 +124,7 @@
             }else{
                 if (isCita($anio, $mes, $i))
                 {
-                    ?><td class="festivo" bgcolor="<?php echo $colorFestivos ?>"><a href="?dia=<?php echo "$i&mes=$mes"?>&anio=<?php echo $anio ?>"><?php echo $i ?></a></td><?php
+                    ?><td class="festivo" bgcolor="<?php echo $colorCitas ?>"><a href="?dia=<?php echo "$i&mes=$mes"?>&anio=<?php echo $anio ?>"><?php echo $i ?></a></td><?php
                 }elseif(date('d') == $i && date('m') == $mes){
                     ?><td class="overlay" bgcolor="<?php echo $colorActual ?>"><a href="?dia=<?php echo $i ?>&mes=<?php echo $mes ?>&anio=<?php echo $anio ?>"><?php echo $i ?></a></td><?php
                 }

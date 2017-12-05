@@ -91,23 +91,23 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="nombre">Nombre</label>
-                                                <input class="form-control" type="text" id="nombre" name="nombre"><span style="display:none"></span>
+                                                <input class="form-control" type="text" id="nombre" name="nombre"><span style="display:none"></span><span style="display:none"></span>
                                             </div>
                                             <div class="form-group">
                                                 <label for="apellidos">Apellidos</label>
-                                                <input class="form-control" type="text" id="apellidos" name="apellidos"><span style="display:none"></span>
+                                                <input class="form-control" type="text" id="apellidos" name="apellidos"><span style="display:none"></span><span style="display:none"></span>
                                             </div>
                                             <div class="form-group">
                                                 <label for="direccion">Dirección</label>
-                                                <input class="form-control" type="text" id="direccion" name="direccion"><span style="display:none"></span>
+                                                <input class="form-control" type="text" id="direccion" name="direccion"><span style="display:none"></span><span style="display:none"></span>
                                             </div>
                                             <div class="form-group">
                                                 <label for="telefono1">Teléfono 1</label>
-                                                <input class="form-control" type="text" id="telefono1" name="telefono1"><span style="display:none"></span>
+                                                <input class="form-control" type="text" id="telefono1" name="telefono1"><span style="display:none"></span><span style="display:none"></span>
                                             </div>
                                             <div class="form-group">
                                                 <label for="telefono2">Teléfono 2</label>
-                                                <input class="form-control" type="text" id="telefono2" name="telefono2"><span style="display:none"></span>
+                                                <input class="form-control" type="text" id="telefono2" name="telefono2"><span style="display:none"></span><span style="display:none"></span>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
