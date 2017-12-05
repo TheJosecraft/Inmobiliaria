@@ -232,13 +232,14 @@
                         <div class="col-lg-6 col-md-12">
                             <div class="noticia">
                                 <div>
-                                    <img class="img-responsive img-rounded" src="../../img/noticias/<?php echo $fila['imagen']; ?>" alt="">
+                                    <a href="noticia.php?id=<?php echo $fila['id'] ?>"><img class="img-responsive img-rounded" src="../../img/noticias/<?php echo $fila['imagen']; ?>" alt=""></a>
                                     <br>
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <span class="h3"><?php echo $fila['titular']; ?> <a href="mod_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-pencil btn-m"></span></a> <a href="del_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-trash btn-r"></span> </a></span>
+                                            <span class="h3"><a href="noticia.php?id=<?php echo $fila['id'] ?>"><?php echo $fila['titular']; ?> </a><a href="mod_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-pencil btn-m"></span></a> <a href="del_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-trash btn-r"></span> </a></span>
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="row">
                                        <div class="col-sm-12">
                                            <p><?php echo substr($fila['contenido'], 0, 280); ?></p>
@@ -247,7 +248,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <strong><span class="fa fa-calendar"></span> <?php $fecha = strtotime($fila['fecha']); echo date('d/m/Y', $fecha) ?></strong>
+                                            Admin - <span class="fa fa-calendar"></span> <?php $fecha = strtotime($fila['fecha']); echo date('d/m/Y', $fecha) ?>
                                         </div>
                                         <div class="col-sm-6 text-right">
                                             <a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más</a>

@@ -136,27 +136,35 @@ function ult_noticias(){
 
     $fecha = date('Y-m-d');
 
-    $noticias = db_query("select * from noticias where fecha <= '$fecha' order by id DESC limit 3");
+    $noticias = db_query("select * from noticias where fecha <= '$fecha' order by fecha DESC limit 3");
     while($fila = mysqli_fetch_array($noticias)){
         ?>
-                <div class="col-xs-12 col-sm-4">
+                <div class="col-xs-12 col-sm-12 col-md-4 noticia">
                     <img class="img-responsive img-rounded" src="img/noticias/<?php echo $fila['imagen'] ?>" alt="" width="100%" height="300px">
                     <br>
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-xs-12">
 
                               <span class="h3">
                                  <?php echo $fila['titular']; ?>
                               </span>
                         </div>
 
-                        <div class="col-sm-6">
-                            <span class="pull-right"><strong><i class="glyphicon glyphicon-calendar"></i> <?php $fecha = strtotime($fila['fecha']); echo date('d/m/Y', $fecha) ?></strong></span>
+                    </div>
+                    <br>
+                    <div class="row">
+                       <div class="col-xs-12">
+                           <p>
+                        <?php echo substr($fila['contenido'], 0, 280)."...";?> <span class="pull-right"><a href="php/noticias/noticia.php?id=<?php echo $fila['id'] ?>">Leer más >></a></span></p>
+                       </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <span class="pull-left">Admin - <i class="fa fa-calendar"></i> <?php $fecha = strtotime($fila['fecha']); echo date('d/m/Y', $fecha) ?></span>
                         </div>
                     </div>
 
-                    <p>
-                        <?php echo substr($fila['contenido'], 0, 280); ?> <a href="php/noticias/noticia.php?id=<?php echo $fila['id'] ?>">Leer más...</a> </p>
 
                 </div>
                 <?php
@@ -170,17 +178,15 @@ function ult_noticias(){
 
 function db_connect() {
 
-    // Define connection as a static variable, to avoid connecting more than once
+
     static $conexion;
 
-    // Try and connect to the database, if a connection has not been established yet
     if(!isset($connection)) {
         $conexion = mysqli_connect('localhost', 'root', '', 'inmobiliaria');
     }
 
-    // If connection was not successful, handle the error
     if($conexion === false) {
-        // Handle error - notify administrator, log to a file, show an error screen, etc.
+
         return mysqli_connect_error();
     }
     mysqli_set_charset($conexion, 'utf8');
@@ -188,10 +194,9 @@ function db_connect() {
 }
 
 function db_query($consulta) {
-    // Connect to the database
+
     $conexion = db_connect();
 
-    // Query the database
     $resultado = mysqli_query($conexion, $consulta);
 
     if($resultado === false) {

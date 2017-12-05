@@ -85,12 +85,12 @@
             switch ($imagen['type'])
             {
                 case 'image/png':
-                    $nombreImagen = "inmueble".$id.".png";
+                    $nombreImagen = "noticia".$id.".png";
                     move_uploaded_file($imagen['tmp_name'], $rutaNoticias.$nombreImagen);
                     break;
 
                 case 'image/jpeg':
-                    $nombreImagen = "inmueble".$id.".jpg";
+                    $nombreImagen = "noticia".$id.".jpg";
                     move_uploaded_file($imagen['tmp_name'], $rutaNoticias.$nombreImagen);
                     break;
                 default:
