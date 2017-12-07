@@ -15,7 +15,11 @@
     <?php
 
     menu(5);
+
+    //Variable que almacena el mes actual
     $mes = date('m');
+
+    //Variable que almacena el año actual
     $anio = date('Y');
     ?>
         <div class="container">
@@ -23,9 +27,10 @@
                 <div class="col-md-3">
                     <div class="calendar">
 
-                        <?php
+    <?php
         $fecha = time();
         $diasMesAnterior = array();
+
         if(isset($_GET['mesAnterior'])){
             $mes = $_GET['mesAnterior'];
             $anio = $_GET['anio'];
@@ -44,7 +49,7 @@
         }else{
             calendario($anio);
         }
-        ?>
+    ?>
 
         <div class="text-center">
             <div class="row">
@@ -56,9 +61,8 @@
             </div>
         </div>
 
-
-
     <?php
+    //Función que dibuja un calendario con los datos del año y mes que se le pasan como argumentos
     function calendario($a, $m = 1, $activo = true){
         if($activo){
             $mes = date('m');
@@ -66,9 +70,17 @@
             $mes = $m;
         }
         $anio = $a;
+
+        //Color para los días laborables
         $colorLaborales = "#2c3e50";
+
+        //Color para los fines de semana
         $colorFines = "#95a5a6";
+
+        //Color para los días con cita
         $colorCitas = "#DF5757";
+
+        //Color para el día actual
         $colorActual = "#18bc9c";
         $celdas = 0;
         $cont = 0;
@@ -159,17 +171,19 @@
                 }
             }
         ?>
-                                                                            <tr>
-                                                        </table>
-                                                        <?php
+                <tr>
+            </table>
+    <?php
     }
-    function diasMes ($m, $a)
-    {
+
+    //Función que devuelve cuántos dias tiene el mes que recibe
+    function diasMes ($m, $a){
         $marca = mktime(0, 0, 0, $m, 1, $a);
         return date('t', $marca);
     }
-     function nombreMes ($m)
-    {
+
+    //Función que devuelve el nombre del mes en español
+    function nombreMes ($m){
         switch($m){
             case 1:
                 return "Enero";
@@ -209,6 +223,8 @@
                 break;
         }
     }
+
+    //Función que devuelve si un día hay cita o no
     function isCita($a, $m, $d){
         $c = array();
         $cons_sel_fecha = "select fecha from citas";
@@ -232,12 +248,15 @@
             }
         }
     }
-        function diaSemana ($m, $a)
+
+    //Función que devuelve el día de la semana en el que empieza el mes
+    function diaSemana ($m, $a)
     {
         $marca = mktime(0, 0, 0, $m, 1, $a);
         return date('N', $marca);
     }
     ?>
+<!--               Leyenda que muestra los colores que representan los días en el calendario-->
                 <div class="row">
                     <div class="col-md-12 center-block">
                         <ul class="legend">
@@ -391,13 +410,12 @@
                         }
                     }elseif(isset($_GET['enviarBuscar'])){
                         $busqueda = $_GET['buscar'];
-                        $con_sel_cit = "select cit.id cit_id, cit.fecha, cit.hora, cit.motivo, cit.lugar, cit.id_cliente, cli.id, cli.nombre
+                        $datos = db_query("select cit.id cit_id, cit.fecha, cit.hora, cit.motivo, cit.lugar, cit.id_cliente, cli.id, cli.nombre
                                     from citas cit, clientes cli
                                     where cit.id_cliente = cli.id
                                     and (cit.fecha like '%$busqueda%'
                                     or cli.nombre like '%$busqueda%')
-                                    order by hora";
-                        $datos = db_query($con_sel_cit);
+                                    order by hora");
                         if(mysqli_num_rows($datos) == 0){
                             ?>
                                 <h2><span class="fa fa-info-circle text-info"></span> No se han encontrado resultados</h2>
@@ -434,21 +452,15 @@
                                 </td>
                                 <td>
                                     <?php
-                                $cons_sel_cli = "select id, nombre, apellidos
-                                from clientes
-                                where id = $fila[id_cliente]";
-                                $nombres = db_query($cons_sel_cli);
+                                $nombres = db_query("select nombre, apellidos from clientes where id = $fila[id_cliente]");
                                 $nombre = mysqli_fetch_array($nombres);
                                     echo $nombre['nombre']." ".$nombre['apellidos'];
                                 db_close();
                              ?>
                                 </td>
                                 <td>
-                                    <?php
-                                $cons_sel_cli = "select id, telefono1
-                                from clientes
-                                where id = $fila[id_cliente]";
-                                $nombres = db_query($cons_sel_cli);
+                            <?php
+                                $nombres = db_query("select telefono1 from clientes where id = $fila[id_cliente]");
                                 $nombre = mysqli_fetch_array($nombres);
                                     echo $nombre['telefono1'];
                                 db_close();
@@ -496,16 +508,13 @@
                         }
                     }else{
                         $fecha = date('Y-m-d');
-                        $con_sel_cit = "select * from citas
-                                        where fecha = '$fecha'
-                                        order by hora";
-                        $datos = db_query($con_sel_cit);
-                         if(mysqli_num_rows($datos) == 0){
+                        $datos = db_query("select * from citas where fecha = '$fecha' order by hora");
+                        if(mysqli_num_rows($datos) == 0){
                             ?>
                                 <h2><span class="fa fa-info-circle text-info"></span> No se han encontrado resultados</h2>
                             <?php
                         }else{
-                         ?>
+                        ?>
 
                         <div class="row">
                             <table class="table">
@@ -519,9 +528,7 @@
                                     <th>Eliminar</th>
                                 </thead>
                                 <tbody>
-
-
-                                    <?php
+                        <?php
                         while($fila = mysqli_fetch_array($datos, MYSQLI_ASSOC)){
                             $fechaHoy = date('Y-m-d H:i:s');
                             $fechaCita = $fila['fecha']." ".$fila['hora'];
@@ -535,10 +542,7 @@
                                 </td>
                                 <td>
                                     <?php
-                                        $cons_sel_cli = "select id, nombre, apellidos
-                                        from clientes
-                                        where id = $fila[id_cliente]";
-                                        $nombres = db_query($cons_sel_cli);
+                                        $nombres = db_query("select nombre, apellidos from clientes where id = $fila[id_cliente]");
                                         $nombre = mysqli_fetch_array($nombres);
                                             echo $nombre['nombre']." ".$nombre['apellidos'];
                                         db_close();
@@ -546,11 +550,8 @@
                                 </td>
                                 <td>
                                     <?php
-                                        $cons_sel_cli = "select id, telefono1
-                                        from clientes
-                                        where id = $fila[id_cliente]";
-                                        $nombres = db_query($cons_sel_cli);
-                                        $nombre = mysqli_fetch_array($nombres);
+                                        $telefonos = db_query("select telefono1 from clientes where id = $fila[id_cliente]");
+                                        $telefono = mysqli_fetch_array($telefonos);
                                             echo $nombre['telefono1'];
                                         db_close();
                                      ?>
@@ -560,6 +561,7 @@
                                 </td>
                                 <td>
                                    <?php
+                                    //Comprueba la fecha para poder mostrar el botón de modificar cita
                                     if(strtotime($fechaHoy) <= strtotime($fechaCita)){
                                         ?>
                                         <a class="btn-m" href="includes/forms/mod_cita.php?id=<?php echo $fila['id'] ?>">
@@ -573,6 +575,7 @@
                                 </td>
                                 <td>
                                     <?php
+                                    //Comprueba la fecha para poder mostrar el botón de eliminar cita
                                     if(strtotime($fechaHoy) <= strtotime($fechaCita)){
                                        ?>
                                         <a class="btn-r" href="includes/forms/del_cita.php?id=<?php echo $fila['id'] ?>">
@@ -612,6 +615,7 @@
                 $id = mysqli_fetch_array($fila);
             }
         ?>
+                <!--Modal para insertar citas-->
                 <div class="modal fade" id="insCit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -672,15 +676,26 @@
 
                 <?php
             if(isset($_POST['enviarInsCita'])){
+                //Motivo de la cita
                 $motivo = $_POST['motivo'];
+
+                //Lugar de la cita
                 $lugar = $_POST['lugar'];
+
+                //Id de cliente
                 $cliente = $_POST['cliente'];
+
+                //Hora de la cita
                 $hora = $_POST['hora'];
+
+                //Fecha de la cita
                 $fecha = $_POST['fecha'];
 
+                //Inserción de datos en la base de datos
                 db_query("insert into citas values (null, '$fecha', '$hora', '$motivo', '$lugar', $cliente)");
                 db_close();
                 ?>
+<!--                   Recarga de la página para apreciar los cambios-->
                        <meta http-equiv="refresh" content="0;url=citas.php?e=2">
 
                         <?php

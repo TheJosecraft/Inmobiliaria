@@ -43,7 +43,7 @@
                 <hr>
             </div>
             <div class="col-sm-3">
-                <h3><?php echo $fila['precio'] ?> €</h3>
+                <h3><?php echo number_format($fila['precio'], 2, ',', '.') ?> €</h3>
                 <hr>
             </div>
 

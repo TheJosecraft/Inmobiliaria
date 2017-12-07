@@ -15,26 +15,19 @@
 </head>
 
 <body>
-
-    <?php
-         $cons_cita = "select *
-                            from citas
-                            where id = $_GET[id]";
-            if (!$cons_cita)
-            {
-                echo "Hay un error en la consulta";
-            }?>
     <?php
 
         menu(5);
 
-        $datos = db_query($cons_cita);
+        //Consulta que obtiene todos los datos de la cita con la id indicada
+        $datos = db_query("select * from citas where id = $_GET[id]");
         $datos = mysqli_fetch_array($datos, MYSQLI_ASSOC);
         db_close();
         ?>
         <div class="container">
         <h1>Modificar cita</h1>
 
+<!--                   Formulario que carga todos los datos de la cita para que puedan se modificados-->
                     <form action="#" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="">Id</label>
@@ -42,18 +35,18 @@
                         </div>
                         <div class="form-group">
                             <label for="">Motivo</label>
-                            <input class="form-control" type="text" name="motivo" value="<?php echo $datos['motivo'] ?>">
+                            <input class="form-control" type="text" name="motivo" id="motivo" value="<?php echo $datos['motivo'] ?>"><span style="display:none"></span><span style="display:none"></span>
                         </div>
                         <div class="form-group">
                             <label for="">Lugar</label>
-                            <input class="form-control" type="text" name="lugar" value="<?php echo $datos['lugar'] ?>">
+                            <input class="form-control" type="text" name="lugar" id="lugar" value="<?php echo $datos['lugar'] ?>"><span style="display:none"></span><span style="display:none"></span>
                         </div>
                         <div class="form-group">
                             <label for="">Cliente</label>
-                            <select class="form-control" name="id_cliente" id="">
+                            <select class="form-control" name="id_cliente" id="cliente">
                         <?php
 
-                            $cliente = db_query("select id, nombre, apellidos from clientes where id > 0");
+                            $cliente = db_query("select nombre, apellidos from clientes where id > 0");
                             while($fila = mysqli_fetch_array($cliente)){
                                 if ($fila['id'] == $datos['id_cliente'])
                                 {
@@ -68,15 +61,15 @@
 
                             db_close();
                         ?>
-                    </select>
+                            </select><span style="display:none"></span><span style="display:none"></span>
                         </div>
                         <div class="form-group">
                             <label for="">Hora</label>
-                            <input class="form-control" type="time" name="hora" value="<?php echo $datos['hora'] ?>">
+                            <input class="form-control" type="time" name="hora" id="hora" value="<?php echo $datos['hora'] ?>"><span style="display:none"></span><span style="display:none"></span>
                         </div>
                         <div class="form-group">
                             <label for="">Fecha</label>
-                            <input class="form-control" type="date" name="fecha" value="<?php echo $datos['fecha'] ?>">
+                            <input class="form-control" type="date" name="fecha" id="fecha" value="<?php echo $datos['fecha'] ?>"><span style="display:none"></span><span style="display:none"></span>
                         </div>
 
                         <input class="btn btn-primary" type="submit" name="enviarModCita">

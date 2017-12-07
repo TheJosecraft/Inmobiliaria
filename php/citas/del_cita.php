@@ -10,9 +10,13 @@
 <body>
     <?php
 
+    //Variable que almacena la id de la cita a eliminar
     $id = $_GET['id'];
 
+    //Consulta para eliminar la cita con la id alamacenada en la variable $id
     db_query("delete from citas where id = $id");
+
+    //Recarga de la página para devolver al usuario a la página de citas
     header("refresh:0;url=citas.php");
     ?>
 

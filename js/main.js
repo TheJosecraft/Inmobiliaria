@@ -6,6 +6,8 @@ var descripcion = false;
 var contenido = false;
 var precio = false;
 var imagen = false;
+var hora = false;
+var fecha = false;
 
 function Inicio() {
 
@@ -69,6 +71,11 @@ function Inicio() {
        iCliente.addEventListener("blur", ValidarCliente);
     }
     
+    var iHora = document.querySelector("#hora");
+    if(iHora != null){
+       iHora.addEventListener("blur", ValidarHora);
+    }
+
     var iEnviarInsCliente = document.querySelector("#enviarInsCliente");
 
     if (iEnviarInsCliente != null) {
@@ -159,10 +166,27 @@ function ValidarTelefono2(event) {
 
 }
 
-function ValidarFecha(event) {
+function ValidarHora(event){
+    var tiempo = this.value;
+    var hoy = new Date();
+    tiempo = tiempo.split(":");
+    var horas = tiempo[0];
+    var minutos = tiempo[1];
 
-    var dia, mes, anio;
-    var diaA, mesA, anioA;
+
+    console.log(tiempo[0] + ":" + tiempo[1]);
+    console.log("Hora actual: " + hoy.getHours() + ":" + hoy.getMinutes());
+
+    if(this.value.trim() == ""){
+       Aviso(this, "La hora no puede estar vacía");
+    }else if(horas < hoy.getHours()){
+        Aviso(this, "La hora no puede ser anterior a la actual");
+    }else{
+        QuitarAviso(this);
+    }
+}
+
+function ValidarFecha(event) {
 
     var fecha = new Date(this.value);
     var hoy = new Date();

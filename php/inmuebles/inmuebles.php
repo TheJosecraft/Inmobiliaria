@@ -95,7 +95,7 @@
                                             </div>
                                             <br>
                                             <div class="row text-center">
-                                                <h4><?php echo $fila['precio']; ?> €</h4>
+                                                <h4><?php echo number_format($fila['precio'], 0, ',', '.'); ?> €</h4>
                                             </div>
                                             <div class="row text-center">
                                                <?php
@@ -198,7 +198,7 @@
                                             </div>
                                             <br>
                                             <div class="row text-center">
-                                                <h4><?php echo $fila['precio']; ?> €</h4>
+                                                <h4><?php echo number_format($fila['precio'], 0, ',', '.'); ?> €</h4>
                                             </div>
                                             <div class="row text-center">
                                                <?php
@@ -300,21 +300,18 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="cliente">Cliente</label>
-                                        <select class="form-control" name="cliente" id="cliente"><span style="display:none"></span><span style="display:none"></span>
+                                        <select class="form-control" name="cliente" id="cliente">
                                             <?php
                                                 db_close();
 
-                                                $cons_idCliente = "select id, nombre, apellidos
-                                                                    from clientes";
-
-                                                $id_Cliente = db_query($cons_idCliente);
+                                                $id_Cliente = db_query("select id, nombre, apellidos from clientes");
                                                 while($fila = mysqli_fetch_array($id_Cliente)){
                                                     echo "<option value=$fila[id]>$fila[nombre] $fila[apellidos]</option>";
                                                 }
 
                                                 db_close();
                                             ?>
-                                        </select>
+                                        </select><span style="display:none"></span><span style="display:none"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="imagen">Imagen</label>

@@ -25,9 +25,9 @@ function menu ($pag = 1)
                             <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
                             <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
                             <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
-                            <?php
+                        <?php
                         }elseif($pag == 2){
-                            ?>
+                        ?>
                             <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
                             <li class="active"><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
                             <li><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
@@ -36,14 +36,14 @@ function menu ($pag = 1)
                             <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                                 <?php
                         }elseif($pag == 3){
-                            ?>
+                        ?>
                             <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
                             <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
                             <li class="active"><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
                             <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
                             <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
                             <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
-                                    <?php
+                        <?php
                         }elseif($pag == 4){
                             ?>
                             <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
@@ -52,25 +52,25 @@ function menu ($pag = 1)
                             <li class="active"><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
                             <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
                             <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
-                                        <?php
+                        <?php
                         }elseif($pag == 5){
-                            ?>
+                        ?>
                             <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
                             <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
                             <li><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
                             <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
                             <li class="active"><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
                             <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
-                                            <?php
+                        <?php
                         }elseif($pag == 6){
-                            ?>
+                        ?>
                             <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
                             <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
                             <li><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
                             <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
                             <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
                             <li class="active"><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
-                                                <?php
+                        <?php
                         }
                         ?>
 
@@ -97,15 +97,15 @@ function footer ()
         <footer class="text-center footer navbar-fixed-bottom">
             <p><strong>&copy;</strong> EAG 2017 - Realizado por José Carlos Raya León</p>
         </footer>
-        <?php
+    <?php
 }
 
 function cabecera(){
     ?>
-            <link rel="stylesheet" href="../../css/bootstrap.min.css">
-            <link rel="stylesheet" href="../../css/main.css">
-            <link rel="stylesheet" href="../../css/font-awesome.css">
-            <?php
+        <link rel="stylesheet" href="../../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../css/main.css">
+        <link rel="stylesheet" href="../../css/font-awesome.css">
+    <?php
 }
 
 function db_connect() {
@@ -127,11 +127,12 @@ function db_connect() {
     return $conexion;
 }
 
+//Función para hacer consultas a la base de datos
 function db_query($consulta) {
-    // Connect to the database
+    // Conexión a la base de datos
     $conexion = db_connect();
 
-    // Query the database
+    // Consulta a la base de datos
     $resultado = mysqli_query($conexion, $consulta);
 
     if($resultado === false) {
@@ -142,11 +143,13 @@ function db_query($consulta) {
 
 }
 
+//Función que muestra los errores de la base de datos
 function db_error() {
     $conexion = db_connect();
     return mysqli_error($conexion);
 }
 
+//Función para cerrar la conexión a la base de datos
 function db_close(){
     $conexion = db_connect();
     mysqli_close($conexion);
