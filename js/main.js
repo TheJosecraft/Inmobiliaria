@@ -167,25 +167,18 @@ function ValidarFecha(event) {
     var fecha = new Date(this.value);
     var hoy = new Date();
 
-    fecha = fecha.split("-");
-    hoy = hoy.split("-");
-
-    dia = fecha[2];
-    mes = fecha[1];
-    anio = fecha[0];
-
-    diaA = hoy[2];
-    mesA = hoy[1];
-    anioA = hoy[0];
-
-    alert(dia + mes + anio);
-    alert(diaA + mesA + anioA);
+    console.log("Fecha cita:" + fecha.getDate() + "/" + (fecha.getMonth() + 1) + "/" + fecha.getFullYear());
+    console.log("Fecha actual: " + hoy.getDate() + "/" + (hoy.getMonth() + 1) + "/" + hoy.getFullYear());
 
     if (this.value.trim() == "") {
         Aviso(this, "La fecha no puede estar vacía");
-    } else if (fecha.getDate() < hoy.getDate() && fecha.getMonth() + 1 < hoy.getMonth() + 1 && fecha.getFullYear() < hoy.getFullYear()) {
+    } else if (fecha.getDate() < hoy.getDate()) {
         Aviso(this, "La fecha no puede ser anterior al día actual");
-    } else {
+    }else if (fecha.getMonth() < hoy.getMonth() && fecha.getFullYear >= hoy.getFullYear()) {
+        Aviso(this, "El mes no puede ser anterior al mes actual");
+    }else if (fecha.getFullYear() < hoy.getFullYear()) {
+        Aviso(this, "El año no puede ser anterior al año actual");
+    }else {
         QuitarAviso(this);
     }
 }
