@@ -629,15 +629,15 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Motivo</label>
-                                        <input class="form-control" type="text" name="motivo">
+                                        <input class="form-control" type="text" name="motivo"><span style="display:none"></span><span style="display:none"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Lugar</label>
-                                        <input class="form-control" type="text" name="lugar">
+                                        <input class="form-control" type="text" name="lugar"><span style="display:none"></span><span style="display:none"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Cliente</label>
-                                        <select class="form-control" name="cliente" id="">
+                                        <select class="form-control" name="cliente" id="cliente"><span style="display:none"></span><span style="display:none"></span>
                                         <?php
                                             db_close();
                                             $cons_idCliente = "select id, nombre, apellidos
@@ -653,11 +653,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Hora</label>
-                                        <input class="form-control" type="time" name="hora">
+                                        <input class="form-control" type="time" name="hora"><span style="display:none"></span><span style="display:none"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Fecha</label>
-                                        <input class="form-control" type="date" name="fecha">
+                                        <input class="form-control" type="date" name="fecha" id="fecha"><span style="display:none"></span><span style="display:none"></span>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

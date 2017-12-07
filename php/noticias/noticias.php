@@ -81,24 +81,26 @@
                 <div class="row">
                    <div class="col-md-12 text-center">
                        <ul class="pagination ">
-                        <li>
+                        
                            <?php
                             if($pagAnterior < 0){
                                 $pagAnterior = 0;
                             }else{
                                 ?>
+                                <li>
                                 <a href="?pagAnterior=<?php echo $pagAnterior ?>"><span class="fa fa-arrow-left"></span> Anterior</a>
                                 <?php
                             }
                             ?>
                            </li>
-                        <li>
+                        
                         <?php
                             $limite = 6 * ($pag + 1);
                             $select = db_query("select * from noticias where fecha <= '$fecha' order by id DESC limit $limite, 6");
                             if($numNoticias == 6 && mysqli_num_rows($select) > 0){
                                ?>
-                               <a href="?pagSiguiente=<?php echo $pagSiguiente ?>"><span class="fa fa-arrow-right"></span> Siguiente</a></li>
+                               <li>
+                               <a href="?pagSiguiente=<?php echo $pagSiguiente ?>">Siguiente <span class="fa fa-arrow-right"></span></a></li>
                                 <?php
                             }
 

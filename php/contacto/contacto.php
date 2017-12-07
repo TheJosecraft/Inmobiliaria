@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <input type="submit" class="btn btn-success btn-send" value="Enviar">
+                            <input type="submit" class="btn btn-primary btn-send" value="Enviar">
                         </div>
                     </div>
                     <div class="row">
