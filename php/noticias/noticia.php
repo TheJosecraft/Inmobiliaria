@@ -21,13 +21,26 @@
     menu();
         $datos = db_query("select * from noticias where id = $_GET[id]");
     ?>
-    <div class="container text-center">
+    <div class="container">
        <?php
         while($fila = mysqli_fetch_array($datos, MYSQLI_ASSOC)){
         ?>
-        <img class="img-responsive" src="../../img/noticias/<?php echo $fila['imagen'] ?>" alt="">
-        <h1><?php echo $fila['titular'] ?></h1>
-        <p class="text-left"><?php echo $fila['contenido'] ?></p>
+        <div class="row">
+           <div class="col-xs-12 text-center">
+               <img class="img-responsive tocenter img-rounded" src="../../img/noticias/<?php echo $fila['imagen'] ?>" alt="" width="80%">
+           </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h1><?php echo $fila['titular'] ?></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <!--   He usado la función 'nl2br' para formatear el texto y añadir un salto de línea al final de cada párrafo.     -->
+        <p class="text-justify"><?php echo nl2br($fila['contenido']) ?></p>
+            </div>
+        </div>
         <?php
         }
     footer();

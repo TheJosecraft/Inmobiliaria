@@ -629,11 +629,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Motivo</label>
-                                        <input class="form-control" type="text" name="motivo"><span style="display:none"></span><span style="display:none"></span>
+                                        <input class="form-control" type="text" name="motivo" id="nombre"><span style="display:none"></span><span style="display:none"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Lugar</label>
-                                        <input class="form-control" type="text" name="lugar"><span style="display:none"></span><span style="display:none"></span>
+                                        <input class="form-control" type="text" name="lugar" id="direccion" ><span style="display:none"></span><span style="display:none"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Cliente</label>
@@ -653,7 +653,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Hora</label>
-                                        <input class="form-control" type="time" name="hora"><span style="display:none"></span><span style="display:none"></span>
+                                        <input class="form-control" type="time" name="hora" id="hora"><span style="display:none"></span><span style="display:none"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Fecha</label>

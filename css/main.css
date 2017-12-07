@@ -261,3 +261,9 @@ div.item .img-responsive {
     color: #18bc9c;
 }
 
+.tocenter {
+    margin: 0 auto;
+    display: inline;
+    margin-top: 50px;
+}
+

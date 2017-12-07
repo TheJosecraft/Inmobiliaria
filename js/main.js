@@ -5,6 +5,7 @@ var telefono1 = false;
 var descripcion = false;
 var contenido = false;
 var precio = false;
+var imagen = false;
 
 function Inicio() {
 
@@ -46,24 +47,34 @@ function Inicio() {
     if (ifecha != null) {
         ifecha.addEventListener("blur", ValidarFecha);
     }
-    
+
     var iDescripcion = document.querySelector("#descripcion");
-    
-    if(iDescripcion != null){
-       iDescripcion.addEventListener("blur", ValidarDescripcion);
-    }
-    
-    var iPrecio = document.querySelector("#precio");
-    if(iPrecio != null){
-       iPrecio.addEventListener("blur", ValidarPrecio);
+
+    if (iDescripcion != null) {
+        iDescripcion.addEventListener("blur", ValidarDescripcion);
     }
 
-    var iEnviarInsCliente = document.querySelector("#enviarInsCliente");
-    
-    if(iEnviarInsCliente != null){
-       iEnviarInsCliente.addEventListener("click", ValidarInsCliente);
+    var iPrecio = document.querySelector("#precio");
+    if (iPrecio != null) {
+        iPrecio.addEventListener("blur", ValidarPrecio);
+    }
+
+    var iImagen = document.querySelector("#imagen");
+    if(iImagen != null){
+       iImagen.addEventListener("change", ValidarImagen);
     }
     
+    var iCliente = document.querySelector("#cliente");
+    if(iCliente != null){
+       iCliente.addEventListener("blur", ValidarCliente);
+    }
+    
+    var iEnviarInsCliente = document.querySelector("#enviarInsCliente");
+
+    if (iEnviarInsCliente != null) {
+        iEnviarInsCliente.addEventListener("click", ValidarInsCliente);
+    }
+
 }
 
 function ValidarNombre(event) {
@@ -71,10 +82,11 @@ function ValidarNombre(event) {
     if (this.value.trim() == "") {
         Aviso(this, "El nombre no puede estar vacío");
         nombre = false;
-
     } else if (this.value.length > 50) {
         Aviso(this, "El nombre es demasiado largo");
         nombre = false;
+    } else if (!isNaN(this.value)) {
+        Aviso(this, "El nombre no pueden ser números");
     } else {
         QuitarAviso(this);
         nombre = true;
@@ -87,9 +99,10 @@ function ValidarApellidos(event) {
 
     if (this.value.trim() == "") {
         Aviso(this, "Los apellidos no pueden estar vacíos");
-
     } else if (this.value.length > 50) {
         Aviso(this, "Los apellidos son demasiado largos");
+    } else if (!isNaN(this.value)) {
+        Aviso(this, "Los apellidos no pueden ser números");
     } else {
         QuitarAviso(this);
         apellidos = true;
@@ -119,7 +132,7 @@ function ValidarTelefono1(event) {
         Aviso(this, "El teléfono no puede estar vacío");
     } else if (isNaN(this.value)) {
         Aviso(this, "El teléfono es no es un número");
-    }else if (this.value.length > 9) {
+    } else if (this.value.length > 9) {
         Aviso(this, "El teléfono es demasiado largo");
     } else if (this.value.length < 9) {
         Aviso(this, "El teléfono es demasiado corto");
@@ -178,19 +191,19 @@ function ValidarFecha(event) {
 }
 
 function ValidarImagen(event) {
-    if (this.value.indexOf(".jpg") == -1 && this.value.type != file) {
-        event.preventDefault();
-        Aviso(this, "La imagen nohrdrytrdud es correcta");
-    } else if (this.value.indexOf(".png") == -1 && this.value.type != file) {
-        event.preventDefault();
-        Aviso(this, "La imagen no es correcta");
-    } else {
+
+    extension = this.value.substring(this.value.lastIndexOf('.'));
+    if (extension != ".png" && extension != ".jpg") {
+        Aviso(this, "La imagen no está en el formato correcto. Introduce una imagen con extensión JPG o PNG");
+        imagen = false;
+    }else{
         QuitarAviso(this);
+        imagen = true;
     }
 }
 
-function ValidarDescripcion(event){
-     if (this.value.trim() == "") {
+function ValidarDescripcion(event) {
+    if (this.value.trim() == "") {
         Aviso(this, "La descripción no puede estar vacía");
         descripcion = false;
 
@@ -204,12 +217,12 @@ function ValidarDescripcion(event){
 
 }
 
-function ValidarPrecio(event){
+function ValidarPrecio(event) {
     if (this.value.trim() == "") {
         Aviso(this, "El precio no puede estar vacío");
     } else if (isNaN(this.value)) {
         Aviso(this, "El precio es no es un número");
-    }else if (this.value.length > 12) {
+    } else if (this.value.length > 12) {
         Aviso(this, "El precio es demasiado largo");
     } else {
         QuitarAviso(this);
@@ -217,12 +230,16 @@ function ValidarPrecio(event){
     }
 }
 
+function ValidarCliente(event){
+    QuitarAviso(this);
+}
+
 function ValidarInsCliente(event) {
 
     if (!nombre || !apellidos || !direccion || !telefono1) {
         event.preventDefault();
         AvisoAlert("Faltan campos por rellenar");
-    }else{
+    } else {
         QuitarAviso(this);
     }
 }
@@ -240,13 +257,13 @@ function Aviso(campo, mensaje) {
     siguiente.style.display = "inline-block";
 }
 
-function AvisoAlert(mensaje){
+function AvisoAlert(mensaje) {
     campo = document.querySelector("#alerta");
     campo.style.display = "block";
     campo.innerHTML = "<strong>¡Cuidado!</strong> " + mensaje;
 }
 
-function QuitarAvisoAlert(){
+function QuitarAvisoAlert() {
     campo = document.querySelector("#alerta");
     campo.style.display = "none";
 }

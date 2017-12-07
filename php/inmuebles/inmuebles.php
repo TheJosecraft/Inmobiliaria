@@ -277,8 +277,8 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Insertar inmueble</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
                             <div class="modal-body">
                                 <form action="#" method="post" enctype="multipart/form-data">
@@ -300,21 +300,21 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="cliente">Cliente</label>
-                                        <select class="form-control" name="cliente" id="cliente">
-                        <?php
-                            db_close();
+                                        <select class="form-control" name="cliente" id="cliente"><span style="display:none"></span><span style="display:none"></span>
+                                            <?php
+                                                db_close();
 
-                            $cons_idCliente = "select id, nombre, apellidos
-                                                from clientes";
+                                                $cons_idCliente = "select id, nombre, apellidos
+                                                                    from clientes";
 
-                            $id_Cliente = db_query($cons_idCliente);
-                            while($fila = mysqli_fetch_array($id_Cliente)){
-                                echo "<option value=$fila[id]>$fila[nombre] $fila[apellidos]</option>";
-                            }
+                                                $id_Cliente = db_query($cons_idCliente);
+                                                while($fila = mysqli_fetch_array($id_Cliente)){
+                                                    echo "<option value=$fila[id]>$fila[nombre] $fila[apellidos]</option>";
+                                                }
 
-                            db_close();
-                        ?>
-                    </select>
+                                                db_close();
+                                            ?>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="imagen">Imagen</label>

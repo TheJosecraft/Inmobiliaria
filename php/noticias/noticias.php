@@ -140,21 +140,21 @@
                                 <form action="#" method="post" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label for="">Id</label>
-                                        <input class="form-control" type="text" name="id" value="<?php echo $id[0];?>" readonly></div>
+                                        <input class="form-control" type="text" name="id" value="<?php echo $id[0];?>" readonly></div><span style="display:none"></span><span style="display:none"></span>
                                     <div class="form-group">
                                         <label for="">Titular</label>
-                                        <input class="form-control" type="text" name="titular"></div>
+                                        <input class="form-control" type="text" name="titular" id="titular"></div><span style="display:none"></span><span style="display:none"></span>
                                     <div class="form-group">
                                         <label for="">Contenido</label>
-                                        <textarea class="form-control" name="contenido" maxlength="1500" rows="15"></textarea>
+                                        <textarea class="form-control" name="contenido" maxlength="1500" rows="15" id="contenido"></textarea><span style="display:none"></span><span style="display:none"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Imagen</label>
-                                        <input class="form-control" type="file" name="imagen">
+                                        <input class="form-control" type="file" name="imagen" id="imagen"><span style="display:none"></span><span style="display:none"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Fecha</label>
-                                        <input class="form-control" type="date" name="fecha">
+                                        <input class="form-control" type="date" name="fecha" id="fecha"><span style="display:none"></span><span style="display:none"></span>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
