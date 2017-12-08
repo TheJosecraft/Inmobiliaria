@@ -352,10 +352,7 @@
                                 </td>
                                 <td>
                                     <?php
-                                        $cons_sel_cli = "select id, nombre, apellidos
-                                        from clientes
-                                        where id = $fila[id_cliente]";
-                                        $nombres = db_query($cons_sel_cli);
+                                        $nombres = db_query("select nombre, apellidos from clientes where id = $fila[id_cliente]");
                                         $nombre = mysqli_fetch_array($nombres);
                                             echo $nombre['nombre']." ".$nombre['apellidos'];
                                         db_close();
@@ -363,12 +360,9 @@
                                 </td>
                                 <td>
                                     <?php
-                                        $cons_sel_cli = "select id, telefono1
-                                        from clientes
-                                        where id = $fila[id_cliente]";
-                                        $nombres = db_query($cons_sel_cli);
-                                        $nombre = mysqli_fetch_array($nombres);
-                                            echo $nombre['telefono1'];
+                                        $telefonos = db_query("select telefono1 from clientes where id = $fila[id_cliente]");
+                                        $telefono = mysqli_fetch_array($nombres);
+                                            echo $telefono['telefono1'];
                                         db_close();
                                      ?>
                                 </td>
@@ -552,7 +546,7 @@
                                     <?php
                                         $telefonos = db_query("select telefono1 from clientes where id = $fila[id_cliente]");
                                         $telefono = mysqli_fetch_array($telefonos);
-                                            echo $nombre['telefono1'];
+                                            echo $telefono['telefono1'];
                                         db_close();
                                      ?>
                                 </td>
