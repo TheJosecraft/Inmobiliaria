@@ -27,7 +27,7 @@
         <?php
         menu(3);
         ?>
-            <div class="container">
+            <div class="container" id="wrap">
                 <h1>Modificar cliente</h1>
 
                 <?php

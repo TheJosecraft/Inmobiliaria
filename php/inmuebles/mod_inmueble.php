@@ -27,7 +27,7 @@
 
         menu(4);
         ?>
-            <div class="container">
+            <div class="container" id="wrap">
                 <h1>Modificar inmueble</h1>
 
                 <?php

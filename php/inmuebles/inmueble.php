@@ -22,7 +22,7 @@
     $datos = db_query("select * from inmuebles where id = $_GET[id]");
 
     ?>
-    <div class="container text-center">
+    <div class="container text-center" id="wrap">
        <?php
         while($fila = mysqli_fetch_array($datos, MYSQLI_ASSOC)){
         ?>

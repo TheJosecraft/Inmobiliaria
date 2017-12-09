@@ -22,7 +22,7 @@
     //Variable que almacena el año actual
     $anio = date('Y');
     ?>
-        <div class="container">
+        <div class="container" id="wrap">
             <div class="row">
                 <div class="col-md-3">
                     <div class="calendar">
@@ -361,7 +361,7 @@
                                 <td>
                                     <?php
                                         $telefonos = db_query("select telefono1 from clientes where id = $fila[id_cliente]");
-                                        $telefono = mysqli_fetch_array($nombres);
+                                        $telefono = mysqli_fetch_array($telefonos);
                                             echo $telefono['telefono1'];
                                         db_close();
                                      ?>

@@ -28,7 +28,7 @@
 
         menu(2);
         ?>
-            <div class="container">
+            <div class="container" id="wrap">
                 <h1>Modificar noticia</h1>
 
                 <?php

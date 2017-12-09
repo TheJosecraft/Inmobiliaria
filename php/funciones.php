@@ -91,21 +91,110 @@ function menu ($pag = 1)
 function footer ()
 {
     ?>
-        <script type="text/javascript" src="../../js/main.js"></script>
-        <script src="../../js/jquery.min.js"></script>
-        <script type="text/javascript" src="../../js/bootstrap.js"></script>
-        <footer class="text-center footer navbar-fixed-bottom">
-            <p><strong>&copy;</strong> EAG 2017 - Realizado por José Carlos Raya León</p>
-        </footer>
+<script type="text/javascript" src="../../js/main.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.js"></script>
+<footer class="text-center footer">
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div class="col-md-3 logo">
+                <img src="../../img/LOGO.svg" alt="" width="40%">
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ul class="nav nav-pills nav-justified">
+                            <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
+                            <li><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
+                            <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
+                            <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ul class="nav nav-pills nav-justified">
+                            <!--                            <li><a href="/">© <?php echo date('Y') ?> EAG.</a></li>-->
+                            <li><a href="../mapa-web/mapa-web.php"><i class="fa fa-sitemap"></i> Mapa web</a></li>
+                            <li><a href="#"><span class="fa fa-sign-in"></span> Acceder</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12 col-sm-5 col-md-8">
+                <p>Realizado por José Carlos Raya León ©
+                    <?php echo date('Y') ?> EAG.</p>
+            </div>
+            <div class="col-xs-12 col-sm-7 col-md-4">
+                <ul class="list-inline">
+                    <li><a href="http://instagram.com"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="http://facebook.com"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="http://twitter.com"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+           <!--<div class="row">
+               <div class="col-sm-3">
+                   <p>Noticias</p>
+               </div>
+               <div class="col-sm-3">
+                    <p>Clientes</p>
+               </div>
+               <div class="col-sm-3">
+                   <p>Inmuebles</p>
+               </div>
+               <div class="col-sm-3">
+                   <p>Citas</p>
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-xs-12">
+                   <p><strong>&copy;</strong> EAG 2017 - Realizado por José Carlos Raya León</p>
+               </div>
+           </div>
+
+        </footer> -->
+        <!--<footer>
+        <div class="global">
+            <div class="logo"></div>
+            <div class="parr1">
+               <div class="den1">
+                    <ul>
+                        <i class="fa fa-newspaper"></i><li>Noticias</li>
+                        <i class="fa fa-newspaper-o"></i><li>Clientes</li>
+                        <i class="fa fa-newspaper-o"></i><li>Inmuebles</li>
+                        <i class="fa fa-newspaper-o"></i><li>Citas</li>
+                    </ul>
+                </div>
+                <div class="den2">
+                    <ul>
+                        <a href="http://instagram.com"><li><i class="fa fa-instagram"></i></li></a>
+                        <a href="http://facebook.com"><li><i class="fa fa-facebook"></i></li></a>
+                        <a href="http://twitter.com"><li><i class="fa fa-twitter"></i></li></a>
+                        <a href="http://plus.google.com"><li><i class="fa fa-google-plus"></i></li></a>
+                    </ul>
+                </div>
+            </div>
+            <div class="parr2">
+
+            </div>
+        </div>
+    </footer>-->
     <?php
 }
 
 function cabecera(){
-    ?>
-        <link rel="stylesheet" href="../../css/bootstrap.min.css">
-        <link rel="stylesheet" href="../../css/main.css">
-        <link rel="stylesheet" href="../../css/font-awesome.css">
-    <?php
+?>
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
+<link rel="stylesheet" href="../../css/main.css">
+<link rel="stylesheet" href="../../css/font-awesome.css">
+<?php
 }
 
 function db_connect() {

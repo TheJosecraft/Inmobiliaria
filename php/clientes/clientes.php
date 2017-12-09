@@ -16,7 +16,7 @@
     menu(3);
     ?>
     </div>
-        <div class="container">
+        <div class="container" id="wrap">
             <div class="row">
                <h1>Clientes</h1>
                 <div class="col-xs-6">

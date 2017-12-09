@@ -17,7 +17,7 @@
     menu(2);
     ?>
 
-        <div class="container">
+        <div class="container" id="wrap">
             <div class="row">
                 <div class="col-md-12" id="ver">
                     <h1>Noticias</h1>

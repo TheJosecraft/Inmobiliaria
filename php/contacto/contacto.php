@@ -16,7 +16,7 @@
     menu(6);
     ?>
 
-        <div class="container">
+        <div class="container" id="wrap">
             <div class="row">
                <h1>Contacto</h1>
                 <form action="">

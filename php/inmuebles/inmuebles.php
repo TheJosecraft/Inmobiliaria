@@ -15,7 +15,7 @@
     <?php
     menu(4);
     ?>
-        <div class="container">
+        <div class="container" id="wrap">
             <div class="row equal">
                 <div class="col-md-12" id="ver">
                     <h1>Inmuebles</h1>

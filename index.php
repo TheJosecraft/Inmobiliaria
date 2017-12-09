@@ -24,23 +24,29 @@
 
     menu(1);
     ?>
-        <div class="carousel slide" data-ride="carousel">
-            <div class="carousel inner" role="listbox">
-                <div class="item active">
-                    <?php
+        <div class="container-fluid" id="wrap">
+            <div class="row">
+                <div class="carousel slide" data-ride="carousel">
+                    <div class="carousel inner" role="listbox">
+                        <div class="item active">
+                            <?php
                     img_random();
                     ?>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid navbar">
-            <br>
-            <?php ult_noticias(); ?>
+            <div class="row" style="margin:10px">
+                <br>
+
+                    <?php ult_noticias(); ?>
+
+            </div>
         </div>
 
-    <div class="container-fluid">
-        <?php footer(); ?>
-    </div>
+        <div class="row">
+            <?php footer(); ?>
+        </div>
 
 </body>
 

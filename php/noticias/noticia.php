@@ -21,7 +21,7 @@
     menu();
         $datos = db_query("select * from noticias where id = $_GET[id]");
     ?>
-    <div class="container">
+    <div class="container" id="wrap">
        <?php
         while($fila = mysqli_fetch_array($datos, MYSQLI_ASSOC)){
         ?>

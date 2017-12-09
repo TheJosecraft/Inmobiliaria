@@ -24,7 +24,7 @@
         $datos = mysqli_fetch_array($datos, MYSQLI_ASSOC);
         db_close();
         ?>
-        <div class="container">
+        <div class="container" id="wrap">
         <h1>Modificar cita</h1>
 
 <!--                   Formulario que carga todos los datos de la cita para que puedan se modificados-->

@@ -90,13 +90,54 @@ function menu ($pag = 1)
     <?php
 function footer ()
 {
-    ?>
+?>
+<footer class="text-center footer">
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div class="col-md-3 logo">
+                <img src="img/LOGO.svg" alt="" width="40%">
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-sm-12">
 
-        <footer class="text-center footer navbar-fixed-bottom">
-            <p><strong>&copy;</strong> EAG 2017 - Realizado por José Carlos Raya León</p>
-        </footer>
-
-        <?php
+                        <ul class="nav nav-pills nav-justified">
+                            <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
+                            <li><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
+                            <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
+                            <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ul class="nav nav-pills nav-justified">
+                            <!--                            <li><a href="/">© <?php echo date('Y') ?> EAG.</a></li>-->
+                            <li><a href="../mapa-web/mapa-web.php"><i class="fa fa-sitemap"></i> Mapa web</a></li>
+                            <li><a href="#"><span class="fa fa-sign-in"></span> Acceder</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12 col-sm-5 col-md-8">
+                <p>Realizado por José Carlos Raya León ©
+                    <?php echo date('Y') ?> EAG.</p>
+            </div>
+            <div class="col-xs-12 col-sm-7 col-md-4">
+                <ul class="list-inline">
+                    <li><a href="http://instagram.com"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="http://facebook.com"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="http://twitter.com"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<?php
 }
 ?>
 
@@ -130,8 +171,7 @@ function img_random ()
 <?php
 function ult_noticias(){
     ?>
-    <div class="container-fluid">
-        <div class="row">
+
             <?php
 
     $fecha = date('Y-m-d');
@@ -170,8 +210,6 @@ function ult_noticias(){
                 <?php
     }
 ?>
-        </div>
-    </div>
     <?php
     db_close();
 }
