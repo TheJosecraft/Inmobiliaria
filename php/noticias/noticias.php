@@ -140,10 +140,12 @@
                                 <form action="#" method="post" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label for="">Id</label>
-                                        <input class="form-control" type="text" name="id" value="<?php echo $id[0];?>" readonly></div><span style="display:none"></span><span style="display:none"></span>
+                                        <input class="form-control" type="text" name="id" value="<?php echo $id[0];?>" readonly>
+                                    </div>
                                     <div class="form-group">
                                         <label for="">Titular</label>
-                                        <input class="form-control" type="text" name="titular" id="titular"></div><span style="display:none"></span><span style="display:none"></span>
+                                        <input class="form-control" type="text" name="titular" id="titular"><span style="display:none"></span><span style="display:none"></span>
+                                        </div>
                                     <div class="form-group">
                                         <label for="">Contenido</label>
                                         <textarea class="form-control" name="contenido" maxlength="1500" rows="15" id="contenido"></textarea><span style="display:none"></span><span style="display:none"></span>
@@ -158,7 +160,10 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                        <button type="submit" class="btn btn-primary" name="enviarInsNoticia">Insertar</button>
+                                        <button type="submit" class="btn btn-primary" name="enviarInsNoticia" id="enviarInsNoticia">Insertar</button>
+                                    </div>
+                                    <div class="alert alert-danger" id="alerta" style="display:none">
+
                                     </div>
 
                                 </form>

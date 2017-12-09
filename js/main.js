@@ -3,6 +3,7 @@ var apellidos = false;
 var direccion = false;
 var telefono1 = false;
 var descripcion = false;
+var titular = false;
 var contenido = false;
 var precio = false;
 var imagen = false;
@@ -65,15 +66,30 @@ function Inicio() {
     if(iImagen != null){
        iImagen.addEventListener("change", ValidarImagen);
     }
-    
+
     var iCliente = document.querySelector("#cliente");
     if(iCliente != null){
        iCliente.addEventListener("blur", ValidarCliente);
     }
-    
+
     var iHora = document.querySelector("#hora");
     if(iHora != null){
        iHora.addEventListener("blur", ValidarHora);
+    }
+    
+    var iTitular = document.querySelector("#titular");
+    if(iTitular != null){
+        iTitular.addEventListener("blur", ValidarTitular);
+    }
+    
+    var iContenido = document.querySelector("#contenido");
+    if(iContenido != null){
+       iContenido.addEventListener("blur", ValidarContenido);
+    }
+
+    var iEnviarInsNoticia = document.querySelector("#enviarInsNoticia");
+    if(iEnviarInsNoticia != null){
+       iEnviarInsNoticia.addEventListener("click", ValidarInsNoticia);
     }
 
     var iEnviarInsCliente = document.querySelector("#enviarInsCliente");
@@ -248,18 +264,63 @@ function ValidarDescripcion(event) {
 function ValidarPrecio(event) {
     if (this.value.trim() == "") {
         Aviso(this, "El precio no puede estar vacío");
+        precio = false;
     } else if (isNaN(this.value)) {
         Aviso(this, "El precio es no es un número");
+        precio = false;
     } else if (this.value.length > 12) {
         Aviso(this, "El precio es demasiado largo");
+        precio = false;
     } else {
         QuitarAviso(this);
         precio = true;
     }
 }
 
+function ValidarTitular(event) {
+
+    if (this.value.trim() == "") {
+        Aviso(this, "El titular no puede estar vacío");
+        titular = false;
+    } else if (this.value.length > 100) {
+        Aviso(this, "El titular es demasiado largo");
+        titular = false;
+    } else if (!isNaN(this.value)) {
+        Aviso(this, "El titular no pueden ser números");
+        titular = false;
+    } else {
+        QuitarAviso(this);
+        titular = true;
+        console.log(nombre);
+    }
+
+}
+
+function ValidarContenido(event) {
+    if (this.value.trim() == "") {
+        Aviso(this, "El contenido no puede estar vacío");
+        contenido = false;
+    } else if (this.value.length > 1500) {
+        Aviso(this, "El contenido es demasiado largo");
+        contenido = false;
+    } else {
+        QuitarAviso(this);
+        contenido = true;
+    }
+
+}
+
 function ValidarCliente(event){
     QuitarAviso(this);
+}
+
+function ValidarInsNoticia(event){
+    if (!titular || !contenido || !vfecha || !imagen) {
+        event.preventDefault();
+        AvisoAlert("Faltan campos por rellenar");
+    } else {
+        QuitarAvisoAlert(this);
+    }
 }
 
 function ValidarInsCliente(event) {

@@ -322,7 +322,7 @@
                                         <button type="submit" class="btn btn-primary" name="enviarInsInmueble" id="enviarInsInmueble">Insertar</button>
                                     </div>
                                     <div class="alert alert-danger" id="alerta" style="display:none">
-                                        <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
+
                                     </div>
                                 </form>
                             </div>

@@ -176,7 +176,7 @@ function ult_noticias(){
 
     $fecha = date('Y-m-d');
 
-    $noticias = db_query("select * from noticias where fecha <= '$fecha' order by fecha DESC limit 3");
+    $noticias = db_query("select * from noticias where fecha <= '$fecha' order by fecha DESC, id DESC limit 3");
     while($fila = mysqli_fetch_array($noticias)){
         ?>
                 <div class="col-xs-12 col-sm-12 col-md-4 noticia">
