@@ -48,7 +48,8 @@
                                     or apellidos like '%$busqueda%'
                                     or telefono1 like '%$busqueda%'
                                     or telefono2 like '%$busqueda%'
-                                    and nombre not like '%disponible%'";
+                                    and nombre not like '%disponible%'
+                                    order by nombre";
                 $clientes = db_query($cons_bus_cli);
                 if(mysqli_num_rows($clientes) == 0){
                     ?>
@@ -115,7 +116,7 @@
                                                 <button type="submit" class="btn btn-primary" id="enviarInsCliente" name="enviarInsCliente">Insertar</button>
                                             </div>
                                             <div class="alert alert-danger" id="alerta" style="display:none">
-                                              <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
+
                                             </div>
                                         </form>
                                     </div>
@@ -133,8 +134,24 @@
         $direccion = $_POST['direccion'];
         $telefono1 = $_POST['telefono1'];
         $telefono2 = $_POST['telefono2'];
-        $cons_ins = "insert into clientes values (null, '$nombre', '$apellidos', '$direccion', '$telefono1', '$telefono2')";
-        $insertar = db_query($cons_ins);
+
+        if(!preg_match('`^[a-zA-Z ,ºáéíóúÁÉÍÓÚñÑ]{1,50}$`', $nombre)){
+            $direccion = "Nombre erróneo";
+        }
+
+        if(!preg_match('`^[a-zA-Z ,ºáéíóúÁÉÍÓÚñÑ]{1,50}$`', $apellidos)){
+            $direccion = "Apellidos erróneos";
+        }
+
+        if(!preg_match('`^[0-9]{9}$`', $telefono1)){
+            $telefono1 = "Teléfono erróneo";
+        }
+
+        if(!preg_match('`^[0-9]{9}$`', $telefono2) && $telefono2 != ""){
+            $telefono2 = "Teléfono erróneo";
+        }
+
+        $insertar = db_query("insert into clientes values (null, '$nombre', '$apellidos', '$direccion', '$telefono1', '$telefono2')");
         echo 'Los datos se han introducido correctamente';
         db_close();
         ?>

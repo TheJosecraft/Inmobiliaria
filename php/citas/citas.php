@@ -409,7 +409,7 @@
                                     where cit.id_cliente = cli.id
                                     and (cit.fecha like '%$busqueda%'
                                     or cli.nombre like '%$busqueda%')
-                                    order by hora");
+                                    order by fecha, hora");
                         if(mysqli_num_rows($datos) == 0){
                             ?>
                                 <h2><span class="fa fa-info-circle text-info"></span> No se han encontrado resultados</h2>
@@ -627,11 +627,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Motivo</label>
-                                        <input class="form-control" type="text" name="motivo" id="nombre"><span style="display:none"></span><span style="display:none"></span>
+                                        <input class="form-control" type="text" name="motivo" id="motivo"><span style="display:none"></span><span style="display:none"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Lugar</label>
-                                        <input class="form-control" type="text" name="lugar" id="direccion" ><span style="display:none"></span><span style="display:none"></span>
+                                        <input class="form-control" type="text" name="lugar" id="lugar" ><span style="display:none"></span><span style="display:none"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Cliente</label>
@@ -659,7 +659,10 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                        <button type="submit" class="btn btn-primary" name="enviarInsCita">Insertar</button>
+                                        <button type="submit" class="btn btn-primary" name="enviarInsCita" id="enviarInsCita">Insertar</button>
+                                    </div>
+                                    <div class="alert alert-danger" id="alerta" style="display:none">
+
                                     </div>
                                 </form>
                             </div>
@@ -684,6 +687,15 @@
 
                 //Fecha de la cita
                 $fecha = $_POST['fecha'];
+
+
+                if(!preg_match('`^[a-zA-Z0-9 ,ºáéíóúÁÉÍÓÚñÑ]{1,150}$`', $lugar)){
+                    $lugar = "Lugar erróneo";
+                }
+
+                if(!preg_match('`^[a-zA-Z ,ºáéíóúÁÉÍÓÚñÑ]{1,100}$`', $motivo)){
+                    $motivo = "Motivo erróneo";
+                }
 
                 //Inserción de datos en la base de datos
                 db_query("insert into citas values (null, '$fecha', '$hora', '$motivo', '$lugar', $cliente)");

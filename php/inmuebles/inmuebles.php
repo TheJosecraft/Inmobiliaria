@@ -49,7 +49,8 @@
                                     where inm.id_cliente = cli.id
                                     and (inm.direccion like '%$busqueda%'
                                     or cli.nombre like '%$busqueda%'
-                                    or inm.precio like '%$busqueda%')";
+                                    or inm.precio like '%$busqueda%')
+                                    order by precio";
 
                     $inmuebles = db_query($cons_bus_inm);
                   ?>
@@ -346,12 +347,16 @@
         $rutaInmuebles = $rutaImg."inmuebles/";
         $nombreImagen = "";
 
-        $isDireccion = false;
-
-        if(preg_match('`^[a-zA-Z0-9 ,ºáéíóúÁÉÍÓÚñÑ]{1,50}$`', $direccion)){
-            $isDireccion = true;
-        }else{
+        if(!preg_match('`^[a-zA-Z0-9 ,ºáéíóúÁÉÍÓÚñÑ]{1,150}$`', $direccion)){
             $direccion = "Dirección errónea";
+        }
+
+        if(!preg_match('`^[a-zA-Z0-9 ,ºáéíóúÁÉÍÓÚñÑ]{1,150}$`', $descripcion)){
+            $descripcion = "Descripción errónea";
+        }
+
+        if(!preg_match('`^[0-9]{1,12}$`', $precio)){
+            $precio = "Precio erróneo";
         }
 
         if (!file_exists($rutaImg))

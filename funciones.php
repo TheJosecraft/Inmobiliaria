@@ -102,10 +102,10 @@ function footer ()
                     <div class="col-sm-12">
 
                         <ul class="nav nav-pills nav-justified">
-                            <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
-                            <li><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
-                            <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
-                            <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
+                            <li><a href="php/noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
+                            <li><a href="php/clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
+                            <li><a href="php/inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
+                            <li><a href="php/citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
                         </ul>
                     </div>
                 </div>
@@ -113,7 +113,7 @@ function footer ()
                     <div class="col-sm-12">
                         <ul class="nav nav-pills nav-justified">
                             <!--                            <li><a href="/">© <?php echo date('Y') ?> EAG.</a></li>-->
-                            <li><a href="../mapa-web/mapa-web.php"><i class="fa fa-sitemap"></i> Mapa web</a></li>
+                            <li><a href="php/mapa-web/mapa-web.php"><i class="fa fa-sitemap"></i> Mapa web</a></li>
                             <li><a href="#"><span class="fa fa-sign-in"></span> Acceder</a></li>
                         </ul>
                     </div>

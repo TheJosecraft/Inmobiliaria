@@ -9,6 +9,8 @@ var precio = false;
 var imagen = false;
 var hora = false;
 var vfecha = false;
+var motivo = false;
+var lugar = false;
 
 function Inicio() {
 
@@ -76,7 +78,7 @@ function Inicio() {
     if(iHora != null){
        iHora.addEventListener("blur", ValidarHora);
     }
-    
+
     var iTitular = document.querySelector("#titular");
     if(iTitular != null){
         iTitular.addEventListener("blur", ValidarTitular);
@@ -85,6 +87,16 @@ function Inicio() {
     var iContenido = document.querySelector("#contenido");
     if(iContenido != null){
        iContenido.addEventListener("blur", ValidarContenido);
+    }
+    
+    var iMotivo = document.querySelector("#motivo");
+    if(iMotivo != null){
+       iMotivo.addEventListener("blur", ValidarMotivo);
+    }
+
+    var iLugar = document.querySelector("#lugar");
+    if(iLugar != null){
+       iLugar.addEventListener("blur", ValidarLugar);
     }
 
     var iEnviarInsNoticia = document.querySelector("#enviarInsNoticia");
@@ -104,6 +116,11 @@ function Inicio() {
        iEnviarInsInmueble.addEventListener("click", ValidarInsInmueble);
     }
 
+    var iEnviarInsCita = document.querySelector("#enviarInsCita");
+    if(iEnviarInsCita != null){
+        iEnviarInsCita.addEventListener("click", ValidarInsCita);
+    }
+
 }
 
 function ValidarNombre(event) {
@@ -119,6 +136,24 @@ function ValidarNombre(event) {
     } else {
         QuitarAviso(this);
         nombre = true;
+        console.log(nombre);
+    }
+
+}
+
+function ValidarMotivo(event) {
+
+    if (this.value.trim() == "") {
+        Aviso(this, "El motivo no puede estar vacío");
+        motivo = false;
+    } else if (this.value.length > 100) {
+        Aviso(this, "El motivo es demasiado largo");
+        motivo = false;
+    } else if (!isNaN(this.value)) {
+        Aviso(this, "El motivo no pueden ser números");
+    } else {
+        QuitarAviso(this);
+        motivo = true;
         console.log(nombre);
     }
 
@@ -151,6 +186,22 @@ function ValidarDireccion(event) {
     } else {
         QuitarAviso(this);
         direccion = true;
+    }
+
+}
+
+function ValidarLugar(event) {
+
+    if (this.value.trim() == "") {
+        Aviso(this, "El lugar no puede estar vacío");
+        lugar = false;
+
+    } else if (this.value.length > 150) {
+        Aviso(this, "El lugar es demasiado largo");
+        lugar = false;
+    } else {
+        QuitarAviso(this);
+        lugar = true;
     }
 
 }
@@ -336,6 +387,16 @@ function ValidarInsCliente(event) {
 function ValidarInsInmueble(event){
 
     if(!direccion || !descripcion || !precio || !imagen){
+        event.preventDefault();
+       AvisoAlert("Faltan campos por rellenar");
+    }else{
+        QuitarAvisoAlert(this);
+    }
+}
+
+function ValidarInsCita(event){
+
+    if(!motivo || !lugar || !hora || !vfecha){
         event.preventDefault();
        AvisoAlert("Faltan campos por rellenar");
     }else{
