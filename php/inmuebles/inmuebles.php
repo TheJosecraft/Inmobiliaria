@@ -58,7 +58,7 @@
                 $cont = 0;
             while($fila = mysqli_fetch_array($inmuebles, MYSQLI_ASSOC)){
                 ?>
-                     <div class="col-md-4 col-sm-6 inmueble">
+                     <div class="col-md-4 inmueble">
                                     <div class="card inmueble">
 
                                         <img src="../../img/inmuebles/<?php echo $fila['imagen']; ?>" alt="Card image" style="width: 100%">
@@ -161,7 +161,7 @@
 
                 ?>
 
-                     <div class="col-md-4 col-sm-6 inmueble">
+                     <div class="col-md-4 inmueble">
                                     <div class="card inmueble">
 
                                         <img src="../../img/inmuebles/<?php echo $fila['imagen']; ?>" alt="Card image" style="width: 100%">
@@ -288,15 +288,15 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="direccion">Dirección</label>
-                                        <input class="form-control" type="text" name="direccion" id="direccion"><span style="display:none"></span><span style="display:none"></span>
+                                        <input class="form-control" type="text" name="direccion" id="direccion" placeholder="Introduce la dirección del inmueble"><span style="display:none"></span><span style="display:none"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="descripcion">Descripción</label>
-                                        <textarea class="form-control" name="descripcion" maxlength="560" rows="15" id="descripcion" ></textarea><span style="display:none"></span><span style="display:none"></span>
+                                        <textarea class="form-control" name="descripcion" maxlength="560" rows="15" id="descripcion" placeholder="Introduce la descripción del inmueble"></textarea><span style="display:none"></span><span style="display:none"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="precio">Precio</label>
-                                        <input class="form-control" type="text" name="precio" id="precio" ><span style="display:none"></span><span style="display:none"></span>
+                                        <input class="form-control" type="text" name="precio" id="precio" placeholder="Introduce el precio del inmueble"><span style="display:none"></span><span style="display:none"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="cliente">Cliente</label>
@@ -319,9 +319,11 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                        <button type="submit" class="btn btn-primary" name="enviarInsInmueble">Insertar</button>
+                                        <button type="submit" class="btn btn-primary" name="enviarInsInmueble" id="enviarInsInmueble">Insertar</button>
                                     </div>
-
+                                    <div class="alert alert-danger" id="alerta" style="display:none">
+                                        <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
+                                    </div>
                                 </form>
                             </div>
 

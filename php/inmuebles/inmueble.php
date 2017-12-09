@@ -49,11 +49,15 @@
 
 
         </div>
-        <p class="text-left"><?php echo $fila['descripcion'] ?></p>
+        <p class="text-left"><?php echo nl2br($fila['descripcion']) ?></p>
         <?php
 
             }
-            footer();
+        ?>
+    </div>
+    <div class="row">
+        <?php
+        footer();
         ?>
     </div>
 </body>

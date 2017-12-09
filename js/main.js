@@ -7,7 +7,7 @@ var contenido = false;
 var precio = false;
 var imagen = false;
 var hora = false;
-var fecha = false;
+var vfecha = false;
 
 function Inicio() {
 
@@ -80,6 +80,12 @@ function Inicio() {
 
     if (iEnviarInsCliente != null) {
         iEnviarInsCliente.addEventListener("click", ValidarInsCliente);
+    }
+
+    var iEnviarInsInmueble = document.querySelector("#enviarInsInmueble");
+
+    if(iEnviarInsInmueble != null){
+       iEnviarInsInmueble.addEventListener("click", ValidarInsInmueble);
     }
 
 }
@@ -167,22 +173,22 @@ function ValidarTelefono2(event) {
 }
 
 function ValidarHora(event){
-    var tiempo = this.value;
-    var hoy = new Date();
-    tiempo = tiempo.split(":");
-    var horas = tiempo[0];
-    var minutos = tiempo[1];
+//    var tiempo = this.value;
+//    var hoy = new Date();
+//    tiempo = tiempo.split(":");
+//    var horas = tiempo[0];
+//    var minutos = tiempo[1];
 
-
-    console.log(tiempo[0] + ":" + tiempo[1]);
-    console.log("Hora actual: " + hoy.getHours() + ":" + hoy.getMinutes());
+//    else if(horas < hoy.getHours()){
+//        Aviso(this, "La hora no puede ser anterior a la actual");
+//    }
 
     if(this.value.trim() == ""){
        Aviso(this, "La hora no puede estar vacía");
-    }else if(horas < hoy.getHours()){
-        Aviso(this, "La hora no puede ser anterior a la actual");
+        hora = false;
     }else{
         QuitarAviso(this);
+        hora = true;
     }
 }
 
@@ -196,14 +202,19 @@ function ValidarFecha(event) {
 
     if (this.value.trim() == "") {
         Aviso(this, "La fecha no puede estar vacía");
+        vfecha = false;
     } else if (fecha.getDate() < hoy.getDate()) {
         Aviso(this, "La fecha no puede ser anterior al día actual");
+        vfecha = false;
     }else if (fecha.getMonth() < hoy.getMonth() && fecha.getFullYear >= hoy.getFullYear()) {
         Aviso(this, "El mes no puede ser anterior al mes actual");
+        vfecha = false;
     }else if (fecha.getFullYear() < hoy.getFullYear()) {
         Aviso(this, "El año no puede ser anterior al año actual");
+        vfecha = false;
     }else {
         QuitarAviso(this);
+        vfecha = true;
     }
 }
 
@@ -257,7 +268,17 @@ function ValidarInsCliente(event) {
         event.preventDefault();
         AvisoAlert("Faltan campos por rellenar");
     } else {
-        QuitarAviso(this);
+        QuitarAvisoAlert(this);
+    }
+}
+
+function ValidarInsInmueble(event){
+
+    if(!direccion || !descripcion || !precio || !imagen){
+        event.preventDefault();
+       AvisoAlert("Faltan campos por rellenar");
+    }else{
+        QuitarAvisoAlert(this);
     }
 }
 

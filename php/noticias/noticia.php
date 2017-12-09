@@ -43,7 +43,11 @@
         </div>
         <?php
         }
-    footer();
+        ?>
+    </div>
+    <div class="row">
+        <?php
+            footer();
         ?>
     </div>
 </body>

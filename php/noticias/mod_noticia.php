@@ -101,7 +101,7 @@
             $cons_mod = "update noticias
                     set titular = '$titular',
                     contenido = '$contenido',
-                    imagen = '$nombreImagen'.
+                    imagen = '$nombreImagen',
                     fecha = '$fecha'
                     where id = $id";
 

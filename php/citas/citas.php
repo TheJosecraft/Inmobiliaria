@@ -635,7 +635,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Cliente</label>
-                                        <select class="form-control" name="cliente" id="cliente"><span style="display:none"></span><span style="display:none"></span>
+                                        <select class="form-control" name="cliente" id="cliente">
                                         <?php
                                             db_close();
                                             $cons_idCliente = "select id, nombre, apellidos
@@ -647,7 +647,7 @@
                                             }
                                             db_close();
                                         ?>
-                                </select>
+                                </select><span style="display:none"></span><span style="display:none"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Hora</label>

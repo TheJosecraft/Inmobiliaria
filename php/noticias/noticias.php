@@ -56,7 +56,7 @@
 
                 $limite = 6 * $pag;
 
-                noticias("select * from noticias where fecha <= '$fecha' order by id DESC limit $limite, 6", $numNoticias);
+                noticias("select * from noticias where fecha <= '$fecha' order by fecha DESC limit $limite, 6", $numNoticias);
 
             }elseif(isset($_GET['pagSiguiente'])){
 
@@ -64,15 +64,15 @@
 
                 $limite = 6 * $pag;
 
-                noticias("select * from noticias where fecha <= '$fecha' order by id DESC limit $limite, 6", $numNoticias);
+                noticias("select * from noticias where fecha <= '$fecha' order by fecha DESC limit $limite, 6", $numNoticias);
 
             }elseif(isset($_GET['enviarBuscar'])){
                 $busqueda = $_GET['buscar'];
 
-                noticias("select * from noticias where fecha <= '$fecha' and titular like '%$busqueda%' order by id DESC limit 6", $numNoticias);
+                noticias("select * from noticias where fecha <= '$fecha' and titular like '%$busqueda%' order by fecha DESC limit 6", $numNoticias);
             }else{
 
-                noticias("select * from noticias where fecha <= '$fecha' order by id DESC limit 6", $numNoticias);
+                noticias("select * from noticias where fecha <= '$fecha' order by fecha DESC limit 6", $numNoticias);
             }
 
             $pagAnterior = $pag - 1;
