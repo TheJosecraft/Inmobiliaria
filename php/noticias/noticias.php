@@ -164,6 +164,11 @@
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                         <button type="submit" class="btn btn-primary" name="enviarInsNoticia" id="enviarInsNoticia">Insertar</button>
                                     </div>
+
+                                    <div class="alert alert-warning" id="warning" style="display:none">
+
+                                    </div>
+
                                     <div class="alert alert-danger" id="alerta" style="display:none">
 
                                     </div>

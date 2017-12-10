@@ -63,6 +63,13 @@
                             <input class="btn btn-default" type="reset">
                         </div>
                     </form>
+
+                    <div class="alert alert-warning" id="warning" style="display:none">
+
+                    </div>
+                    <div class="alert alert-danger" id="alerta" style="display:none">
+
+                    </div>
                     <?php
 
     if (isset($_POST['enviarInsNot']))

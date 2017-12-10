@@ -60,11 +60,17 @@
                             <input class="form-control" type="text" id="telefono2" name="telefono2" value="<?php echo $datos['telefono2'] ?>"><span style="display:none"></span><span style="display:none"></span>
                         </div>
                         <div class="form-group">
-                            <input class="btn btn-primary" type="submit" id="enviar" name="enviarModCliente">
+                            <input class="btn btn-primary" type="submit" id="enviarInsCliente" name="enviarModCliente">
                             <input class="btn btn-default" type="reset">
                         </div>
 
                     </form>
+                    <div class="alert alert-warning" id="warning" style="display:none">
+
+                    </div>
+                    <div class="alert alert-danger" id="alerta" style="display:none">
+
+                    </div>
                     <?php
             db_close();
 

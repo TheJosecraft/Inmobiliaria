@@ -496,7 +496,7 @@
                                     //Comprueba la fecha para poder mostrar el botón de modificar cita
                                     if(strtotime($fechaHoy) <= strtotime($fechaCita)){
                                         ?>
-                                        <a class="btn-m" href="includes/forms/mod_cita.php?id=<?php echo $fila['id'] ?>">
+                                        <a class="btn-m" href="mod_cita.php?id=<?php echo $fila['id'] ?>">
                                             <span class="fa fa-pencil"></span>
                                         </a>
                                         <?php
@@ -508,7 +508,7 @@
                                     //Comprueba la fecha para poder mostrar el botón de eliminar cita
                                     if(strtotime($fechaHoy) <= strtotime($fechaCita)){
                                        ?>
-                                        <a class="btn-r" href="includes/forms/del_cita.php?id=<?php echo $fila['id'] ?>">
+                                        <a class="btn-r" href="del_cita.php?id=<?php echo $fila['id'] ?>">
                                             <span class="fa fa-trash"></span>
                                         </a>
                                         <?php

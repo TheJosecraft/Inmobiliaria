@@ -50,6 +50,7 @@
 
 
         </div>
+        <!--   He usado la función 'nl2br' para formatear el texto y añadir un salto de línea al final de cada párrafo.     -->
         <p class="text-left"><?php echo nl2br($fila['descripcion']) ?></p>
         <?php
 

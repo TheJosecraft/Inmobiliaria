@@ -318,6 +318,9 @@
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                         <button type="submit" class="btn btn-primary" name="enviarInsInmueble" id="enviarInsInmueble">Insertar</button>
                                     </div>
+                                    <div class="alert alert-warning" id="warning" style="display:none">
+
+                                    </div>
                                     <div class="alert alert-danger" id="alerta" style="display:none">
 
                                     </div>
@@ -346,11 +349,6 @@
         //Se comprueba la dirección introducida
         if(!preg_match('`^[a-zA-Z0-9 ,ºáéíóúÁÉÍÓÚñÑ]{1,150}$`', $direccion)){
             $direccion = "Dirección errónea";
-        }
-
-        //Se comprueba la descripción introducida
-        if(!preg_match('`^[a-zA-Z0-9 ,ºáéíóúÁÉÍÓÚñÑ]{1,150}$`', $descripcion)){
-            $descripcion = "Descripción errónea";
         }
 
         //Se comprueba el precio introducido

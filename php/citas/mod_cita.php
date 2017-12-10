@@ -75,6 +75,15 @@
                         <input class="btn btn-primary" type="submit" name="enviarModCita">
                         <input class="btn btn-default" type="reset">
                     </form>
+
+                    <br>
+
+                    <div class="alert alert-warning" id="warning" style="display:none">
+
+                    </div>
+                    <div class="alert alert-danger" id="alerta" style="display:none">
+
+                    </div>
                     <?php
 
     if (isset($_POST['enviarModCita']))

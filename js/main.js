@@ -83,7 +83,7 @@ function Inicio() {
     if(iTitular != null){
         iTitular.addEventListener("blur", ValidarTitular);
     }
-    
+
     var iContenido = document.querySelector("#contenido");
     if(iContenido != null){
        iContenido.addEventListener("blur", ValidarContenido);
@@ -115,11 +115,19 @@ function Inicio() {
     if(iEnviarInsInmueble != null){
        iEnviarInsInmueble.addEventListener("click", ValidarInsInmueble);
     }
+    
+    var iEnviarModInmueble = document.querySelector("#enviarModInmueble");
+
+    if(iEnviarModInmueble != null){
+       iEnviarModInmueble.addEventListener("click", ValidarModInmueble);
+    }
 
     var iEnviarInsCita = document.querySelector("#enviarInsCita");
     if(iEnviarInsCita != null){
         iEnviarInsCita.addEventListener("click", ValidarInsCita);
     }
+
+    document.addEventListener('keydown', bloqMayus);
 
 }
 
@@ -378,7 +386,7 @@ function ValidarInsCliente(event) {
 
     if (!nombre || !apellidos || !direccion || !telefono1) {
         event.preventDefault();
-        AvisoAlert("Faltan campos por rellenar");
+        AvisoAlert("Faltan campos por rellenar. Comprueba todos los campos antes de continuar");
     } else {
         QuitarAvisoAlert(this);
     }
@@ -388,7 +396,17 @@ function ValidarInsInmueble(event){
 
     if(!direccion || !descripcion || !precio || !imagen){
         event.preventDefault();
-       AvisoAlert("Faltan campos por rellenar");
+       AvisoAlert("Faltan campos por rellenar. Comprueba todos los campos antes de continuar");
+    }else{
+        QuitarAvisoAlert(this);
+    }
+}
+
+function ValidarModInmueble(event){
+
+    if(!direccion || !descripcion || !precio){
+        event.preventDefault();
+       AvisoAlert("Faltan campos por rellenar. Comprueba todos los campos antes de continuar");
     }else{
         QuitarAvisoAlert(this);
     }
@@ -398,10 +416,20 @@ function ValidarInsCita(event){
 
     if(!motivo || !lugar || !hora || !vfecha){
         event.preventDefault();
-       AvisoAlert("Faltan campos por rellenar");
+       AvisoAlert("Faltan campos por rellenar. Comprueba todos los campos antes de continuar");
     }else{
         QuitarAvisoAlert(this);
     }
+}
+
+function bloqMayus(event){
+    var bloq = event.getModifierState('CapsLock');
+    if(bloq){
+       AvisoWarning("Bloq Mayús activo.");
+    }else{
+       QuitarAvisoWarning();
+    }
+
 }
 
 function Aviso(campo, mensaje) {
@@ -425,6 +453,17 @@ function AvisoAlert(mensaje) {
 
 function QuitarAvisoAlert() {
     campo = document.querySelector("#alerta");
+    campo.style.display = "none";
+}
+
+function AvisoWarning(mensaje) {
+    campo = document.querySelector("#warning");
+    campo.style.display = "block";
+    campo.innerHTML = "<strong>¡Cuidado!</strong> " + mensaje;
+}
+
+function QuitarAvisoWarning() {
+    campo = document.querySelector("#warning");
     campo.style.display = "none";
 }
 

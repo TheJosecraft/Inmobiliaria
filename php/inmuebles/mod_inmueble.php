@@ -35,31 +35,28 @@
             $datos = mysqli_fetch_array($datos, MYSQLI_ASSOC);
             db_close();
             ?>
-                    <form action=# method="post" enctype="multipart/form-data">
+                    <form action="#" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="">Id</label>
                             <input class="form-control" type="text" name="id" value="<?php echo $datos['id'] ?>" readonly>
                         </div>
                         <div class="form-group">
                             <label for="">Dirección</label>
-                            <input class="form-control" type="text" name="direccion" value="<?php echo $datos['direccion'] ?>">
+                            <input class="form-control" type="text" name="direccion" id="direccion" value="<?php echo $datos['direccion'] ?>"><span style="display:none"></span><span style="display:none"></span>
                         </div>
                         <div class="form-group">
                             <label for="">Descripción</label>
-                            <textarea class="form-control" type="text" name="descripcion"><?php echo $datos['descripcion'] ?></textarea>
+                            <textarea class="form-control" type="text" name="descripcion" id="descripcion" ><?php echo $datos['descripcion'] ?></textarea><span style="display:none"></span><span style="display:none"></span>
                         </div>
                         <div class="form-group">
                             <label for="">Precio</label>
-                            <input class="form-control" type="text" name="precio" value="<?php echo $datos['precio'] ?>">
+                            <input class="form-control" type="text" name="precio" id="precio" value="<?php echo $datos['precio'] ?>"><span style="display:none"></span><span style="display:none"></span>
                         </div>
                         <div class="form-group">
                             <label for="">Cliente</label>
-                            <select class="form-control" name="id_cliente" id="">
+                            <select class="form-control" name="id_cliente" id="cliente">
                         <?php
-                            $cons_idCliente = "select id, nombre, apellidos
-                                                from clientes";
-
-                            $id_Cliente = db_query($cons_idCliente);
+                            $id_Cliente = db_query("select id, nombre, apellidos from clientes");
                             while($fila = mysqli_fetch_array($id_Cliente)){
                                 if($datos['id_cliente'] == $fila['id']){
                                     echo "<option value=$fila[id] selected>$fila[nombre] $fila[apellidos]</option>";
@@ -70,19 +67,26 @@
                             }
                             db_close();
                         ?>
-                    </select>
+                    </select><span style="display:none"></span><span style="display:none"></span>
                         </div>
                         <div class="form-group">
                             <label for="">Imagen</label>
-                            <input class="form-control" type="file" name="imagen">
-                            <input type="hidden" name="viejaImagen" value="<?php echo $datos['imagen'] ?>">
+                            <input class="form-control" type="file" name="imagen" id="imagen">
+                            <input type="hidden" name="viejaImagen" value="<?php echo $datos['imagen'] ?>"><span style="display:none"></span><span style="display:none"></span>
                         </div>
                         <div class="form-group">
-                            <input class="btn btn-primary" type="submit" name="ModInm">
+                            <input class="btn btn-primary" type="submit" name="ModInm" id="enviarModInmueble">
                             <input class="btn btn-default" type="reset">
                         </div>
 
                     </form>
+
+                    <div class="alert alert-warning" id="warning" style="display:none">
+
+                    </div>
+                    <div class="alert alert-danger" id="alerta" style="display:none">
+
+                    </div>
 
                     <?php
 
@@ -103,14 +107,6 @@
 
         if(!preg_match('`^[a-zA-Z0-9 ,ºáéíóúÁÉÍÓÚñÑ]{1,150}$`', $direccion)){
             $direccion = "Dirección errónea";
-        }
-
-        if(!preg_match('`^[a-zA-Z0-9 ,ºáéíóúÁÉÍÓÚñÑ]{1,150}$`', $descripcion)){
-            $descripcion = "Descripción errónea";
-        }
-
-        if(!preg_match('`^[0-9]{1,12}$`', $precio)){
-            $precio = "Precio erróneo";
         }
 
         if($imagen['name'] != ""){

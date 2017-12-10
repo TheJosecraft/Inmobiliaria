@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-12-2017 a las 18:49:13
+-- Tiempo de generación: 10-12-2017 a las 22:00:55
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -45,7 +45,8 @@ INSERT INTO `citas` (`id`, `fecha`, `hora`, `motivo`, `lugar`, `id_cliente`) VAL
 (1, '2017-12-06', '15:00:00', 'Hola', 'Granada', 1),
 (2, '2017-12-08', '19:00:00', 'Precio Inmueble', 'Granada', 1),
 (3, '2017-12-11', '11:00:00', 'Ver inmueble', 'Tarragona', 1),
-(4, '2017-12-12', '12:00:00', 'Ver inmueble', 'Alicante', 2);
+(4, '2017-12-12', '12:00:00', 'Ver inmueble', 'Alicante', 2),
+(5, '2017-12-10', '15:00:00', 'Precio inmueble', 'Montilla', 1);
 
 -- --------------------------------------------------------
 
@@ -69,7 +70,8 @@ CREATE TABLE `clientes` (
 INSERT INTO `clientes` (`id`, `nombre`, `apellidos`, `direccion`, `telefono1`, `telefono2`) VALUES
 (0, 'Disponible', '', '', '', ''),
 (1, 'José Carlos', 'Raya León', 'Avenida de la Constitución 17, 3ºP', '957655755', '638564461'),
-(2, 'Álvaro', 'Raya León', 'Calle la Parra 5, 2ºE', '957652162', '');
+(2, 'Álvaro', 'Raya León', 'Calle la Parra 5, 2ºE', '957652162', ''),
+(3, 'Antonio', 'Aguayo Torres', 'Calle Cuesta de las Caballeras', '957862154', '');
 
 -- --------------------------------------------------------
 
@@ -91,7 +93,7 @@ CREATE TABLE `inmuebles` (
 --
 
 INSERT INTO `inmuebles` (`id`, `direccion`, `descripcion`, `precio`, `id_cliente`, `imagen`) VALUES
-(1, 'San José de la Atalaya', 'Esta villa completamente reformada está ubicada al sur de la isla, cerca de San José; bien ubicada para encontrar paz y privacidad. La propiedad ha sido diseñada y renovada para que rezume un estilo ibicenco moderno y está distribuida en dos pisos.', '3500000.00', 1, 'inmueble1.jpg'),
+(1, 'San José de la Atalaya', 'Esta villa completamente reformada está ubicada al sur de la isla, cerca de San José, bien ubicada para encontrar paz y privacidad. La propiedad ha sido diseñada y renovada para que rezume un estilo ibicenco moderno y está distribuida en dos pisos\r\n\r\nSe accede a ambos niveles por entradas privadas con la planta baja ofreciendo una sala de estar abierta y zona de comedor con una cocina americana. La sala de estar está revestida con puertas correderas de cristal que ofrecen vistas panorámicas que se abren al jardín. Además, hay dos dormitorios en-suite, am', '2500000.00', 1, 'inmueble1.jpg'),
 (2, 'Torrelodones', 'Chalet independiente de diseño en tres alturas construido en el año 2007 con vistas panorámicas del noroeste de Madrid y la sierra de Gredos. Situado en La Berzosa, urbanización privada con servicio de vigilancia 24 h.', '975000.00', 0, 'inmueble2.jpg'),
 (3, 'Villa en Tarragona', 'Vivienda de diseño con vistas al mar en Cala Romana, Tarragona.Esta magnífica propiedad de lujo está situada en la urbanización más cercana a Tarragona, Cala Romana, zona de prestigio y muy próxima a las playas.', '1300000.00', 0, 'inmueble3.jpg'),
 (4, 'Mansión en la Zagaleta, Málaga', 'Casa-palacio estilo árabe en la Zagaleta. La propiedad ofertada, con una superficie construida de 2.160 m2 en una parcela de 6.700 m2, cuenta con las mejores calidades, desde muralla de piedra exterior escalonada hasta artesonados de madera policromada en los techos.', '15500000.00', 0, 'inmueble4.jpg'),
@@ -164,13 +166,13 @@ ALTER TABLE `noticias`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `inmuebles`
