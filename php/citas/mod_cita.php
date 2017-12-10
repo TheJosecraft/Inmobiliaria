@@ -86,6 +86,13 @@
         $hora = $_POST['hora'];
         $fecha = $_POST['fecha'];
 
+        if(!preg_match('`^[a-zA-Z0-9 ,ºáéíóúÁÉÍÓÚñÑ]{1,150}$`', $lugar)){
+                    $lugar = "Lugar erróneo";
+                }
+
+        if(!preg_match('`^[a-zA-Z ,ºáéíóúÁÉÍÓÚñÑ]{1,100}$`', $motivo)){
+            $motivo = "Motivo erróneo";
+        }
 
         $cons_mod = "update citas
                     set motivo = '$motivo',

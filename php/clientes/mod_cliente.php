@@ -77,6 +77,23 @@
         $telefono1 = $_POST['telefono1'];
         $telefono2 = $_POST['telefono2'];
 
+        if(!preg_match('`^[a-zA-Z ,ºáéíóúÁÉÍÓÚñÑ]{1,50}$`', $nombre)){
+            $direccion = "Nombre erróneo";
+        }
+
+        if(!preg_match('`^[a-zA-Z ,ºáéíóúÁÉÍÓÚñÑ]{1,50}$`', $apellidos)){
+            $direccion = "Apellidos erróneos";
+        }
+
+        if(!preg_match('`^[0-9]{9}$`', $telefono1)){
+            $telefono1 = "Teléfono erróneo";
+        }
+
+        if(!preg_match('`^[0-9]{9}$`', $telefono2) && $telefono2 != ""){
+            $telefono2 = "Teléfono erróneo";
+        }
+
+
         $cons_mod = "update clientes
                     set nombre = '$nombre',
                     apellidos = '$apellidos',

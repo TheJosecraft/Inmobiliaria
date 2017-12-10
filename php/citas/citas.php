@@ -227,8 +227,7 @@
     //Función que devuelve si un día hay cita o no
     function isCita($a, $m, $d){
         $c = array();
-        $cons_sel_fecha = "select fecha from citas";
-        $fechas = db_query($cons_sel_fecha);
+        $fechas = db_query("select fecha from citas");
         while($fila = mysqli_fetch_array($fechas)){
             $fecha = strtotime($fila['fecha']);
             $anio = date('Y', $fecha);
@@ -313,289 +312,24 @@
                     if(isset($_GET['dia'])){
                         $fecha = mktime(0,0,0, $mes, $dia, $anio);
                         $fecha = date('Y-m-d', $fecha);
-                        $con_sel_cit = "select * from citas
-                                        where fecha = '$fecha'
-                                        order by hora";
-                        $datos = db_query($con_sel_cit);
-                        if(mysqli_num_rows($datos) == 0){
-                            ?>
-                                <h2><span class="fa fa-info-circle text-info"></span> No se han encontrado resultados</h2>
-                            <?php
-                        }else{
-                        ?>
-
-                        <div class="row">
-                            <table class="table">
-                                <thead>
-                                    <th>Motivo</th>
-                                    <th>Lugar</th>
-                                    <th>Cliente</th>
-                                    <th>Teléfono</th>
-                                    <th>Hora</th>
-                                    <th>Modificar</th>
-                                    <th>Eliminar</th>
-                                </thead>
-                                <tbody>
-
-
-                        <?php
-                        while($fila = mysqli_fetch_array($datos, MYSQLI_ASSOC)){
-                            $fechaHoy = date('Y-m-d H:i:s');
-                            $fechaCita = $fila['fecha']." ".$fila['hora'];
-                            ?>
-                            <tr>
-                                <td>
-                                    <?php echo $fila['motivo']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $fila['lugar']; ?>
-                                </td>
-                                <td>
-                                    <?php
-                                        $nombres = db_query("select nombre, apellidos from clientes where id = $fila[id_cliente]");
-                                        $nombre = mysqli_fetch_array($nombres);
-                                            echo $nombre['nombre']." ".$nombre['apellidos'];
-                                        db_close();
-                                     ?>
-                                </td>
-                                <td>
-                                    <?php
-                                        $telefonos = db_query("select telefono1 from clientes where id = $fila[id_cliente]");
-                                        $telefono = mysqli_fetch_array($telefonos);
-                                            echo $telefono['telefono1'];
-                                        db_close();
-                                     ?>
-                                </td>
-                                <td>
-                                    <?php echo $fila['hora']; ?>
-                                </td>
-                                <td>
-                                   <?php
-                                    if(strtotime($fechaHoy) <= strtotime($fechaCita)){
-                                        ?>
-                                        <a class="btn-m" href="mod_cita.php?id=<?php echo $fila['id'] ?>">
-                                            <span class="fa fa-pencil"></span>
-                                        </a>
-
-                                        <?php
-                                    }
-                                    ?>
-
-                                </td>
-                                <td>
-                                    <?php
-                                    if(strtotime($fechaHoy) <= strtotime($fechaCita)){
-                                       ?>
-                                        <a class="btn-r" href="del_cita.php?id=<?php echo $fila['id'] ?>">
-                                            <span class="fa fa-trash"></span>
-                                        </a>
-                                        <?php
-                                    }
-                                    ?>
-
-                                </td>
-                            </tr>
-                            <?php
-                                }
-                            ?>
-                    </tbody>
-                </table>
-                            <?php
-                        }
+                        tablaCitas("select * from citas where fecha = '$fecha' order by hora");
                     }elseif(isset($_GET['enviarBuscar'])){
                         $busqueda = $_GET['buscar'];
-                        $datos = db_query("select cit.id cit_id, cit.fecha, cit.hora, cit.motivo, cit.lugar, cit.id_cliente, cli.id, cli.nombre
+                        $consulta_busqueda = "select cit.id cit_id, cit.fecha, cit.hora, cit.motivo, cit.lugar, cit.id_cliente, cli.id, cli.nombre
                                     from citas cit, clientes cli
                                     where cit.id_cliente = cli.id
                                     and (cit.fecha like '%$busqueda%'
                                     or cli.nombre like '%$busqueda%')
-                                    order by fecha, hora");
-                        if(mysqli_num_rows($datos) == 0){
-                            ?>
-                                <h2><span class="fa fa-info-circle text-info"></span> No se han encontrado resultados</h2>
-                            <?php
-                        }else{
-                        ?>
-
-                        <div class="row">
-                            <table class="table">
-                                <thead>
-                                    <th>Motivo</th>
-                                    <th>Lugar</th>
-                                    <th>Cliente</th>
-                                    <th>Teléfono</th>
-                                    <th>Hora</th>
-                                    <th>Fecha</th>
-                                    <th>Modificar</th>
-                                    <th>Eliminar</th>
-                                </thead>
-                                <tbody>
-
-
-                    <?php
-                        while($fila = mysqli_fetch_array($datos, MYSQLI_ASSOC)){
-                            $fechaHoy = date('Y-m-d H:i:s');
-                            $fechaCita = $fila['fecha']." ".$fila['hora'];
-                            ?>
-                            <tr>
-                                <td>
-                                    <?php echo $fila['motivo']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $fila['lugar']; ?>
-                                </td>
-                                <td>
-                                    <?php
-                                $nombres = db_query("select nombre, apellidos from clientes where id = $fila[id_cliente]");
-                                $nombre = mysqli_fetch_array($nombres);
-                                    echo $nombre['nombre']." ".$nombre['apellidos'];
-                                db_close();
-                             ?>
-                                </td>
-                                <td>
-                            <?php
-                                $nombres = db_query("select telefono1 from clientes where id = $fila[id_cliente]");
-                                $nombre = mysqli_fetch_array($nombres);
-                                    echo $nombre['telefono1'];
-                                db_close();
-                             ?>
-                                </td>
-                                <td>
-                                    <?php echo $fila['hora']; ?>
-                                </td>
-                                <td>
-                                    <?php echo fecha($fila['fecha']); ?>
-                                </td>
-                                <td>
-                                   <?php
-                                    if(strtotime($fechaHoy) <= strtotime($fechaCita)){
-                                        ?>
-                                        <a class="btn-m" href="includes/forms/mod_cita.php?id=<?php echo $fila['cit_id'] ?>">
-                                            <span class="fa fa-pencil"></span>
-                                        </a>
-
-                                        <?php
-                                    }
-                                    ?>
-
-                                </td>
-                                <td>
-                                    <?php
-                                    if(strtotime($fechaHoy) <= strtotime($fechaCita)){
-                                       ?>
-                                        <a class="btn-r" href="includes/forms/del_cita.php?id=<?php echo $fila['cit_id'] ?>">
-                                            <span class="fa fa-trash"></span>
-                                        </a>
-                                        <?php
-                                    }
-                                    ?>
-
-                                </td>
-                            </tr>
-                            <?php
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-                                    <?php
-                        }
+                                    order by fecha, hora";
+                        tablaCitas($consulta_busqueda);
                     }else{
                         $fecha = date('Y-m-d');
-                        $datos = db_query("select * from citas where fecha = '$fecha' order by hora");
-                        if(mysqli_num_rows($datos) == 0){
-                            ?>
-                                <h2><span class="fa fa-info-circle text-info"></span> No se han encontrado resultados</h2>
-                            <?php
-                        }else{
-                        ?>
-
-                        <div class="row">
-                            <table class="table">
-                                <thead>
-                                    <th>Motivo</th>
-                                    <th>Lugar</th>
-                                    <th>Cliente</th>
-                                    <th>Teléfono</th>
-                                    <th>Hora</th>
-                                    <th>Modificar</th>
-                                    <th>Eliminar</th>
-                                </thead>
-                                <tbody>
-                        <?php
-                        while($fila = mysqli_fetch_array($datos, MYSQLI_ASSOC)){
-                            $fechaHoy = date('Y-m-d H:i:s');
-                            $fechaCita = $fila['fecha']." ".$fila['hora'];
-                            ?>
-                            <tr>
-                                <td>
-                                    <?php echo $fila['motivo']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $fila['lugar']; ?>
-                                </td>
-                                <td>
-                                    <?php
-                                        $nombres = db_query("select nombre, apellidos from clientes where id = $fila[id_cliente]");
-                                        $nombre = mysqli_fetch_array($nombres);
-                                            echo $nombre['nombre']." ".$nombre['apellidos'];
-                                        db_close();
-                                     ?>
-                                </td>
-                                <td>
-                                    <?php
-                                        $telefonos = db_query("select telefono1 from clientes where id = $fila[id_cliente]");
-                                        $telefono = mysqli_fetch_array($telefonos);
-                                            echo $telefono['telefono1'];
-                                        db_close();
-                                     ?>
-                                </td>
-                                <td>
-                                    <?php echo $fila['hora']; ?>
-                                </td>
-                                <td>
-                                   <?php
-                                    //Comprueba la fecha para poder mostrar el botón de modificar cita
-                                    if(strtotime($fechaHoy) <= strtotime($fechaCita)){
-                                        ?>
-                                        <a class="btn-m" href="includes/forms/mod_cita.php?id=<?php echo $fila['id'] ?>">
-                                            <span class="fa fa-pencil"></span>
-                                        </a>
-
-                                        <?php
-                                    }
-                                    ?>
-
-                                </td>
-                                <td>
-                                    <?php
-                                    //Comprueba la fecha para poder mostrar el botón de eliminar cita
-                                    if(strtotime($fechaHoy) <= strtotime($fechaCita)){
-                                       ?>
-                                        <a class="btn-r" href="includes/forms/del_cita.php?id=<?php echo $fila['id'] ?>">
-                                            <span class="fa fa-trash"></span>
-                                        </a>
-                                        <?php
-                                    }
-                                    ?>
-
-                                </td>
-                            </tr>
-                            <?php
-                                }
-                            ?>
-                    </tbody>
-                </table>
-                            <?php
-                         }
+                        tablaCitas("select * from citas where fecha = '$fecha' order by hora");
                     }
                     ?>
 
                 </div>
             </div>
-
-        </div>
-    </div>
             <?php
             $cons_auto_inc = "SELECT AUTO_INCREMENT
                         FROM information_schema.TABLES
@@ -638,10 +372,7 @@
                                         <select class="form-control" name="cliente" id="cliente">
                                         <?php
                                             db_close();
-                                            $cons_idCliente = "select id, nombre, apellidos
-                                                                from clientes
-                                                                where nombre not like 'Disponible'";
-                                            $id_Cliente = db_query($cons_idCliente);
+                                            $id_Cliente = db_query("select id, nombre, apellidos from clientes where nombre not like 'Disponible'");
                                             while($fila = mysqli_fetch_array($id_Cliente)){
                                                 echo "<option value=$fila[id]>$fila[nombre] $fila[apellidos]</option>";
                                             }
@@ -706,13 +437,103 @@
 
                         <?php
             }
+
+        //Función que genera una tabla con los resultados de la consulta que se le pasan como parámetro
+        function tablaCitas($cons){
+                $datos = db_query($cons);
+                if(mysqli_num_rows($datos) == 0){
+                ?>
+                    <h2><span class="fa fa-info-circle text-info"></span> No se han encontrado resultados</h2>
+                <?php
+            }else{
+                ?>
+                        <div class="row">
+                            <table class="table">
+                                <thead>
+                                    <th>Motivo</th>
+                                    <th>Lugar</th>
+                                    <th>Cliente</th>
+                                    <th>Teléfono</th>
+                                    <th>Hora</th>
+                                    <th>Modificar</th>
+                                    <th>Eliminar</th>
+                                </thead>
+                                <tbody>
+                        <?php
+
+                        while($fila = mysqli_fetch_array($datos, MYSQLI_ASSOC)){
+                            $fechaHoy = date('Y-m-d H:i:s');
+                            $fechaCita = $fila['fecha']." ".$fila['hora'];
+                            ?>
+                            <tr>
+                                <td>
+                                    <?php echo $fila['motivo']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $fila['lugar']; ?>
+                                </td>
+                                <td>
+                                    <?php
+                                        $nombres = db_query("select nombre, apellidos from clientes where id = $fila[id_cliente]");
+                                        $nombre = mysqli_fetch_array($nombres);
+                                            echo $nombre['nombre']." ".$nombre['apellidos'];
+                                        db_close();
+                                     ?>
+                                </td>
+                                <td>
+                                    <?php
+                                        $telefonos = db_query("select telefono1 from clientes where id = $fila[id_cliente]");
+                                        $telefono = mysqli_fetch_array($telefonos);
+                                            echo $telefono['telefono1'];
+                                        db_close();
+                                     ?>
+                                </td>
+                                <td>
+                                    <?php echo $fila['hora']; ?>
+                                </td>
+                                <td>
+                                   <?php
+                                    //Comprueba la fecha para poder mostrar el botón de modificar cita
+                                    if(strtotime($fechaHoy) <= strtotime($fechaCita)){
+                                        ?>
+                                        <a class="btn-m" href="includes/forms/mod_cita.php?id=<?php echo $fila['id'] ?>">
+                                            <span class="fa fa-pencil"></span>
+                                        </a>
+                                        <?php
+                                    }
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                                    //Comprueba la fecha para poder mostrar el botón de eliminar cita
+                                    if(strtotime($fechaHoy) <= strtotime($fechaCita)){
+                                       ?>
+                                        <a class="btn-r" href="includes/forms/del_cita.php?id=<?php echo $fila['id'] ?>">
+                                            <span class="fa fa-trash"></span>
+                                        </a>
+                                        <?php
+                                    }
+                                    ?>
+
+                                </td>
+                            </tr>
+                            <?php
+                                }
+                            ?>
+                    </tbody>
+                </table>
+            </div>
+                            <?php
+            }
+        }
+
             ?>
-            <div class="row">
+    </div>
+    <div class="row">
             <?php
             footer();
             ?>
             </div>
-    </div>
 </body>
 
 </html>

@@ -139,53 +139,6 @@ function footer ()
         </div>
     </div>
 </footer>
-           <!--<div class="row">
-               <div class="col-sm-3">
-                   <p>Noticias</p>
-               </div>
-               <div class="col-sm-3">
-                    <p>Clientes</p>
-               </div>
-               <div class="col-sm-3">
-                   <p>Inmuebles</p>
-               </div>
-               <div class="col-sm-3">
-                   <p>Citas</p>
-               </div>
-           </div>
-           <div class="row">
-               <div class="col-xs-12">
-                   <p><strong>&copy;</strong> EAG 2017 - Realizado por José Carlos Raya León</p>
-               </div>
-           </div>
-
-        </footer> -->
-        <!--<footer>
-        <div class="global">
-            <div class="logo"></div>
-            <div class="parr1">
-               <div class="den1">
-                    <ul>
-                        <i class="fa fa-newspaper"></i><li>Noticias</li>
-                        <i class="fa fa-newspaper-o"></i><li>Clientes</li>
-                        <i class="fa fa-newspaper-o"></i><li>Inmuebles</li>
-                        <i class="fa fa-newspaper-o"></i><li>Citas</li>
-                    </ul>
-                </div>
-                <div class="den2">
-                    <ul>
-                        <a href="http://instagram.com"><li><i class="fa fa-instagram"></i></li></a>
-                        <a href="http://facebook.com"><li><i class="fa fa-facebook"></i></li></a>
-                        <a href="http://twitter.com"><li><i class="fa fa-twitter"></i></li></a>
-                        <a href="http://plus.google.com"><li><i class="fa fa-google-plus"></i></li></a>
-                    </ul>
-                </div>
-            </div>
-            <div class="parr2">
-
-            </div>
-        </div>
-    </footer>-->
     <?php
 }
 

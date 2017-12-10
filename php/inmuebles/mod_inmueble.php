@@ -101,6 +101,18 @@
         $rutaInmuebles = $rutaImg."inmuebles/";
         $nombreImagen = "";
 
+        if(!preg_match('`^[a-zA-Z0-9 ,ºáéíóúÁÉÍÓÚñÑ]{1,150}$`', $direccion)){
+            $direccion = "Dirección errónea";
+        }
+
+        if(!preg_match('`^[a-zA-Z0-9 ,ºáéíóúÁÉÍÓÚñÑ]{1,150}$`', $descripcion)){
+            $descripcion = "Descripción errónea";
+        }
+
+        if(!preg_match('`^[0-9]{1,12}$`', $precio)){
+            $precio = "Precio erróneo";
+        }
+
         if($imagen['name'] != ""){
 
             switch ($imagen['type'])

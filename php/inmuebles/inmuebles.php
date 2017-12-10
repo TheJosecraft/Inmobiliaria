@@ -246,7 +246,6 @@
                                 {
                 ?> </div><div class="row"> <?php
                                 }
-
             }
 
             db_close();
@@ -254,8 +253,6 @@
         ?>
                 </div>
             </div>
-
-
             <?php
 
             $cons_auto_inc = "SELECT AUTO_INCREMENT
@@ -271,7 +268,6 @@
         $id = mysqli_fetch_array($fila);
     }
             ?>
-
                 <div class="modal fade" id="insInm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -347,14 +343,17 @@
         $rutaInmuebles = $rutaImg."inmuebles/";
         $nombreImagen = "";
 
+        //Se comprueba la dirección introducida
         if(!preg_match('`^[a-zA-Z0-9 ,ºáéíóúÁÉÍÓÚñÑ]{1,150}$`', $direccion)){
             $direccion = "Dirección errónea";
         }
 
+        //Se comprueba la descripción introducida
         if(!preg_match('`^[a-zA-Z0-9 ,ºáéíóúÁÉÍÓÚñÑ]{1,150}$`', $descripcion)){
             $descripcion = "Descripción errónea";
         }
 
+        //Se comprueba el precio introducido
         if(!preg_match('`^[0-9]{1,12}$`', $precio)){
             $precio = "Precio erróneo";
         }

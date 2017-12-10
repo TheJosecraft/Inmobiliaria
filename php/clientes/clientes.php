@@ -75,6 +75,7 @@
                 $id = mysqli_fetch_array($fila);
             }
             ?>
+<!--                      Modal para insertar usuario-->
                         <div class="modal fade" id="insCli" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -159,7 +160,9 @@
 
                             <?php
     }
-    function tablaClientes($cons, $busq = ""){
+
+    //Función que genera una tabla con los clientes según la consulta que se le pase como parámetro.
+    function tablaClientes($cons){
         ?>
                     <div class="row">
                         <table class="table table-hover">
