@@ -265,7 +265,7 @@
                                             Admin - <span class="fa fa-calendar"></span> <?php $fecha = strtotime($fila['fecha']); echo date('d/m/Y', $fecha) ?>
                                         </div>
                                         <div class="col-sm-6 text-right">
-                                            <a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más</a>
+                                            <a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más >></a>
                                         </div>
                                     </div>
 

@@ -18,7 +18,7 @@
 <body>
    <?php
 
-    menu();
+    menu(2);
         $datos = db_query("select * from noticias where id = $_GET[id]");
     ?>
     <div class="container" id="wrap">

@@ -10,6 +10,8 @@
 <body>
     <?php
 
+    include '../funciones.php';
+
     //Variable que almacena la id de la cita a eliminar
     $id = $_GET['id'];
 

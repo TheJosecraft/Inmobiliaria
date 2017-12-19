@@ -120,12 +120,12 @@
                                                 <div class="col-xs-12">
 
                                                     <div class="col-xs-4 text-center"><span>
-                                                        <a class="btn-m" href="mod_inmueble.php?id=<?php echo $fila['id_inm'] ?>">
+                                                        <a class="btn-m" href="mod_inmueble.php?id=<?php echo $fila['id_inm'] ?>" title="Modificar">
                                                         <span class="fa fa-pencil"></span></a>
                                                     </span>
                                                     </div>
                                                     <div class="col-xs-4 text-center">
-                                                        <a class="btn-r" href="del_inmueble.php?id=<?php echo $fila['id_inm'] ?>">
+                                                        <a class="btn-r" href="del_inmueble.php?id=<?php echo $fila['id_inm'] ?>" title="Borrar">
                                                         <span class="fa fa-trash"></span></a>
                                                     </div>
                                                     <div class="col-xs-4 text-center">
@@ -165,7 +165,7 @@
                      <div class="col-md-4 inmueble">
                                     <div class="card inmueble">
 
-                                        <img src="../../img/inmuebles/<?php echo $fila['imagen']; ?>" alt="Card image" style="width: 100%">
+                                        <a href="inmueble.php?id=<?php echo $fila['id'] ?>"><img src="../../img/inmuebles/<?php echo $fila['imagen']; ?>" alt="Card image" style="width: 100%"></a>
                                         <?php
 
                                                     if($fila['id_cliente'] == 0){
@@ -193,8 +193,8 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <h4 class="card-title text-center">
-                                                        <?php echo $fila['direccion']; ?>
-                                                    </h4>
+                                                        <a href="inmueble.php?id=<?php echo $fila['id'] ?>"><?php echo $fila['direccion']; ?></a>
+                                                        </h4>
                                                 </div>
                                             </div>
                                             <br>
@@ -219,22 +219,25 @@
                                                 ?>
                                             </div>
                                             <br>
+                                            <hr>
                                             <div class="row center-block">
                                                 <div class="col-xs-12">
 
-                                                    <div class="col-xs-4 text-center"><span>
-                                                        <a class="btn-m" href="mod_inmueble.php?id=<?php echo $fila['id'] ?>">
-                                                        <span class="fa fa-pencil"></span></a>
+                                                    <div class="col-xs-6 text-center"><span>
+                                                        <a class="btn-m" href="mod_inmueble.php?id=<?php echo $fila['id'] ?>" title="Modificar">
+                                                        <span class="fa fa-pencil"></span> Modificar</a>
                                                     </span>
                                                     </div>
-                                                    <div class="col-xs-4 text-center">
-                                                        <a class="btn-r" href="del_inmueble.php?id=<?php echo $fila['id'] ?>">
-                                                        <span class="fa fa-trash"></span></a>
+                                                    <div class="col-xs-6 text-center">
+                                                        <a class="btn-r" href="del_inmueble.php?id=<?php echo $fila['id'] ?>" title="Eliminar">
+                                                        <span class="fa fa-trash"></span> Eliminar</a>
                                                     </div>
+<!--
                                                     <div class="col-xs-4 text-center">
                                                             <a class="btn-e" href="inmueble.php?id=<?php echo $fila['id'] ?>">
                                                             <span class="fa fa-eye"></span></a>
                                                     </div>
+-->
                                                 </div>
                                             </div>
                                         </div>

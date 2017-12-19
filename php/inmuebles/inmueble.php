@@ -17,7 +17,7 @@
 </head>
 <body>
    <?php
-    menu();
+    menu(4);
 
     $datos = db_query("select * from inmuebles where id = $_GET[id]");
 
