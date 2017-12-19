@@ -44,11 +44,11 @@
 
                 $cons_bus_cli = "select *
                                     from clientes
-                                    where nombre like '%$busqueda%'
+                                    where id > 0
+                                    and (nombre like '%$busqueda%'
                                     or apellidos like '%$busqueda%'
                                     or telefono1 like '%$busqueda%'
-                                    or telefono2 like '%$busqueda%'
-                                    and nombre not like '%disponible%'
+                                    or telefono2 like '%$busqueda%')
                                     order by nombre";
                 $clientes = db_query($cons_bus_cli);
                 if(mysqli_num_rows($clientes) == 0){
@@ -60,7 +60,8 @@
                 }
             }else{
                 $cons_clientes = "select * from clientes
-                                        where nombre not like 'disponible'";
+                                        where id > 0
+                                        order by nombre";
                 tablaClientes($cons_clientes);
             }
             $cons_auto_inc = "SELECT AUTO_INCREMENT

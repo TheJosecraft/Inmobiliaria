@@ -55,7 +55,6 @@
                 $pag = $_GET['pagAnterior'];
 
                 $limite = 6 * $pag;
-
                 noticias("select * from noticias where fecha <= '$fecha' order by fecha DESC limit $limite, 6", $numNoticias);
 
             }elseif(isset($_GET['pagSiguiente'])){
@@ -235,52 +234,60 @@
 
     function noticias($cons, &$numNoticias){
         ?>
+<div class="row text-left">
+    <?php
+        $fecha = date('Y-m-d');
+        $noticias = db_query($cons);
 
-                <div class="row text-left">
-                    <?php
-                        $fecha = date('Y-m-d');
-                        $noticias = db_query($cons);
+    if(mysqli_num_rows($noticias) == 0){
+        ?>
+        <h2><span class="fa fa-info-circle text-info"></span> No se han encontrado noticias</h2>
+        <?php
+    }else{
 
-                        while($fila = mysqli_fetch_array($noticias)){
-                        ?>
-                        <div class="col-lg-6 col-md-12">
-                            <div class="noticia">
-                                <div>
-                                    <a href="noticia.php?id=<?php echo $fila['id'] ?>"><img class="img-responsive img-rounded" src="../../img/noticias/<?php echo $fila['imagen']; ?>" alt=""></a>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <span class="h3"><a href="noticia.php?id=<?php echo $fila['id'] ?>"><?php echo $fila['titular']; ?> </a><a href="mod_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-pencil btn-m"></span></a> <a href="del_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-trash btn-r"></span> </a></span>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                       <div class="col-sm-12">
-                                           <p><?php echo substr($fila['contenido'], 0, 280); ?></p>
-                                       </div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            Admin - <span class="fa fa-calendar"></span> <?php $fecha = strtotime($fila['fecha']); echo date('d/m/Y', $fecha) ?>
-                                        </div>
-                                        <div class="col-sm-6 text-right">
-                                            <a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más >></a>
-                                        </div>
-                                    </div>
-
+        while($fila = mysqli_fetch_array($noticias)){
+                            ?>
+                <div class="col-lg-6 col-md-12">
+                    <div class="noticia">
+                        <div>
+                            <a href="noticia.php?id=<?php echo $fila['id'] ?>"><img class="img-responsive img-rounded" src="../../img/noticias/<?php echo $fila['imagen']; ?>" alt=""></a>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <span class="h3"><a href="noticia.php?id=<?php echo $fila['id'] ?>"><?php echo $fila['titular']; ?> </a><a href="mod_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-pencil btn-m"></span></a> <a href="del_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-trash btn-r"></span> </a></span>
                                 </div>
-                                <br>
                             </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <p>
+                                        <?php echo substr($fila['contenido'], 0, 280); ?>
+                                    </p>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <span class="fa fa-calendar"></span>
+                                    <?php $fecha = strtotime($fila['fecha']); echo date('d/m/Y', $fecha) ?>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más >></a>
+                                </div>
+                            </div>
+
                         </div>
-
-                        <?php
-                        $numNoticias++;
-                        }
-
-                ?>
+                        <br>
+                    </div>
                 </div>
 
+    <?php
+        $numNoticias++;
+        }
+    }
+
+    ?>
+</div>
                 <?php
     }
 

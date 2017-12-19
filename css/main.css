@@ -280,3 +280,10 @@ footer a{
 .noticia{
     margin-bottom: 30px;
 }
+
+.imagen-inmueble{
+    width: 400px;
+    height: 250px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

@@ -7,9 +7,7 @@ function menu ($pag = 1)
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                <span class="sr-only">Mostrar menú</span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
+               <span style="color:white">Menú</span>
            </button>
                 <a class="navbar-brand" href="#">Inmobiliaria</a>
             </div>

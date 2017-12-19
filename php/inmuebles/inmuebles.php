@@ -42,216 +42,16 @@
                     <?php
             if(isset($_POST['buscar'])){
 
-            $busqueda = $_POST['buscar'];
-
-                    $cons_bus_inm = "select inm.id id_inm, inm.direccion, inm.descripcion, inm.precio, inm.id_cliente, inm.imagen, cli.nombre
-                                    from inmuebles inm, clientes cli
-                                    where inm.id_cliente = cli.id
-                                    and (inm.direccion like '%$busqueda%'
-                                    or cli.nombre like '%$busqueda%'
-                                    or inm.precio like '%$busqueda%')
-                                    order by precio";
-
-                    $inmuebles = db_query($cons_bus_inm);
-                  ?>
-            <div class="row">
-            <?php
-                $cont = 0;
-            while($fila = mysqli_fetch_array($inmuebles, MYSQLI_ASSOC)){
-                ?>
-                     <div class="col-md-4 inmueble">
-                                    <div class="card inmueble">
-
-                                        <img src="../../img/inmuebles/<?php echo $fila['imagen']; ?>" alt="Card image" style="width: 100%">
-                                        <?php
-
-                                                    if($fila['id_cliente'] == 0){
-                                                        ?>
-
-                                                        <div class="disponibilidad" style="background-color:palegreen">
-                                                                 <strong>Disponible</strong>
-                                                        </div>
-
-                                                        <?php
-                                                    }else{
-                                                        ?>
-
-                                                        <div class="disponibilidad" style="background-color:#FA5858">
-                                                            <strong>Vendido</strong>
-                                                        </div>
-
-                                                        <?php
-                                                    }
-
-                                                    ?>
-
-                                        <div class="card-body">
-
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <h4 class="card-title text-center">
-                                                        <?php echo $fila['direccion']; ?>
-                                                    </h4>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <div class="row text-center">
-                                                <h4><?php echo number_format($fila['precio'], 0, ',', '.'); ?> €</h4>
-                                            </div>
-                                            <div class="row text-center">
-                                               <?php
-                                                        $cons_nombres = "select nombre, apellidos from clientes
-                                                                            where id = $fila[id_cliente]";
-                                                        $nombres = db_query($cons_nombres);
-                                                        $nombre = mysqli_fetch_array($nombres);
-
-
-                                                    if($fila['id_cliente'] != 0){
-                                                    ?>
-                                                        <h5><?php echo $nombre['nombre']." ".$nombre['apellidos'] ?></h5>
-                                                        <?php
-                                                    }else{
-                                                        echo '<h5>&nbsp</h5>';
-                                                    }
-                                                ?>
-                                            </div>
-                                            <br>
-                                            <div class="row center-block">
-                                                <div class="col-xs-12">
-
-                                                    <div class="col-xs-4 text-center"><span>
-                                                        <a class="btn-m" href="mod_inmueble.php?id=<?php echo $fila['id_inm'] ?>" title="Modificar">
-                                                        <span class="fa fa-pencil"></span></a>
-                                                    </span>
-                                                    </div>
-                                                    <div class="col-xs-4 text-center">
-                                                        <a class="btn-r" href="del_inmueble.php?id=<?php echo $fila['id_inm'] ?>" title="Borrar">
-                                                        <span class="fa fa-trash"></span></a>
-                                                    </div>
-                                                    <div class="col-xs-4 text-center">
-                                                            <a class="btn-e" href="inmueble.php?id=<?php echo $fila['id_inm'] ?>">
-                                                            <span class="fa fa-eye"></span></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php
-                    $cont++;
-                                if ($cont % 3 == 0)
-                                {
-                ?> </div><div class="row"> <?php
-                                }
-            }
-
-            db_close();
-            ?>
-
-                        <?php
+                $busqueda = $_POST['buscar'];
+                inmuebles("select inm.id id_inm, inm.direccion, inm.descripcion, inm.precio, inm.id_cliente, inm.imagen, cli.nombre
+                                from inmuebles inm, clientes cli
+                                where inm.id_cliente = cli.id
+                                and (inm.direccion like '%$busqueda%'
+                                or cli.nombre like '%$busqueda%'
+                                or inm.precio like '%$busqueda%')
+                                order by precio");
             }else{
-
-            $cons_inmuebles = "select * from inmuebles";
-            $inmuebles = db_query($cons_inmuebles);
-
-            ?>
-            <div class="row">
-            <?php
-                $cont = 0;
-            while($fila = mysqli_fetch_array($inmuebles, MYSQLI_ASSOC)){
-
-                ?>
-
-                     <div class="col-md-4 inmueble">
-                                    <div class="card inmueble">
-
-                                        <a href="inmueble.php?id=<?php echo $fila['id'] ?>"><img src="../../img/inmuebles/<?php echo $fila['imagen']; ?>" alt="Card image" style="width: 100%"></a>
-                                        <?php
-
-                                                    if($fila['id_cliente'] == 0){
-                                                        ?>
-
-                                                        <div class="disponibilidad" style="background-color:palegreen">
-                                                                 <strong>Disponible</strong>
-                                                        </div>
-
-                                                        <?php
-                                                    }else{
-                                                        ?>
-
-                                                        <div class="disponibilidad" style="background-color:#FA5858">
-                                                            <strong>Vendido</strong>
-                                                        </div>
-
-                                                        <?php
-                                                    }
-
-                                                    ?>
-
-                                        <div class="card-body">
-
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <h4 class="card-title text-center">
-                                                        <a href="inmueble.php?id=<?php echo $fila['id'] ?>"><?php echo $fila['direccion']; ?></a>
-                                                        </h4>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <div class="row text-center">
-                                                <h4><?php echo number_format($fila['precio'], 0, ',', '.'); ?> €</h4>
-                                            </div>
-                                            <div class="row text-center">
-                                               <?php
-                                                        $cons_nombres = "select nombre, apellidos from clientes
-                                                                            where id = $fila[id_cliente]";
-                                                        $nombres = db_query($cons_nombres);
-                                                        $nombre = mysqli_fetch_array($nombres);
-
-
-                                                    if($fila['id_cliente'] != 0){
-                                                    ?>
-                                                        <h5><?php echo $nombre['nombre']." ".$nombre['apellidos'] ?></h5>
-                                                        <?php
-                                                    }else{
-                                                        echo '<h5>&nbsp</h5>';
-                                                    }
-                                                ?>
-                                            </div>
-                                            <br>
-                                            <hr>
-                                            <div class="row center-block">
-                                                <div class="col-xs-12">
-
-                                                    <div class="col-xs-6 text-center"><span>
-                                                        <a class="btn-m" href="mod_inmueble.php?id=<?php echo $fila['id'] ?>" title="Modificar">
-                                                        <span class="fa fa-pencil"></span> Modificar</a>
-                                                    </span>
-                                                    </div>
-                                                    <div class="col-xs-6 text-center">
-                                                        <a class="btn-r" href="del_inmueble.php?id=<?php echo $fila['id'] ?>" title="Eliminar">
-                                                        <span class="fa fa-trash"></span> Eliminar</a>
-                                                    </div>
-<!--
-                                                    <div class="col-xs-4 text-center">
-                                                            <a class="btn-e" href="inmueble.php?id=<?php echo $fila['id'] ?>">
-                                                            <span class="fa fa-eye"></span></a>
-                                                    </div>
--->
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php
-                    $cont++;
-                                if ($cont % 3 == 0)
-                                {
-                ?> </div><div class="row"> <?php
-                                }
-            }
-
-            db_close();
+                inmuebles("select * from inmuebles order by precio");
             }
         ?>
                 </div>
@@ -400,11 +200,120 @@
         <meta http-equiv="refresh" content="0;url=inmuebles.php?e=1">
         <?php
     }
-    ?>
-    </div>
+
+    function inmuebles($cons){
+ ?>
+<div class="row">
+    <?php
+            $inmuebles = db_query($cons);
+            $cont = 0;
+        if(mysqli_num_rows($inmuebles) == 0){
+             ?>
+            <h2><span class="fa fa-info-circle text-info"></span> No se han encontrado inmuebles</h2>
+            <?php
+        }else{
+
+
+            while($fila = mysqli_fetch_array($inmuebles, MYSQLI_ASSOC)){
+
+                ?>
+
+        <div class="col-md-4 inmueble">
+            <div class="card inmueble">
+                <a href="inmueble.php?id=<?php echo $fila['id'] ?>">
+                    <div class="row imagen-inmueble" style="background-image: url(../../img/inmuebles/<?php echo $fila['imagen']; ?>);">
+
+                    </div>
+                </a>
+<!--                <img src="../../img/inmuebles/<?php /*echo $fila['imagen'];*/ ?>" alt="Card image" style="width: 100%">-->
+                <?php
+
+                    if($fila['id_cliente'] == 0){ ?>
+
+                    <div class="disponibilidad" style="background-color:palegreen">
+                        <strong>Disponible</strong>
+                    </div>
+
+                    <?php }else{ ?>
+
+                        <div class="disponibilidad" style="background-color:#FA5858">
+                            <strong>Vendido</strong>
+                        </div>
+                    <?php
+                        }
+                        ?>
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4 class="card-title text-center">
+                                            <a href="inmueble.php?id=<?php echo $fila['id'] ?>">
+                                                <?php echo $fila['direccion']; ?>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row text-center">
+                                    <h4>
+                                        <?php echo number_format($fila['precio'], 0, ',', '.'); ?> €</h4>
+                                </div>
+                                <div class="row text-center">
+                                    <?php
+                                    $nombres = db_query("select nombre, apellidos from clientes where id = $fila[id_cliente]");
+                                    $nombre = mysqli_fetch_array($nombres);
+
+
+                                    if($fila['id_cliente'] != 0){
+                                    ?>
+                                        <h5>
+                                            <?php echo $nombre['nombre']." ".$nombre['apellidos'] ?>
+                                        </h5>
+                                        <?php
+                                    }else{
+                                        echo '<h5>&nbsp</h5>';
+                                    }
+                                ?>
+                                </div>
+                                <br>
+                                <hr>
+                                <div class="row center-block">
+                                    <div class="col-xs-12">
+
+                                        <div class="col-xs-6 text-center"><span>
+                                                        <a class="btn-m" href="mod_inmueble.php?id=<?php echo $fila['id'] ?>" title="Modificar">
+                                                        <span class="fa fa-pencil"></span> Modificar</a>
+                                            </span>
+                                        </div>
+                                        <div class="col-xs-6 text-center">
+                                            <a class="btn-r" href="del_inmueble.php?id=<?php echo $fila['id'] ?>" title="Eliminar">
+                                                        <span class="fa fa-trash"></span> Eliminar</a>
+                                        </div>
+                                        <!--
+                                                    <div class="col-xs-4 text-center">
+                                                            <a class="btn-e" href="inmueble.php?id=<?php echo $fila['id'] ?>">
+                                                            <span class="fa fa-eye"></span></a>
+                                                    </div>
+-->
+                                    </div>
+                                </div>
+                            </div>
             </div>
-
-
+        </div>
+        <?php
+                $cont++;
+                if ($cont % 3 == 0){
+                ?>
+                    </div>
+                    <div class="row">
+                        <?php
+                }
+            }
+        }
+            db_close();
+    }
+    ?>
+            </div>
     <?php
     footer();
     ?>

@@ -7,9 +7,7 @@ function menu ($pag = 1)
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                <span class="sr-only">Mostrar menú</span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
-               <span class="icon-bar"></span>
+               <span style="color:white">Menú</span>
            </button>
                 <a class="navbar-brand" href=".">Inmobiliaria</a>
             </div>
@@ -181,7 +179,7 @@ function ult_noticias(){
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <span class="pull-left">Admin - <i class="fa fa-calendar"></i> <?php $fecha = strtotime($fila['fecha']); echo date('d/m/Y', $fecha) ?></span>
+                            <span class="pull-left"><i class="fa fa-calendar"></i> <?php $fecha = strtotime($fila['fecha']); echo date('d/m/Y', $fecha) ?></span>
                         </div>
                     </div>
 
