@@ -161,6 +161,10 @@ img {
     .calendar {
         margin-top: 40px !important;
     }
+
+    .imagen-inmueble{
+        height: 375px !important;
+    }
 }
 
 .legend {
@@ -282,7 +286,6 @@ footer a{
 }
 
 .imagen-inmueble{
-    width: 400px;
     height: 250px;
     background-size: cover;
     background-repeat: no-repeat;
