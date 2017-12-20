@@ -20,7 +20,7 @@
                 <div class="col-md-12" id="ver">
                     <h1>Inmuebles</h1>
                     <div class="row">
-                        <div class="col-sm-6 hidden-xs">
+                        <div class="col-sm-6 col-md-7 col-lg-8 hidden-xs">
                             <a class="btn bg-primary" data-toggle="modal" data-target="#insInm"><span class="fa fa-building-o"></span> Nuevo Inmueble</a>
                         </div>
 
@@ -28,8 +28,8 @@
                             <a class="btn bg-primary btn-block" data-toggle="modal" data-target="#insInm"><span class="fa fa-building-o"></span> Nuevo Inmueble</a>
                         </div>
 
-                        <div class="col-xs-12 col-sm-6 text-right">
-                            <form class="form-inline" action="#" method="post">
+                        <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4 text-right">
+                            <form action="#" method="post">
                                 <div class="input-group">
                                     <input class="form-control" type="text" name="buscar" placeholder="Dirección, cliente, precio">
 

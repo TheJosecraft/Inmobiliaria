@@ -158,13 +158,13 @@ function ult_noticias(){
     while($fila = mysqli_fetch_array($noticias)){
         ?>
                 <div class="col-xs-12 col-sm-12 col-md-4 noticia">
-                    <img class="img-responsive img-rounded" src="img/noticias/<?php echo $fila['imagen'] ?>" alt="" width="100%" height="300px">
+                    <a href="php/noticias/noticia.php?id=<?php echo $fila['id'] ?>"><img class="img-responsive img-rounded" src="img/noticias/<?php echo $fila['imagen'] ?>" alt="" width="100%" height="300px"></a>
                     <br>
                     <div class="row">
                         <div class="col-xs-12">
 
                               <span class="h3">
-                                 <?php echo $fila['titular']; ?>
+                                  <a href="php/noticias/noticia.php?id=<?php echo $fila['id'] ?>"><?php echo $fila['titular']; ?></a>
                               </span>
                         </div>
 

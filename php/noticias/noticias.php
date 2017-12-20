@@ -22,15 +22,15 @@
                 <div class="col-md-12" id="ver">
                     <h1>Noticias</h1>
                     <div class="row">
-                        <div class="col-sm-6 hidden-xs">
+                        <div class="col-sm-6 col-md-7 col-lg-8 hidden-xs">
                             <a class="btn bg-primary" data-toggle="modal" data-target="#insNot"><span class="fa fa-newspaper-o"></span> Nueva noticia</a>
                         </div>
                         <div class="col-xs-12 hidden-sm hidden-md hidden-lg" id="btn-xs-ins">
                             <a class="btn bg-primary btn-block" data-toggle="modal" data-target="#insNot"><span class="fa fa-newspaper-o"></span> Nueva noticia</a>
                         </div>
 
-                        <div class="col-xs-12 col-sm-6 text-right">
-                            <form class="form-inline" action="#" method="get">
+                        <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4 text-right">
+                            <form action="#" method="get">
                                 <div class="input-group">
                                     <input class="form-control" type="text" name="buscar" placeholder="Titular">
 

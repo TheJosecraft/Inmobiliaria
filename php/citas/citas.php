@@ -53,7 +53,7 @@
 
         <div class="text-center">
             <div class="row">
-                <ul class="pagination">
+                <ul class="pagination" id="calendar-pag">
                     <li><a href="?mesAnterior=<?php echo ($mes != 1 ? $mes - 1 : 12);?>&anio=<?php echo ($mes != 1 ? $anio : $anio - 1) ?>"><span class="fa fa-arrow-left"></span> Anterior</a></li>
                     <li><a href="?mesActual=<?php echo date('m'); ?>">Actual</a></li>
                     <li><a href="?mesPosterior=<?php echo ($mes != 12 ? $mes + 1 : 1);?>&anio=<?php echo ($mes != 12 ? $anio : $anio + 1) ?>">Siguiente <span class="fa fa-arrow-right"></span></a></li>
@@ -290,7 +290,7 @@
                     }
                     ?>
                     <div class="row">
-                        <div class="col-sm-6 hidden-xs">
+                        <div class="col-sm-6 col-md-7 col-lg-8 hidden-xs">
                             <a class="btn bg-primary" data-toggle="modal" data-target="#insCit"><span class="fa fa-calendar-plus-o"></span> Nueva Cita</a>
                         </div>
 
@@ -298,8 +298,8 @@
                             <a class="btn bg-primary btn-block" data-toggle="modal" data-target="#insCit"><span class="fa fa-calendar-plus-o"></span> Nueva Cita</a>
                         </div>
 
-                        <div class="col-xs-12 col-sm-6 text-right">
-                            <form class="form-inline" action="#" method="get">
+                        <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4 text-right">
+                            <form action="#" method="get">
                                 <div class="input-group">
                                     <input class="form-control" type="text" name="buscar" placeholder="Fecha o cliente">
 

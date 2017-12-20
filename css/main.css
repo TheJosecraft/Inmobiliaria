@@ -15,6 +15,7 @@ body {
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
     height: 100%;
+/*    background-color: #f1f3f4;*/
 }
 
 img {
@@ -165,6 +166,10 @@ img {
     .imagen-inmueble{
         height: 375px !important;
     }
+
+    #calendar-pag>li>a{
+        padding: 10px 15px;
+    }
 }
 
 .legend {
@@ -297,4 +302,10 @@ footer a{
 
 #btn-xs-ins{
    margin-bottom: 10px;
+}
+
+@media (min-width: 991px){
+    #calendar-pag>li>a{
+        padding: 7px 7px;
+    }
 }

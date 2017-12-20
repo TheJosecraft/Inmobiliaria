@@ -19,7 +19,7 @@
         <div class="container" id="wrap">
             <div class="row">
                <h1>Clientes</h1>
-                <div class="col-sm-6 hidden-xs">
+                <div class="col-sm-6 col-md-7 col-lg-8 hidden-xs">
                     <a class="btn bg-primary" data-toggle="modal" data-target="#insCli"><span class="fa fa-user-o"></span> Nuevo Cliente</a>
                 </div>
 
@@ -27,8 +27,8 @@
                     <a class="btn bg-primary btn-block" data-toggle="modal" data-target="#insCli"><span class="fa fa-user-o"></span> Nuevo Cliente</a>
                 </div>
 
-                <div class="col-xs-12 col-sm-6 text-right">
-                    <form class="form-inline" action="#" method="get">
+                <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4 text-right">
+                    <form action="#" method="get">
                         <div class="input-group">
                             <input class="form-control" type="text" name="buscar" placeholder="Nombre, apellidos o teléfono">
 

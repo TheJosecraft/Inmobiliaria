@@ -30,20 +30,20 @@
         <h1><?php echo $fila['direccion'] ?></h1>
         <div class="row">
            <!--Genero números aleatorios para generar información del inmueble de forma dinámica.-->
-            <div class="col-sm-3">
+            <div class="col-xs-6 col-md-3">
                 <h3><?php echo rand(2, 9); ?> Dormitorios</h3>
                 <hr>
             </div>
-            <div class="col-sm-3">
+            <div class="col-xs-6 col-md-3">
                 <h3><?php echo rand(2, 4); ?> Baños</h3>
                 <hr>
             </div>
-            <div class="col-sm-3">
+            <div class="col-xs-6 col-md-3">
                 <h3><?php echo rand(100, 1500); ?>m<sup>2</sup></h3>
 
                 <hr>
             </div>
-            <div class="col-sm-3">
+            <div class="col-xs-6 col-md-3">
                 <h3><?php echo number_format($fila['precio'], 2, ',', '.') ?> €</h3>
                 <hr>
             </div>
