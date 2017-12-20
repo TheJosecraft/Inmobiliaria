@@ -275,7 +275,6 @@
                                     }
                                 ?>
                                 </div>
-                                <br>
                                 <hr>
                                 <div class="row center-block">
                                     <div class="col-xs-12">
