@@ -242,7 +242,7 @@ footer a{
 #wrap{
     min-height: 100%;
     height: auto;
-    padding: 0 0 60px;
+    padding-bottom: 60px;
 }
 
 .folder li{
@@ -289,4 +289,12 @@ footer a{
     height: 250px;
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+.table-responsive{
+    border: none;
+}
+
+#btn-xs-ins{
+   margin-bottom: 10px;
 }

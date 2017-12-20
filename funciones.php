@@ -98,10 +98,10 @@ function footer ()
             </div>
            <div class="col-xs-12 col-md-4">
                 <ul class="list-inline">
-                    <li><a href="http://instagram.com"><i class="fa fa-instagram"></i></a></li>
-                    <li><a href="http://facebook.com"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="http://twitter.com"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="http://instagram.com"><i class="fa fa-instagram fa-2x"></i></a></li>
+                    <li><a href="http://facebook.com"><i class="fa fa-facebook fa-2x"></i></a></li>
+                    <li><a href="http://twitter.com"><i class="fa fa-twitter fa-2x"></i></a></li>
+                    <li><a href="http://plus.google.com"><i class="fa fa-google-plus fa-2x"></i></a></li>
                 </ul>
             </div>
             <div class="col-xs-12 col-md-4">

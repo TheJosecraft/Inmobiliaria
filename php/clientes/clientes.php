@@ -19,13 +19,17 @@
         <div class="container" id="wrap">
             <div class="row">
                <h1>Clientes</h1>
-                <div class="col-xs-6">
+                <div class="col-sm-6 hidden-xs">
                     <a class="btn bg-primary" data-toggle="modal" data-target="#insCli"><span class="fa fa-user-o"></span> Nuevo Cliente</a>
                 </div>
 
-                <div class="col-xs-6 text-right">
+                <div class="col-xs-12 hidden-sm hidden-md hidden-lg" id="btn-xs-ins">
+                    <a class="btn bg-primary btn-block" data-toggle="modal" data-target="#insCli"><span class="fa fa-user-o"></span> Nuevo Cliente</a>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 text-right">
                     <form class="form-inline" action="#" method="get">
-                        <div class="input-group col-xs-6">
+                        <div class="input-group">
                             <input class="form-control" type="text" name="buscar" placeholder="Nombre, apellidos o teléfono">
 
                             <div class="input-group-btn">
@@ -168,7 +172,7 @@
     //Función que genera una tabla con los clientes según la consulta que se le pase como parámetro.
     function tablaClientes($cons){
         ?>
-                    <div class="row">
+                    <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
                                 <th>Nombre</th>
@@ -224,9 +228,6 @@
     footer();
     ?>
     </div>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-            <script type="text/javascript" src="js/bootstrap.js"></script>
-            <script type="text/javascript" src="js/main.js"></script>
 </body>
 
 </html>

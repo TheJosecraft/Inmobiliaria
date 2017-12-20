@@ -20,11 +20,15 @@
                 <div class="col-md-12" id="ver">
                     <h1>Inmuebles</h1>
                     <div class="row">
-                        <div class="col-xs-6">
+                        <div class="col-sm-6 hidden-xs">
                             <a class="btn bg-primary" data-toggle="modal" data-target="#insInm"><span class="fa fa-building-o"></span> Nuevo Inmueble</a>
                         </div>
 
-                        <div class="col-xs-6 text-right">
+                        <div class="col-xs-12 hidden-sm hidden-md hidden-lg" id="btn-xs-ins">
+                            <a class="btn bg-primary btn-block" data-toggle="modal" data-target="#insInm"><span class="fa fa-building-o"></span> Nuevo Inmueble</a>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 text-right">
                             <form class="form-inline" action="#" method="post">
                                 <div class="input-group">
                                     <input class="form-control" type="text" name="buscar" placeholder="Dirección, cliente, precio">
@@ -279,12 +283,12 @@
                                 <div class="row center-block">
                                     <div class="col-xs-12">
 
-                                        <div class="col-xs-6 text-center"><span>
+                                        <div class="col-xs-6 col-md-12 col-lg-6 text-center"><span>
                                                         <a class="btn-m" href="mod_inmueble.php?id=<?php echo $fila['id'] ?>" title="Modificar">
                                                         <span class="fa fa-pencil"></span> Modificar</a>
                                             </span>
                                         </div>
-                                        <div class="col-xs-6 text-center">
+                                        <div class="col-xs-6 col-md-12 col-lg-6 text-center">
                                             <a class="btn-r" href="del_inmueble.php?id=<?php echo $fila['id'] ?>" title="Eliminar">
                                                         <span class="fa fa-trash"></span> Eliminar</a>
                                         </div>

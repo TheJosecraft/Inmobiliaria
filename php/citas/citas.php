@@ -290,11 +290,15 @@
                     }
                     ?>
                     <div class="row">
-                        <div class="col-xs-6">
+                        <div class="col-sm-6 hidden-xs">
                             <a class="btn bg-primary" data-toggle="modal" data-target="#insCit"><span class="fa fa-calendar-plus-o"></span> Nueva Cita</a>
                         </div>
 
-                        <div class="col-xs-6 text-right">
+                        <div class="col-xs-12 hidden-sm hidden-md hidden-lg" id="btn-xs-ins">
+                            <a class="btn bg-primary btn-block" data-toggle="modal" data-target="#insCit"><span class="fa fa-calendar-plus-o"></span> Nueva Cita</a>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 text-right">
                             <form class="form-inline" action="#" method="get">
                                 <div class="input-group">
                                     <input class="form-control" type="text" name="buscar" placeholder="Fecha o cliente">
@@ -447,8 +451,8 @@
                 <?php
             }else{
                 ?>
-                        <div class="row">
-                            <table class="table">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
                                 <thead>
                                     <th>Motivo</th>
                                     <th>Lugar</th>
@@ -489,7 +493,7 @@
                                      ?>
                                 </td>
                                 <td>
-                                    <?php echo $fila['hora']; ?>
+                                    <?php echo substr($fila['hora'], 0, 5); ?>
                                 </td>
                                 <td>
                                    <?php
