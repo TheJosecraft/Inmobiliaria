@@ -223,11 +223,9 @@
     }
     ?>
         </div>
-        <div class="row">
         <?php
     footer();
     ?>
-    </div>
 </body>
 
 </html>

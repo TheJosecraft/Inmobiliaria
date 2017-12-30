@@ -533,11 +533,9 @@
 
             ?>
     </div>
-    <div class="row">
-            <?php
-            footer();
-            ?>
-            </div>
+    <?php
+    footer();
+    ?>
 </body>
 
 </html>
