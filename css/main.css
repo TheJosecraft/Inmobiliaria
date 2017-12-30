@@ -294,6 +294,11 @@ footer a{
     height: 250px;
     background-size: cover;
     background-repeat: no-repeat;
+    transition: 0.5s ease-in-out;
+}
+
+.imagen-inmueble:hover{
+    transform: scale(1.1);
 }
 
 .table-responsive{
@@ -312,4 +317,14 @@ footer a{
 
 h1, .h1{
     font-size: 35px;
+}
+
+.contenedor{
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
 }

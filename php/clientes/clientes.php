@@ -145,11 +145,11 @@
         $telefono2 = $_POST['telefono2'];
 
         if(!preg_match('`^[a-zA-Z ,ºáéíóúÁÉÍÓÚñÑ]{1,50}$`', $nombre)){
-            $direccion = "Nombre erróneo";
+            $nombre = "Nombre erróneo";
         }
 
         if(!preg_match('`^[a-zA-Z ,ºáéíóúÁÉÍÓÚñÑ]{1,50}$`', $apellidos)){
-            $direccion = "Apellidos erróneos";
+            $apellidos = "Apellidos erróneos";
         }
 
         if(!preg_match('`^[0-9]{9}$`', $telefono1)){

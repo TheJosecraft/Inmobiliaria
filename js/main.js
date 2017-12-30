@@ -171,10 +171,13 @@ function ValidarApellidos(event) {
 
     if (this.value.trim() == "") {
         Aviso(this, "Los apellidos no pueden estar vacíos");
+        apellidos = false;
     } else if (this.value.length > 50) {
         Aviso(this, "Los apellidos son demasiado largos");
+        apellidos = false;
     } else if (!isNaN(this.value)) {
         Aviso(this, "Los apellidos no pueden ser números");
+        apellidos = false;
     } else {
         QuitarAviso(this);
         apellidos = true;
@@ -218,12 +221,16 @@ function ValidarTelefono1(event) {
 
     if (this.value.trim() == "") {
         Aviso(this, "El teléfono no puede estar vacío");
+        telefono1 = false;
     } else if (isNaN(this.value)) {
         Aviso(this, "El teléfono es no es un número");
+        telefono1 = false;
     } else if (this.value.length > 9) {
         Aviso(this, "El teléfono es demasiado largo");
+        telefono1 = false;
     } else if (this.value.length < 9) {
         Aviso(this, "El teléfono es demasiado corto");
+        telefono1 = false;
     } else {
         QuitarAviso(this);
         telefono1 = true;
@@ -383,6 +390,84 @@ function ValidarInsNoticia(event){
 }
 
 function ValidarInsCliente(event) {
+
+    var inombre = document.querySelector("#nombre");
+
+    if (inombre.value.trim() == "") {
+        event.preventDefault();
+        Aviso(inombre, "El nombre no puede estar vacío");
+    } else if (inombre.value.length > 50) {
+        event.preventDefault();
+        Aviso(inombre, "El nombre es demasiado largo");
+    } else if (!isNaN(inombre.value)) {
+        event.preventDefault();
+        Aviso(inombre, "El nombre no pueden ser números");
+    } else {
+        QuitarAviso(inombre);
+        console.log(nombre);
+    }
+
+    var iapellidos = document.querySelector("#apellidos");
+
+    if (iapellidos.value.trim() == "") {
+        event.preventDefault();
+        Aviso(iapellidos, "Los apellidos no pueden estar vacíos");
+    } else if (iapellidos.value.length > 50) {
+        event.preventDefault();
+        Aviso(iapellidos, "Los apellidos son demasiado largos");
+    } else if (!isNaN(iapellidos.value)) {
+        event.preventDefault();
+        Aviso(iapellidos, "Los apellidos no pueden ser números");
+    } else {
+        QuitarAviso(iapellidos);
+    }
+
+    var idireccion = document.querySelector("#direccion");
+
+    if (idireccion.value.trim() == "") {
+        event.preventDefault();
+        Aviso(idireccion, "La dirección no puede estar vacía");
+    } else if (idireccion.value.length > 150) {
+        event.preventDefault();
+        Aviso(idireccion, "La dirección es demasiado larga");
+    } else {
+        QuitarAviso(idireccion);
+    }
+
+    var itelefono1 = document.querySelector("#telefono1");
+
+    if (itelefono1.value.trim() == "") {
+        event.preventDefault();
+        Aviso(itelefono1, "El teléfono no puede estar vacío");
+    } else if (isNaN(itelefono1.value)) {
+        event.preventDefault();
+        Aviso(itelefono1, "El teléfono es no es un número");
+    } else if (itelefono1.value.length > 9) {
+        event.preventDefault();
+        Aviso(itelefono1, "El teléfono es demasiado largo");
+    } else if (itelefono1.value.length < 9) {
+        event.preventDefault();
+        Aviso(itelefono1, "El teléfono es demasiado corto");
+    } else {
+        QuitarAviso(itelefono1);
+    }
+
+    var itelefono2 = document.querySelector("#telefono2");
+
+    if (itelefono2.value.trim() != "") {
+        if (isNaN(itelefono2.value)) {
+            event.preventDefault();
+            Aviso(itelefono2, "El teléfono no es un número");
+        } else if (itelefono2.value.length > 9) {
+            event.preventDefault();
+            Aviso(itelefono2, "El teléfono es demasiado largo");
+        } else if (itelefono2.value.length < 9) {
+            event.preventDefault();
+            Aviso(itelefono2, "El teléfono es demasiado corto");
+        } else {
+            QuitarAviso(itelefono2);
+        }
+    }
 
     if (!nombre || !apellidos || !direccion || !telefono1) {
         event.preventDefault();

@@ -257,7 +257,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <span class="h3"><a href="noticia.php?id=<?php echo $fila['id'] ?>"><?php echo $fila['titular']; ?> </a><a href="mod_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-pencil btn-m"></span></a> <a href="del_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-trash btn-r"></span> </a></span>
+                                    <span class="h3"><a href="noticia.php?id=<?php echo $fila['id'] ?>"><?php echo $fila['titular']; ?> </a></span>
                                 </div>
                             </div>
                             <br>
@@ -278,7 +278,15 @@
                                     <a href="noticia.php?id=<?php echo $fila['id'] ?>">Leer más >></a>
                                 </div>
                             </div>
-
+                            <hr>
+                            <div class="row text-center">
+                                <div class="col-xs-6">
+                                    <a class="btn-m" href="mod_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-pencil"></span> Modificar</a>
+                                </div>
+                                <div class="col-xs-6">
+                                    <a class="btn-r" href="del_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-trash"></span> Eliminar</a>
+                                </div>
+                            </div>
                         </div>
                         <br>
                     </div>
