@@ -457,10 +457,9 @@
                                     <th>Motivo</th>
                                     <th>Lugar</th>
                                     <th>Cliente</th>
-                                    <th>Teléfono</th>
+<!--                                    <th>Teléfono</th>-->
                                     <th>Hora</th>
-                                    <th>Modificar</th>
-                                    <th>Eliminar</th>
+                                    <th>Acciones</th>
                                 </thead>
                                 <tbody>
                         <?php
@@ -480,10 +479,18 @@
                                     <?php
                                         $nombres = db_query("select nombre, apellidos from clientes where id = $fila[id_cliente]");
                                         $nombre = mysqli_fetch_array($nombres);
-                                            echo $nombre['nombre']." ".$nombre['apellidos'];
+                                    ?>
+                                    <?php
+                                        $telefonos = db_query("select telefono1 from clientes where id = $fila[id_cliente]");
+                                        $telefono = mysqli_fetch_array($telefonos);
+                                        db_close();
+                                     ?>
+                                           <a id="info" href="#" data-toggle="popover" title="Información" data-content="<?php echo $telefono['telefono1']; ?>"><?php echo $nombre['nombre']." ".$nombre['apellidos']; ?></a>
+                                    <?php
                                         db_close();
                                      ?>
                                 </td>
+<!--
                                 <td>
                                     <?php
                                         $telefonos = db_query("select telefono1 from clientes where id = $fila[id_cliente]");
@@ -492,6 +499,7 @@
                                         db_close();
                                      ?>
                                 </td>
+-->
                                 <td>
                                     <?php echo substr($fila['hora'], 0, 5); ?>
                                 </td>
@@ -500,20 +508,18 @@
                                     //Comprueba la fecha para poder mostrar el botón de modificar cita
                                     if(strtotime($fechaHoy) <= strtotime($fechaCita)){
                                         ?>
-                                        <a class="btn-m" href="mod_cita.php?id=<?php echo $fila['id'] ?>">
-                                            <span class="fa fa-pencil"></span>
+                                        <a class="btn-m" href="mod_cita.php?id=<?php echo $fila['id'] ?>" style="margin-right:15px">
+                                            <span class="fa fa-pencil"></span> Modificar
                                         </a>
                                         <?php
                                     }
                                     ?>
-                                </td>
-                                <td>
                                     <?php
                                     //Comprueba la fecha para poder mostrar el botón de eliminar cita
                                     if(strtotime($fechaHoy) <= strtotime($fechaCita)){
                                        ?>
                                         <a class="btn-r" href="del_cita.php?id=<?php echo $fila['id'] ?>">
-                                            <span class="fa fa-trash"></span>
+                                            <span class="fa fa-trash"></span> Eliminar
                                         </a>
                                         <?php
                                     }
@@ -536,6 +542,11 @@
     <?php
     footer();
     ?>
+    <script>
+        $(document).ready(function(){
+            $('#info').popover({title: "Header", placement: "bottom", trigger: "hover"});
+        });
+    </script>
 </body>
 
 </html>

@@ -69,6 +69,15 @@ function menu ($pag = 1)
                             <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
                             <li class="active"><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                         <?php
+                        }elseif($pag == 0){
+                        ?>
+                            <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
+                            <li><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
+                            <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
+                            <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
+                            <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+                        <?php
                         }
                         ?>
 

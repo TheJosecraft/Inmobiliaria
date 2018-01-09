@@ -8,7 +8,7 @@
     ?>
 </head>
 <body>
-    <?php menu(); ?>
+    <?php menu(0); ?>
     <div class="container" id="wrap">
        <h1>Mapa web</h1>
             <li><a href="../../index.php">Inicio</a></li>

@@ -180,7 +180,7 @@
                                 <th>Dirección</th>
                                 <th>Teléfono 1</th>
                                 <th>Teléfono 2</th>
-                                <th>Modificar</th>
+                                <th>Acciones</th>
                             </thead>
                             <tbody>
                                 <?php
@@ -207,7 +207,7 @@
                                         </td>
                                         <td>
                                             <a class="btn-m" href="mod_cliente.php?id=<?php echo $fila['id'] ?>">
-                                            <span class="fa fa-pencil"></span></a>
+                                            <span class="fa fa-pencil"></span> Modificar</a>
                                         </td>
                                     </tr>
 
