@@ -1,4 +1,9 @@
 <?php
+function sesiones(){
+    session_start();
+}
+?>
+<?php
 function menu ($pag = 1)
 {
     ?>
@@ -69,12 +74,31 @@ function menu ($pag = 1)
                             <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
                             <li class="active"><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                         <?php
+                        }elseif($pag == 0){
+                        ?>
+                            <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
+                            <li><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
+                            <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
+                            <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
+                            <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+                        <?php
                         }
                         ?>
 
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><i class="fa fa-sign-in"></i> Acceder</a></li>
+                       <?php
+                        if($_SESSION['login_ok'] == true){
+                        ?>
+                            <li><a href="../acceso/acceder.php"><i class="fa fa-sign-in"></i> Bienvenido <?php echo $_SESSION['usuario'] ?></a></li>
+                        <?php
+                        }else{
+                        ?>
+                            <li><a href="../acceso/acceder.php"><i class="fa fa-sign-in"></i>Acceder</a></li>
+                        <?php
+                        }
+                            ?>
                     </ul>
                 </div>
             </nav>
@@ -83,9 +107,7 @@ function menu ($pag = 1)
 
     <?php
 }
-?>
 
-    <?php
 function footer ()
 {
     ?>

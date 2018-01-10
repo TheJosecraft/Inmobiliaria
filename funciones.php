@@ -74,7 +74,7 @@ function menu ($pag = 1)
 
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><i class="fa fa-sign-in"></i> Acceder</a></li>
+                        <li><a href="php/acceso/acceder.php"><i class="fa fa-sign-in"></i> Acceder</a></li>
                     </ul>
                 </div>
             </nav>
@@ -108,7 +108,7 @@ function footer ()
                <ul class="list-inline">
                    <li><i class="fa fa-phone"></i> 958625452</li>
                    <li><a href="php/contacto/contacto.php"><i class="fa fa-envelope"></i> Contacto</a></li>
-                   <li><a href="../mapa-web/mapa-web.php"><i class="fa fa-sitemap"></i> Mapa web</a></li>
+                   <li><a href="../php/mapa-web/mapa-web.php"><i class="fa fa-sitemap"></i> Mapa web</a></li>
                </ul>
             </div>
 

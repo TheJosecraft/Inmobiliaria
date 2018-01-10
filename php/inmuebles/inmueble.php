@@ -1,9 +1,13 @@
+<?php
+include '../funciones.php';
+sesiones();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include '../funciones.php'; ?>
+    <?php
     <title>
        <?php
         $titulos = db_query("select direccion from inmuebles where id = $_GET[id]");
@@ -57,10 +61,8 @@
             }
         ?>
     </div>
-    <div class="row">
-        <?php
-        footer();
-        ?>
-    </div>
+    <?php
+    footer();
+    ?>
 </body>
 </html>
