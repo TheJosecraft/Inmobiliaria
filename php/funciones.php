@@ -89,16 +89,21 @@ function menu ($pag = 1)
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                        <?php
-                        if($_SESSION['login_ok'] == true){
+                        if(isset($_SESSION['login_ok']) && $_SESSION['login_ok'] == true){
                         ?>
-                            <li><a href="../acceso/acceder.php"><i class="fa fa-sign-in"></i> Bienvenido <?php echo $_SESSION['usuario'] ?></a></li>
+                            <li><a href="#" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> Bienvenido, <?php echo $_SESSION['usuario'] ?> <span class="caret"></span></a><ul class="dropdown-menu">
+                                <li><a href=""><i class="fa fa-calendar"></i> Mis citas</a></li>
+                                <li><a href="../cliente/datos.php"><i class="fa fa-id-card-o"></i> Datos personales</a></li>
+                                <li class="divider"></li>
+                                <li><a href="../acceso/log_out.php"><i class="fa fa-sign-out"></i> Salir</a></li>
+                            </ul></li>
                         <?php
                         }else{
                         ?>
-                            <li><a href="../acceso/acceder.php"><i class="fa fa-sign-in"></i>Acceder</a></li>
+                            <li><a href="../acceso/acceder.php"><i class="fa fa-sign-in"></i> Acceder</a></li>
                         <?php
                         }
-                            ?>
+                        ?>
                     </ul>
                 </div>
             </nav>
@@ -111,9 +116,6 @@ function menu ($pag = 1)
 function footer ()
 {
     ?>
-<script type="text/javascript" src="../../js/main.js"></script>
-<script src="../../js/jquery.min.js"></script>
-<script type="text/javascript" src="../../js/bootstrap.js"></script>
 <footer class="text-center footer">
     <div class="container-fluid text-center">
         <div class="row">
@@ -140,6 +142,9 @@ function footer ()
         </div>
     </div>
 </footer>
+<script src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/bootstrap.js"></script>
+<script type="text/javascript" src="../../js/main.js"></script>
     <?php
 }
 
@@ -201,4 +206,12 @@ function db_close(){
 function fecha($f){
     return date('d/m/Y', strtotime($f));
 }
-?>
+
+function log_out(){
+    session_start();
+    session_unset();
+    session_destroy();
+
+    header("location:../../index.php");
+    exit();
+}

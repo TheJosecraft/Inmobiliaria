@@ -1,4 +1,8 @@
 <?php
+function sesiones(){
+    session_start();
+}
+
 function menu ($pag = 1)
 {
     ?>
@@ -64,7 +68,7 @@ function menu ($pag = 1)
                             ?>
                             <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
                             <li><a href="php/noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
-                            <li><a href="php/clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
+                            <li><a href="php/clientes/clientes.php"><i class="fa fa-user"></i> Clientes</a></li>
                             <li><a href="php/inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
                             <li><a href="php/citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
                             <li class="active"><a href="php/contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
@@ -74,7 +78,22 @@ function menu ($pag = 1)
 
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="php/acceso/acceder.php"><i class="fa fa-sign-in"></i> Acceder</a></li>
+                        <?php
+                        if(isset($_SESSION['login_ok']) && $_SESSION['login_ok'] == true){
+                        ?>
+                            <li><a href="#" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> Bienvenido, <?php echo $_SESSION['usuario'] ?> <span class="caret"></span></a><ul class="dropdown-menu">
+                                <li><a href=""><i class="fa fa-calendar"></i> Mis citas</a></li>
+                                <li><a href="php/cliente/datos.php"><i class="fa fa-id-card-o"></i> Datos personales</a></li>
+                                <li class="divider"></li>
+                                <li><a href="php/acceso/log_out.php"><i class="fa fa-sign-out"></i> Salir</a></li>
+                            </ul></li>
+                        <?php
+                        }else{
+                        ?>
+                            <li><a href="php/acceso/acceder.php"><i class="fa fa-sign-in"></i>Acceder</a></li>
+                        <?php
+                        }
+                        ?>
                     </ul>
                 </div>
             </nav>
@@ -108,7 +127,7 @@ function footer ()
                <ul class="list-inline">
                    <li><i class="fa fa-phone"></i> 958625452</li>
                    <li><a href="php/contacto/contacto.php"><i class="fa fa-envelope"></i> Contacto</a></li>
-                   <li><a href="../php/mapa-web/mapa-web.php"><i class="fa fa-sitemap"></i> Mapa web</a></li>
+                   <li><a href="php/mapa-web/mapa-web.php"><i class="fa fa-sitemap"></i> Mapa web</a></li>
                </ul>
             </div>
 

@@ -565,3 +565,7 @@ function QuitarAviso(campo) {
 }
 
 window.addEventListener("load", Inicio);
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+

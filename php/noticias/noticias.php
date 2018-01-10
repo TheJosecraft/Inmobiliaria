@@ -285,10 +285,10 @@ sesiones();
                             <hr>
                             <div class="row text-center">
                                 <div class="col-xs-6">
-                                    <a class="btn-m" href="mod_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-pencil"></span> Modificar</a>
+                                    <a data-toggle="tooltip" title="Modifica esta noticia" class="btn-m" href="mod_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-pencil"></span> Modificar</a>
                                 </div>
                                 <div class="col-xs-6">
-                                    <a class="btn-r" href="del_noticia.php?id=<?php echo $fila['id'] ?>"><span class="fa fa-trash"></span> Eliminar</a>
+                                    <a class="btn-r" href="del_noticia.php?id=<?php echo $fila['id'] ?>" title="Elimina esta noticia" data-toggle="tooltip"><span class="fa fa-trash"></span> Eliminar</a>
                                 </div>
                             </div>
                         </div>

@@ -1,3 +1,7 @@
+<?php
+ include 'funciones.php';
+sesiones();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +24,6 @@
 
 
     <?php
-    include 'funciones.php';
 
     menu(1);
     ?>

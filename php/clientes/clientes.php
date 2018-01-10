@@ -24,7 +24,7 @@ sesiones();
             <div class="row">
                <h1>Clientes</h1>
                 <div class="col-sm-6 col-md-7 col-lg-8 hidden-xs">
-                    <a class="btn bg-primary" data-toggle="modal" data-target="#insCli"><span class="fa fa-user-o"></span> Nuevo Cliente</a>
+                    <a href="insertar_cliente.php" class="btn bg-primary"><span class="fa fa-user-o"></span> Nuevo Cliente</a>
                 </div>
 
                 <div class="col-xs-12 hidden-sm hidden-md hidden-lg" id="btn-xs-ins">
@@ -174,7 +174,9 @@ sesiones();
             $telefono2 = "Teléfono erróneo";
         }
 
-        $insertar = db_query("insert into clientes values (null,'$usuario', '$password', '$nombre', '$apellidos', '$direccion', '$telefono1', '$telefono2')");
+        $password = md5(md5($password));
+
+        $insertar = db_query("insert into clientes values (null, '$nombre', '$apellidos', '$direccion', '$telefono1', '$telefono2', '$usuario', '$password')");
         echo 'Los datos se han introducido correctamente';
         db_close();
         ?>
@@ -186,6 +188,14 @@ sesiones();
     //Función que genera una tabla con los clientes según la consulta que se le pase como parámetro.
     function tablaClientes($cons){
         ?>
+                   <div class="panel panel-primary">
+                       <div class="panel-heading">
+                           Tabla de clientes
+                       </div>
+                       <div class="panel-body">
+
+
+
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead>
@@ -232,6 +242,22 @@ sesiones();
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div class="panel-footer">
+                    <ul class="pagination">
+                        <li><a href="">1</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">3</a></li>
+                        <li><a href="">4</a></li>
+                        <li><a href="">5</a></li>
+                        <li><a href="">6</a></li>
+                        <li><a href="">7</a></li>
+                        <li><a href="">8</a></li>
+                        <li><a href="">9</a></li>
+                        <li><a href="">10</a></li>
+                    </ul>
+                </div>
+            </div>
 
                     <?php
     }
