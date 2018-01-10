@@ -39,6 +39,14 @@
                             <label for="id">Id</label>
                             <input class="form-control" type="text" id="id" name="id" value="<?php echo $datos['id'] ?>" readonly>
                         </div>
+                        <div class="form-group">
+                            <label for="nombre">Usuario</label>
+                            <input class="form-control" type="text" id="usuario" name="usuario" value="<?php echo $datos['nombre_usuario'] ?>" placeholder="Usuario"><span style="display:none"></span><span style="display:none"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Contraseña</label>
+                            <input class="form-control" type="password" id="password" name="password" placeholder="Contraseña"><span style="display:none"></span><span style="display:none"></span>
+                        </div>
                         <div class=form-group>
                             <label for="nombre">Nombre</label>
                             <input class="form-control" type="text" id="nombre" name="nombre" value="<?php echo $datos['nombre'] ?>"><span style="display:none"></span><span style="display:none"></span>
@@ -77,6 +85,8 @@
     if (isset($_POST['enviarModCliente']))
     {
         $id = $_POST['id'];
+        $usuario = $_POST['usuario'];
+        $password = $_POST['password'];
         $nombre = $_POST['nombre'];
         $apellidos = $_POST['apellidos'];
         $direccion = $_POST['direccion'];
@@ -99,9 +109,12 @@
             $telefono2 = "Teléfono erróneo";
         }
 
+        $password = md5(md5($password));
 
         $cons_mod = "update clientes
-                    set nombre = '$nombre',
+                    set nombre_usuario = '$usuario',
+                    pass = '$password',
+                    nombre = '$nombre',
                     apellidos = '$apellidos',
                     direccion = '$direccion',
                     telefono1 = '$telefono1',
@@ -112,7 +125,7 @@
         db_close();
 
         ?>
-        <meta http-equiv="refresh" content="0;url=clientes.php?e=1">
+<!--        <meta http-equiv="refresh" content="0;url=clientes.php?e=1">-->
         <?php
     }
 

@@ -74,7 +74,7 @@ function menu ($pag = 1)
 
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><i class="fa fa-sign-in"></i> Acceder</a></li>
+                        <li><a href="php/acceso/acceder.php"><i class="fa fa-sign-in"></i> Acceder</a></li>
                     </ul>
                 </div>
             </nav>

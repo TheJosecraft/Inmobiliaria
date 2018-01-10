@@ -1,3 +1,7 @@
+<?php
+include '../funciones.php';
+sesiones();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clientes</title>
-    <?php include '../funciones.php';
+    <?php
         cabecera();
     ?>
 </head>
@@ -97,26 +101,34 @@
                                                 <input class="form-control" type="text" name="id" value="<?php echo $id[0];?>" readonly>
                                             </div>
                                             <div class="form-group">
+                                                <label for="nombre">Usuario</label>
+                                                <input class="form-control" type="text" id="usuario" name="usuario" placeholder="Usuario"><span style="display:none"></span><span style="display:none"></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="nombre">Contraseña</label>
+                                                <input class="form-control" type="password" id="password" name="password" placeholder="Contraseña"><span style="display:none"></span><span style="display:none"></span>
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="nombre">Nombre</label>
-                                                <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Introduce el nombre del cliente *"><span style="display:none"></span><span style="display:none"></span>
+                                                <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Nombre"><span style="display:none"></span><span style="display:none"></span>
                                             </div>
                                             <div class="form-group">
                                                 <label for="apellidos">Apellidos</label>
-                                                <input class="form-control" type="text" id="apellidos" name="apellidos" placeholder="Introduce los apellidos del cliente *"><span style="display:none"></span><span style="display:none"></span>
+                                                <input class="form-control" type="text" id="apellidos" name="apellidos" placeholder="Apellidos"><span style="display:none"></span><span style="display:none"></span>
                                             </div>
                                             <div class="form-group">
                                                 <label for="direccion">Dirección</label>
-                                                <input class="form-control" type="text" id="direccion" name="direccion" placeholder="Introduce la dirección del cliente *"><span style="display:none"></span><span style="display:none"></span>
+                                                <input class="form-control" type="text" id="direccion" name="direccion" placeholder="Dirección"><span style="display:none"></span><span style="display:none"></span>
                                             </div>
                                             <div class="form-group">
                                                 <label for="telefono1">Teléfono 1</label>
-                                                <input class="form-control" type="text" id="telefono1" name="telefono1" placeholder="Introduce el teléfono *"><span style="display:none"></span><span style="display:none"></span>
+                                                <input class="form-control" type="text" id="telefono1" name="telefono1" placeholder="Teléfono"><span style="display:none"></span><span style="display:none"></span>
                                             </div>
                                             <div class="form-group">
-                                                <label for="telefono2">Teléfono 2</label>
-                                                <input class="form-control" type="text" id="telefono2" name="telefono2" placeholder="Introduce el teléfono"><span style="display:none"></span><span style="display:none"></span>
+                                                <label for="telefono2">Teléfono 2*</label>
+                                                <input class="form-control" type="text" id="telefono2" name="telefono2" placeholder="Teléfono"><span style="display:none"></span><span style="display:none"></span>
                                             </div>
-                                            <p class="text-muted">* Estos campos son obligatorios</p>
+                                            <p class="text-muted">* Estos campos son opcionales</p>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                                 <button type="submit" class="btn btn-primary" id="enviarInsCliente" name="enviarInsCliente">Insertar</button>
@@ -138,6 +150,8 @@
             db_close();
     if (isset($_POST['enviarInsCliente']))
     {
+        $usuario = $_POST['usuario'];
+        $password = $_POST['password'];
         $nombre = $_POST['nombre'];
         $apellidos = $_POST['apellidos'];
         $direccion = $_POST['direccion'];
@@ -160,7 +174,7 @@
             $telefono2 = "Teléfono erróneo";
         }
 
-        $insertar = db_query("insert into clientes values (null, '$nombre', '$apellidos', '$direccion', '$telefono1', '$telefono2')");
+        $insertar = db_query("insert into clientes values (null,'$usuario', '$password', '$nombre', '$apellidos', '$direccion', '$telefono1', '$telefono2')");
         echo 'Los datos se han introducido correctamente';
         db_close();
         ?>

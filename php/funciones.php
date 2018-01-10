@@ -1,4 +1,9 @@
 <?php
+function sesiones(){
+    session_start();
+}
+?>
+<?php
 function menu ($pag = 1)
 {
     ?>
@@ -83,7 +88,17 @@ function menu ($pag = 1)
 
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><i class="fa fa-sign-in"></i> Acceder</a></li>
+                       <?php
+                        if($_SESSION['login_ok'] == true){
+                        ?>
+                            <li><a href="../acceso/acceder.php"><i class="fa fa-sign-in"></i> Bienvenido <?php echo $_SESSION['usuario'] ?></a></li>
+                        <?php
+                        }else{
+                        ?>
+                            <li><a href="../acceso/acceder.php"><i class="fa fa-sign-in"></i>Acceder</a></li>
+                        <?php
+                        }
+                            ?>
                     </ul>
                 </div>
             </nav>
@@ -92,9 +107,7 @@ function menu ($pag = 1)
 
     <?php
 }
-?>
 
-    <?php
 function footer ()
 {
     ?>
