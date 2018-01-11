@@ -1,9 +1,13 @@
+<?php
+include '../funciones.php';
+sesiones();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Mapa web</title>
-    <?php include '../funciones.php';
+    <?php
     cabecera();
     ?>
 </head>

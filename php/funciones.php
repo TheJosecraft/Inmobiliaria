@@ -21,7 +21,7 @@ function menu ($pag = 1)
                     <ul class="nav navbar-nav ">
                         <?php
                         if($pag == 1){
-                            if(isset($_SESSION['login_ok']) && $_SESSION['nombre_usuario'] == "admin"){
+                            if(isset($_SESSION['login_ok']) && $_SESSION['usuario'] == "admin"){
                             ?>
                             <li class="active"><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
                             <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
@@ -37,16 +37,24 @@ function menu ($pag = 1)
                         <?php
                             }
                         }elseif($pag == 2){
-                        ?>
+                        if(isset($_SESSION['login_ok']) && $_SESSION['usuario'] == "admin"){
+                            ?>
                             <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
                             <li class="active"><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
                             <li><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
                             <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
                             <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
                             <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
-                                <?php
+                        <?php
+                            }else{
+                            ?>
+                            <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+                        <?php
+                            }
                         }elseif($pag == 3){
-                        ?>
+                        if(isset($_SESSION['login_ok']) && $_SESSION['usuario'] == "admin"){
+                            ?>
                             <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
                             <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
                             <li class="active"><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
@@ -54,7 +62,14 @@ function menu ($pag = 1)
                             <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
                             <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                         <?php
+                            }else{
+                            ?>
+                            <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+                        <?php
+                            }
                         }elseif($pag == 4){
+                           if(isset($_SESSION['login_ok']) && $_SESSION['usuario'] == "admin"){
                             ?>
                             <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
                             <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
@@ -63,8 +78,15 @@ function menu ($pag = 1)
                             <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
                             <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                         <?php
+                            }else{
+                            ?>
+                            <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+                        <?php
+                            }
                         }elseif($pag == 5){
-                        ?>
+                        if(isset($_SESSION['login_ok']) && $_SESSION['usuario'] == "admin"){
+                            ?>
                             <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
                             <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
                             <li><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
@@ -72,8 +94,15 @@ function menu ($pag = 1)
                             <li class="active"><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
                             <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                         <?php
+                            }else{
+                            ?>
+                            <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+                        <?php
+                            }
                         }elseif($pag == 6){
-                        ?>
+                        if(isset($_SESSION['login_ok']) && $_SESSION['usuario'] == "admin"){
+                            ?>
                             <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
                             <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
                             <li><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
@@ -81,8 +110,15 @@ function menu ($pag = 1)
                             <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
                             <li class="active"><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                         <?php
+                            }else{
+                            ?>
+                            <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li class="active"><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+                        <?php
+                            }
                         }elseif($pag == 0){
-                        ?>
+                        if(isset($_SESSION['login_ok']) && $_SESSION['usuario'] == "admin"){
+                            ?>
                             <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
                             <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
                             <li><a href="../clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
@@ -90,6 +126,12 @@ function menu ($pag = 1)
                             <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
                             <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                         <?php
+                            }else{
+                            ?>
+                            <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+                        <?php
+                            }
                         }
                         ?>
 
@@ -98,8 +140,8 @@ function menu ($pag = 1)
                        <?php
                         if(isset($_SESSION['login_ok']) && $_SESSION['login_ok'] == true){
                         ?>
-                            <li><a href="#" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> Bienvenido, <?php echo $_SESSION['usuario'] ?> <span class="caret"></span></a><ul class="dropdown-menu">
-                                <li><a href=""><i class="fa fa-calendar"></i> Mis citas</a></li>
+                            <li><a href="#" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> Bienvenido, <?php echo $_SESSION['usuario'] ?> <span class="fa fa-caret-square-o-down"></span></a><ul class="dropdown-menu">
+                                <li><a href="../cliente/citas.php"><i class="fa fa-calendar"></i> Mis citas</a></li>
                                 <li><a href="../cliente/inmuebles.php"><i class="fa fa-building-o"></i> Mis inmuebles</a></li>
                                 <li><a href="../cliente/datos.php"><i class="fa fa-id-card-o"></i> Datos personales</a></li>
                                 <li class="divider"></li>
@@ -223,3 +265,45 @@ function log_out(){
     header("location:../../index.php");
     exit();
 }
+
+//Función que devuelve el nombre del mes en español
+    function nombreMes ($m){
+        switch($m){
+            case 1:
+                return "Enero";
+                break;
+            case 2:
+                return "Febrero";
+                break;
+            case 3:
+                return "Marzo";
+                break;
+            case 4:
+                return "Abril";
+                break;
+            case 5:
+                return "Mayo";
+                break;
+            case 6:
+                return "Junio";
+                break;
+            case 7:
+                return "Julio";
+                break;
+            case 8:
+                return "Agosto";
+                break;
+            case 9:
+                return "Septiembre";
+                break;
+            case 10:
+                return "Octubre";
+                break;
+            case 11:
+                return "Noviembre";
+                break;
+            case 12:
+                return "Diciembre";
+                break;
+        }
+    }

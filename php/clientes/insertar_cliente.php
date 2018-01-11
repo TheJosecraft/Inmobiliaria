@@ -6,7 +6,7 @@ include '../funciones.php';
 
     <head>
         <meta charset="UTF-8">
-        <title>insertar Cliente</title>
+        <title>Insertar Cliente</title>
         <?php
     cabecera();
     ?>
@@ -50,14 +50,22 @@ include '../funciones.php';
                         </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Nombre"><span style="display:none"></span><span style="display:none"></span>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Nombre"><span style="display:none"></span><span style="display:none"></span>
                         </div>
-                        <div class="form-group">
-                            <label for="apellidos">Apellidos</label>
-                            <input class="form-control" type="text" id="apellidos" name="apellidos" placeholder="Apellidos"><span style="display:none"></span><span style="display:none"></span>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                <label for="apellidos">Apellidos</label>
+                                <input class="form-control" type="text" id="apellidos" name="apellidos" placeholder="Apellidos"><span style="display:none"></span><span style="display:none"></span>
                         </div>
+                            </div>
+                        </div>
+
+
                         <div class="form-group">
                             <label for="direccion">Dirección</label>
                             <input class="form-control" type="text" id="direccion" name="direccion" placeholder="Dirección"><span style="display:none"></span><span style="display:none"></span>
@@ -80,7 +88,7 @@ include '../funciones.php';
 
                         <p class="text-muted">* Estos campos son opcionales</p>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <a href="clientes.php" class="pull-left">Volver</a>
                             <button type="submit" class="btn btn-primary" id="enviarInsCliente" name="enviarInsCliente">Insertar</button>
                         </div>
                         <div class="alert alert-warning" id="warning" style="display:none">
