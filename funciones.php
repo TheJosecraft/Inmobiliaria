@@ -1,6 +1,9 @@
 <?php
-function sesiones(){
+function sesiones($permiso = false){
     session_start();
+    if($permiso == false && $_SESSION['usuario'] != "admin"){
+        header("location:php/acceso/acceder.php");
+    }
 }
 
 function menu ($pag = 1)
@@ -26,7 +29,7 @@ function menu ($pag = 1)
                             <li><a href="php/noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
                             <li><a href="php/clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
                             <li><a href="php/inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
-                            <li><a href="pho/citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
+                            <li><a href="php/citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
                             <li><a href="php/contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                         <?php
                             }else{
@@ -36,62 +39,17 @@ function menu ($pag = 1)
 
                             <?php
                             }
-                        }elseif($pag == 2){
-                            ?>
-                            <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
-                            <li class="active"><a href="php/noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
-                            <li><a href="php/clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
-                            <li><a href="php/inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
-                            <li><a href="php/citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
-                            <li><a href="php/contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
-                            <?php
-                        }elseif($pag == 3){
-                            ?>
-                            <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
-                            <li><a href="php/noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
-                            <li class="active"><a href="php/clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
-                            <li><a href="php/inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
-                            <li><a href="php/citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
-                            <li><a href="php/contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
-                            <?php
-                        }elseif($pag == 4){
-                            ?>
-                            <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
-                            <li><a href="php/noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
-                            <li><a href="php/clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
-                            <li class="active"><a href="php/inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
-                            <li><a href="php/citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
-                            <li><a href="php/contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
-                            <?php
-                        }elseif($pag == 5){
-                            ?>
-                            <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
-                            <li><a href="php/noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
-                            <li><a href="php/clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
-                            <li><a href="php/inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
-                            <li class="active"><a href="php/citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
-                            <li><a href="php/contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
-                            <?php
-                        }elseif($pag == 6){
-                            ?>
-                            <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
-                            <li><a href="php/noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
-                            <li><a href="php/clientes/clientes.php"><i class="fa fa-user"></i> Clientes</a></li>
-                            <li><a href="php/inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
-                            <li><a href="php/citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
-                            <li class="active"><a href="php/contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
-                            <?php
                         }
-                        ?>
+                    ?>
 
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <?php
                         if(isset($_SESSION['login_ok']) && $_SESSION['login_ok'] == true){
                         ?>
-                            <li><a href="#" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> Bienvenido, <?php echo $_SESSION['usuario'] ?> <span class="caret"></span></a><ul class="dropdown-menu">
-                                <li><a href=""><i class="fa fa-calendar"></i> Mis citas</a></li>
-                                <li><a href=""><i class="fa fa-building-o"></i> Mis inmuebles</a></li>
+                            <li><a href="#" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> Bienvenido, <?php echo $_SESSION['usuario'] ?> <span class="fa fa-caret-square-o-down"></span></a><ul class="dropdown-menu">
+                                <li><a href="php/cliente/citas.php"><i class="fa fa-calendar"></i> Mis citas</a></li>
+                                <li><a href="php/cliente/inmuebles.php"><i class="fa fa-building-o"></i> Mis inmuebles</a></li>
                                 <li><a href="php/cliente/datos.php"><i class="fa fa-id-card-o"></i> Datos personales</a></li>
                                 <li class="divider"></li>
                                 <li><a href="php/acceso/log_out.php"><i class="fa fa-sign-out"></i> Salir</a></li>

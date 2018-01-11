@@ -186,48 +186,6 @@ sesiones();
         return date('t', $marca);
     }
 
-    //Función que devuelve el nombre del mes en español
-    function nombreMes ($m){
-        switch($m){
-            case 1:
-                return "Enero";
-                break;
-            case 2:
-                return "Febrero";
-                break;
-            case 3:
-                return "Marzo";
-                break;
-            case 4:
-                return "Abril";
-                break;
-            case 5:
-                return "Mayo";
-                break;
-            case 6:
-                return "Junio";
-                break;
-            case 7:
-                return "Julio";
-                break;
-            case 8:
-                return "Agosto";
-                break;
-            case 9:
-                return "Septiembre";
-                break;
-            case 10:
-                return "Octubre";
-                break;
-            case 11:
-                return "Noviembre";
-                break;
-            case 12:
-                return "Diciembre";
-                break;
-        }
-    }
-
     //Función que devuelve si un día hay cita o no
     function isCita($a, $m, $d){
         $c = array();
@@ -455,88 +413,95 @@ sesiones();
                 <?php
             }else{
                 ?>
-                        <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                    <th>Motivo</th>
-                                    <th>Lugar</th>
-                                    <th>Cliente</th>
-<!--                                    <th>Teléfono</th>-->
-                                    <th>Hora</th>
-                                    <th>Acciones</th>
-                                </thead>
-                                <tbody>
-                        <?php
+                      <div class="row">
+                      <div class="col-md-6">
 
+
+                       <div class="panel-group" id="accordion" style="margin-top: 30px">
+                        <?php
+                        $num_cita = 1;
                         while($fila = mysqli_fetch_array($datos, MYSQLI_ASSOC)){
                             $fechaHoy = date('Y-m-d H:i:s');
                             $fechaCita = $fila['fecha']." ".$fila['hora'];
+                            $fecha = strtotime($fechaCita);
                             ?>
-                            <tr>
-                                <td>
-                                    <?php echo $fila['motivo']; ?>
-                                </td>
-                                <td>
-                                    <?php echo $fila['lugar']; ?>
-                                </td>
-                                <td>
-                                    <?php
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                       <?php
+                                        if(strtotime($fechaHoy) <= strtotime($fechaCita)){
+                                        ?>
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#<?php echo $num_cita; ?>"><i class="fa fa-calendar-o"></i> <?php echo date('d' ,$fecha) ." de ". nombreMes(date('m', $fecha)) ." de ". date('Y', $fecha)?></a>
+                                        <?php
+                                        }else{
+                                        ?>
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#<?php echo $num_cita; ?>"><i class="fa fa-calendar-check-o"></i> <?php echo date('d' ,$fecha) ." de ". nombreMes(date('m', $fecha)) ." de ". date('Y', $fecha)?></a>
+                                        <?php
+                                        }
+                                        ?>
+
+                                    </h4>
+                                </div>
+                                <div id="<?php echo $num_cita ?>" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <p><?php echo $fila['motivo'] ?></p>
+                                        <p><i class="fa fa-map-marker"></i> <?php echo $fila['lugar'] ?></p>
+                                        <p><i class="fa fa-clock-o"></i> <?php echo substr($fila['hora'], 0, 5) ?></p>
+                                        <?php
                                         $nombres = db_query("select nombre, apellidos from clientes where id = $fila[id_cliente]");
                                         $nombre = mysqli_fetch_array($nombres);
-                                    ?>
-                                    <?php
-                                        $telefonos = db_query("select telefono1 from clientes where id = $fila[id_cliente]");
-                                        $telefono = mysqli_fetch_array($telefonos);
-                                        db_close();
-                                     ?>
-                                           <a id="info" href="#" data-toggle="popover" title="Información" data-content="<?php echo $telefono['telefono1']; ?>"><?php echo $nombre['nombre']." ".$nombre['apellidos']; ?></a>
-                                    <?php
-                                        db_close();
-                                     ?>
-                                </td>
-<!--
-                                <td>
-                                    <?php
-                                        $telefonos = db_query("select telefono1 from clientes where id = $fila[id_cliente]");
-                                        $telefono = mysqli_fetch_array($telefonos);
-                                            echo $telefono['telefono1'];
-                                        db_close();
-                                     ?>
-                                </td>
--->
-                                <td>
-                                    <?php echo substr($fila['hora'], 0, 5); ?>
-                                </td>
-                                <td>
-                                   <?php
-                                    //Comprueba la fecha para poder mostrar el botón de modificar cita
-                                    if(strtotime($fechaHoy) <= strtotime($fechaCita)){
                                         ?>
-                                        <a class="btn-m" href="mod_cita.php?id=<?php echo $fila['id'] ?>" style="margin-right:15px">
-                                            <span class="fa fa-pencil"></span> Modificar
-                                        </a>
                                         <?php
-                                    }
-                                    ?>
-                                    <?php
-                                    //Comprueba la fecha para poder mostrar el botón de eliminar cita
-                                    if(strtotime($fechaHoy) <= strtotime($fechaCita)){
-                                       ?>
-                                        <a class="btn-r" href="del_cita.php?id=<?php echo $fila['id'] ?>">
-                                            <span class="fa fa-trash"></span> Eliminar
-                                        </a>
+                                        db_close();
+                                        ?>
+                                        <p><i class="fa fa-user"></i> <?php echo $nombre['nombre']." ".$nombre['apellidos']; ?></p>
                                         <?php
-                                    }
-                                    ?>
-
-                                </td>
-                            </tr>
+                                        $telefonos = db_query("select telefono1, telefono2 from clientes where id = $fila[id_cliente]");
+                                        $telefono = mysqli_fetch_array($telefonos);
+                                        ?>
+                                        <p><i class="fa fa-phone"></i> <?php echo $telefono['telefono1'] ?></p>
+                                        <?php
+                                            if($telefono['telefono2'] != ""){
+                                                ?>
+                                                <p><i class="fa fa-mobile"></i> <?php echo $telefono['telefono2'] ?></p>
+                                                <?php
+                                            }
+                                        ?>
+                                        <?php
+                                        db_close();
+                                        ?>
+                                        <p><?php
+                                            //Comprueba la fecha para poder mostrar el botón de modificar cita
+                                            if(strtotime($fechaHoy) <= strtotime($fechaCita)){
+                                                ?>
+                                                <a class="btn-m" href="mod_cita.php?id=<?php echo $fila['id'] ?>" style="margin-right:15px">
+                                                    <span class="fa fa-pencil"></span> Modificar
+                                                </a>
+                                                <?php
+                                            }
+                                            ?>
+                                            <?php
+                                            //Comprueba la fecha para poder mostrar el botón de eliminar cita
+                                            if(strtotime($fechaHoy) <= strtotime($fechaCita)){
+                                               ?>
+                                                <a class="btn-r" href="del_cita.php?id=<?php echo $fila['id'] ?>">
+                                                    <span class="fa fa-trash"></span> Eliminar
+                                                </a>
+                                                <?php
+                                            }
+                                            ?>
+                                    </p>
+                                    </div>
+                                </div>
+                            </div>
                             <?php
+                                $num_cita++;
                                 }
                             ?>
-                    </tbody>
-                </table>
+                            </div>
+                </div>
             </div>
+        </div>
                             <?php
             }
         }
@@ -546,11 +511,6 @@ sesiones();
     <?php
     footer();
     ?>
-    <script>
-        $(document).ready(function(){
-            $('#info').popover({title: "Header", placement: "bottom", trigger: "hover"});
-        });
-    </script>
 </body>
 
 </html>
