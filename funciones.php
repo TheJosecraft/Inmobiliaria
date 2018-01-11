@@ -20,14 +20,22 @@ function menu ($pag = 1)
                     <ul class="nav navbar-nav ">
                        <?php
                         if($pag == 1){
+                            if(isset($_SESSION['login_ok']) && $_SESSION['usuario'] == "admin"){
                             ?>
-                            <li class="active"><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li class="active"><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
                             <li><a href="php/noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
                             <li><a href="php/clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
                             <li><a href="php/inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
-                            <li><a href="php/citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
+                            <li><a href="pho/citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
                             <li><a href="php/contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+                        <?php
+                            }else{
+                            ?>
+                            <li class="active"><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li><a href="php/contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+
                             <?php
+                            }
                         }elseif($pag == 2){
                             ?>
                             <li><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
@@ -83,6 +91,7 @@ function menu ($pag = 1)
                         ?>
                             <li><a href="#" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> Bienvenido, <?php echo $_SESSION['usuario'] ?> <span class="caret"></span></a><ul class="dropdown-menu">
                                 <li><a href=""><i class="fa fa-calendar"></i> Mis citas</a></li>
+                                <li><a href=""><i class="fa fa-building-o"></i> Mis inmuebles</a></li>
                                 <li><a href="php/cliente/datos.php"><i class="fa fa-id-card-o"></i> Datos personales</a></li>
                                 <li class="divider"></li>
                                 <li><a href="php/acceso/log_out.php"><i class="fa fa-sign-out"></i> Salir</a></li>
@@ -90,7 +99,7 @@ function menu ($pag = 1)
                         <?php
                         }else{
                         ?>
-                            <li><a href="php/acceso/acceder.php"><i class="fa fa-sign-in"></i>Acceder</a></li>
+                            <li><a href="php/acceso/acceder.php"><i class="fa fa-sign-in"></i> Acceder</a></li>
                         <?php
                         }
                         ?>

@@ -21,6 +21,7 @@ function menu ($pag = 1)
                     <ul class="nav navbar-nav ">
                         <?php
                         if($pag == 1){
+                            if(isset($_SESSION['login_ok']) && $_SESSION['nombre_usuario'] == "admin"){
                             ?>
                             <li class="active"><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
                             <li><a href="../noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
@@ -29,6 +30,12 @@ function menu ($pag = 1)
                             <li><a href="../citas/citas.php"><i class="fa fa-calendar"></i> Citas</a></li>
                             <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                         <?php
+                            }else{
+                            ?>
+                            <li class="active"><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
+                        <?php
+                            }
                         }elseif($pag == 2){
                         ?>
                             <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
@@ -93,6 +100,7 @@ function menu ($pag = 1)
                         ?>
                             <li><a href="#" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> Bienvenido, <?php echo $_SESSION['usuario'] ?> <span class="caret"></span></a><ul class="dropdown-menu">
                                 <li><a href=""><i class="fa fa-calendar"></i> Mis citas</a></li>
+                                <li><a href="../cliente/inmuebles.php"><i class="fa fa-building-o"></i> Mis inmuebles</a></li>
                                 <li><a href="../cliente/datos.php"><i class="fa fa-id-card-o"></i> Datos personales</a></li>
                                 <li class="divider"></li>
                                 <li><a href="../acceso/log_out.php"><i class="fa fa-sign-out"></i> Salir</a></li>
