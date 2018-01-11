@@ -25,7 +25,7 @@ function menu ($pag = 1)
                         if($pag == 1){
                             if(isset($_SESSION['login_ok']) && $_SESSION['usuario'] == "admin"){
                             ?>
-                            <li class="active"><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li class="active"><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
                             <li><a href="php/noticias/noticias.php"><i class="fa fa-newspaper-o"></i> Noticias</a></li>
                             <li><a href="php/clientes/clientes.php"><i class="fa fa-user-o"></i> Clientes</a></li>
                             <li><a href="php/inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
