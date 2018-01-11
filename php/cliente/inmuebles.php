@@ -1,6 +1,6 @@
 <?php
 include '../funciones.php';
-sesiones();
+sesiones(true);
 ?>
 <!DOCTYPE html>
 <html lang="en">

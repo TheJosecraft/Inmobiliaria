@@ -1,6 +1,9 @@
 <?php
-function sesiones(){
+function sesiones($permiso = false){
     session_start();
+    if($permiso == false && $_SESSION['usuario'] != "admin"){
+        header("location:../acceso/acceder.php");
+    }
 }
 ?>
 <?php
