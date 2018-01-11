@@ -1,20 +1,22 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-01-2018 a las 11:00:01
--- Versión del servidor: 5.6.20
--- Versión de PHP: 5.5.15
+-- Tiempo de generación: 11-01-2018 a las 01:42:22
+-- Versión del servidor: 10.1.26-MariaDB
+-- Versión de PHP: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de datos: `inmobiliaria`
@@ -26,14 +28,14 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `citas`
 --
 
-CREATE TABLE IF NOT EXISTS `citas` (
-`id` bigint(20) unsigned NOT NULL,
+CREATE TABLE `citas` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
   `motivo` varchar(100) NOT NULL,
   `lugar` varchar(150) NOT NULL,
   `id_cliente` bigint(20) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `citas`
@@ -52,8 +54,8 @@ INSERT INTO `citas` (`id`, `fecha`, `hora`, `motivo`, `lugar`, `id_cliente`) VAL
 -- Estructura de tabla para la tabla `clientes`
 --
 
-CREATE TABLE IF NOT EXISTS `clientes` (
-`id` bigint(20) unsigned NOT NULL,
+CREATE TABLE `clientes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
   `direccion` varchar(150) NOT NULL,
@@ -61,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `telefono2` varchar(9) NOT NULL,
   `nombre_usuario` varchar(15) NOT NULL,
   `pass` varchar(32) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `clientes`
@@ -71,7 +73,8 @@ INSERT INTO `clientes` (`id`, `nombre`, `apellidos`, `direccion`, `telefono1`, `
 (0, 'Disponible', '', '', '', '', '', ''),
 (1, 'José Carlos', 'Raya León', 'Avenida de la Constitución 17, 3ºP', '957655755', '638564461', 'rokkay', '1241bf48fccae086558fed2958eb188e'),
 (2, 'Álvaro', 'Raya León', 'Calle la Parra 5, 2ºE', '957652162', '', 'ghostpower', '2418e2549d1fc9cbdfaae2c24faf013e'),
-(3, 'Antonio', 'Aguayo Torres', 'Calle Cuesta de las Caballeras', '957862154', '', '', '');
+(3, 'Antonio', 'Aguayo Torres', 'Calle Cuesta de las Caballeras', '957862154', '', '', ''),
+(6, 'Administrador', 'Administrador', 'Calle Doctor Olóriz, 8', '958546982', '', 'admin', 'c3284d0f94606de1fd2af172aba15bf3');
 
 -- --------------------------------------------------------
 
@@ -79,14 +82,14 @@ INSERT INTO `clientes` (`id`, `nombre`, `apellidos`, `direccion`, `telefono1`, `
 -- Estructura de tabla para la tabla `inmuebles`
 --
 
-CREATE TABLE IF NOT EXISTS `inmuebles` (
-`id` bigint(20) unsigned NOT NULL,
+CREATE TABLE `inmuebles` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `direccion` varchar(150) NOT NULL,
   `descripcion` varchar(560) NOT NULL,
   `precio` decimal(12,2) NOT NULL,
   `id_cliente` bigint(20) NOT NULL,
   `imagen` varchar(50) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `inmuebles`
@@ -106,13 +109,13 @@ INSERT INTO `inmuebles` (`id`, `direccion`, `descripcion`, `precio`, `id_cliente
 -- Estructura de tabla para la tabla `noticias`
 --
 
-CREATE TABLE IF NOT EXISTS `noticias` (
-`id` bigint(20) unsigned NOT NULL,
+CREATE TABLE `noticias` (
+  `id` bigint(20) UNSIGNED NOT NULL,
   `titular` varchar(100) NOT NULL,
   `contenido` varchar(1500) NOT NULL,
   `imagen` varchar(50) NOT NULL,
   `fecha` date NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `noticias`
@@ -134,25 +137,29 @@ INSERT INTO `noticias` (`id`, `titular`, `contenido`, `imagen`, `fecha`) VALUES
 -- Indices de la tabla `citas`
 --
 ALTER TABLE `citas`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indices de la tabla `clientes`
 --
 ALTER TABLE `clientes`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indices de la tabla `inmuebles`
 --
 ALTER TABLE `inmuebles`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indices de la tabla `noticias`
 --
 ALTER TABLE `noticias`
- ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -162,22 +169,27 @@ ALTER TABLE `noticias`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT de la tabla `inmuebles`
 --
 ALTER TABLE `inmuebles`
-MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT de la tabla `noticias`
 --
 ALTER TABLE `noticias`
-MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
