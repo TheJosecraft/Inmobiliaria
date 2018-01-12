@@ -1,0 +1,45 @@
+.table > tbody > tr > td {
+    height: 100px;
+    width: 100px;
+}
+
+.table > thead > tr > th {
+    text-align: center;
+}
+
+.calendario tbody {
+    color: #7c8a95;
+}
+
+
+.calendario td a {
+    color: white;
+}
+
+.calendario td.festivo a {
+    color: white;
+}
+
+.calendario td.actual a {
+    color: white
+}
+
+table a:not(.btn),
+.table a:not(.btn) {
+    text-decoration: none !important;
+}
+
+table-bordered > thead > tr > th,
+.table-bordered > thead > tr > th,
+table-bordered > tbody > tr > th,
+.table-bordered > tbody > tr > th,
+table-bordered > tfoot > tr > th,
+.table-bordered > tfoot > tr > th,
+table-bordered > thead > tr > td,
+.table-bordered > thead > tr > td,
+table-bordered > tbody > tr > td,
+.table-bordered > tbody > tr > td,
+table-bordered > tfoot > tr > td,
+.table-bordered > tfoot > tr > td {
+    border: 1px solid #000000;
+}
