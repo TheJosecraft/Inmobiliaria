@@ -568,6 +568,6 @@ window.addEventListener("load", Inicio);
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
 
-    $('[data-toggle="popover"]').popover({container: 'body', trigger: 'hover'});
+    $('[data-toggle="popover"]').popover({container: 'body', trigger: 'hover', placement: 'auto'});
 });
 
