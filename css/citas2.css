@@ -56,3 +56,17 @@ table-bordered > tfoot > tr > td,
     overflow-y: scroll;
     overflow-x: hidden;
 }
+
+.flyout {
+    position: absolute;
+    margin-top: 500px;
+    width: 1000px;
+    height: 450px;
+    background: red;
+    overflow: hidden;
+    z-index: 10000;
+}
+
+.hidden{
+    visibility: hidden;
+}

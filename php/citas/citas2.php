@@ -206,8 +206,8 @@ sesiones();
                     <?php
                         $fecha = mktime(0, 0, 0, $mes, $i, $anio);
                         $fecha = date('Y-m-d', $fecha);
-                        echo $fecha;
-                        cita("select * from citas where fecha = $fecha order by hora");
+//                        echo "select * from citas where fecha = '$fecha' order by hora";
+                        cita("select * from citas where fecha = '$fecha' order by hora");
                     ?>
 
                 </div>
@@ -223,11 +223,10 @@ sesiones();
 
             $datos_cons = db_query($cons);
                  while($fila = mysqli_fetch_array($datos_cons, MYSQLI_ASSOC)){
+                    $contenido = "$fila[motivo] <br> $fila[lugar] <br> $fila[id_cliente]";
                     ?>
-                     <div class="col-xs-8 col-xs-offset-2 celdac">
-                     <?php
-                     $fila['hora'];
-                     ?>
+                     <div class="col-xs-8 col-xs-offset-2 celdac citajs">
+                     <span class="fa fa-clock-o"></span><a href="#" data-toggle="popover" title="Información" data-html="true" data-content="<?php echo $contenido ?>"> <?php echo substr($fila['hora'], 0, 5);?></a>
                      </div>
                      <?php
                     }
@@ -237,6 +236,7 @@ sesiones();
     }
             ?>
         </div>
+        <div class="flyout hidden">&nbsp;</div>
         <?php
 
     ?>
