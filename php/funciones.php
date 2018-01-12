@@ -1,9 +1,23 @@
 <?php
 function sesiones($permiso = false){
     session_start();
-    if($permiso == false && $_SESSION['usuario'] != "admin"){
-        header("location:../acceso/acceder.php");
+
+    $datos_sesion = session_encode();
+
+    if(isset($_COOKIE['datos']) && isset($_SESSION['login_ok'])){
+        session_decode($_COOKIE['datos']);
     }
+
+    if(isset($_SESSION['login_remember']) && $_SESSION['login_remember'] == true){
+        echo "<script>console.log( 'Debug Objects: " . $_SESSION['login_remember'] . "' );</script>";
+        setcookie('datos', $datos_sesion, time()+(365*24*60*60));
+
+    }
+
+    if($permiso == false && $_SESSION['usuario'] != "admin"){
+        header("location:php/acceso/acceder.php");
+    }
+
 }
 ?>
 <?php
@@ -262,11 +276,15 @@ function fecha($f){
 
 function log_out(){
     session_start();
+
+    $_SESSION = array();
+
     session_unset();
     session_destroy();
 
+    setcookie('datos', "", time() - 70000000);
+
     header("location:../../index.php");
-    exit();
 }
 
 //Función que devuelve el nombre del mes en español

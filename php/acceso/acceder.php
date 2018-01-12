@@ -78,6 +78,11 @@ sesiones(true);
                         $_SESSION['login_ok'] = true;
                         $_SESSION['usuario'] = $usuario;
                         $_SESSION['id_cliente'] = $fila['id'];
+                        if(isset($_POST['remember'])){
+                            $_SESSION['login_remember'] = true;
+                        }else{
+                            $_SESSION['login_remember'] = false;
+                        }
                         ?>
                         <meta http-equiv="refresh" content="0;url=../../index.php">
                         <?php

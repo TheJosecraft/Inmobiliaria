@@ -1,9 +1,23 @@
 <?php
 function sesiones($permiso = false){
     session_start();
+
+    $datos_sesion = session_encode();
+
+    if(isset($_COOKIE['datos']) && isset($_SESSION['login_ok'])){
+        session_decode($_COOKIE['datos']);
+    }
+
+    if(isset($_SESSION['login_remember']) && $_SESSION['login_remember'] == true){
+        echo "<script>console.log( 'Debug Objects: " . $_SESSION['login_remember'] . "' );</script>";
+        setcookie('datos', $datos_sesion, time()+(365*24*60*60));
+
+    }
+
     if($permiso == false && $_SESSION['usuario'] != "admin"){
         header("location:php/acceso/acceder.php");
     }
+
 }
 
 function menu ($pag = 1)
