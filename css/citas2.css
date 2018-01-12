@@ -1,5 +1,5 @@
 .table > tbody > tr > td {
-    height: 100px;
+    height: 110px;
     width: 100px;
 }
 
@@ -42,4 +42,17 @@ table-bordered > tbody > tr > td,
 table-bordered > tfoot > tr > td,
 .table-bordered > tfoot > tr > td {
     border: 1px solid #000000;
+}
+
+.celdac{
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: white;
+}
+
+.scroll{
+    max-height: 75px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }

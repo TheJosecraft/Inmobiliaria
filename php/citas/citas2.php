@@ -19,6 +19,12 @@ sesiones();
         <?php
     menu(5);
 
+    //Variable que almacena el mes actual
+    $mes = date('m');
+
+    //Variable que almacena el año actual
+    $anio = date('Y');
+
     //Función que dibuja un calendario con los datos del año y mes que se le pasan como argumentos
     function calendario($a, $m = 1, $activo = true){
         if($activo){
@@ -43,21 +49,21 @@ sesiones();
         $cont = 0;
             ?>
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <ul class="pagination" id="calendar-pag">
-                        <li><a href="">Anterior</a></li>
-                        <li><a href="">Siguiente</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-1">
-                    <ul class="pagination" id="calendar-pag">
-                        <li><a href="">Actual</a></li>
+                        <li><a href="?mesAnterior=<?php echo ($mes != 1 ? $mes - 1 : 12);?>&anio=<?php echo ($mes != 1 ? $anio : $anio - 1) ?>"><span class="fa fa-arrow-left"></span> Anterior</a></li>
+                        <li><a href="?mesPosterior=<?php echo ($mes != 12 ? $mes + 1 : 1);?>&anio=<?php echo ($mes != 12 ? $anio : $anio + 1) ?>">Siguiente <span class="fa fa-arrow-right"></span></a></li>
                     </ul>
                 </div>
                 <div class="col-md-6 col-md-offset-2">
                     <h2>
                         <?php echo nombreMes($mes).' '.$anio; ?>
                     </h2>
+                </div>
+                <div class="col-md-1">
+                    <ul class="pagination" id="calendar-pag">
+                        <li><a href="?mesActual=<?php echo date('m'); ?>">Actual</a></li>
+                    </ul>
                 </div>
             </div>
             <table class="table table-responsive table-bordered calendario">
@@ -86,70 +92,29 @@ sesiones();
         <?php echo $diasMesAnterior[$i - 2] ?>
     </td>
 
-    <?php
+<?php
             $celdas++;
             $cont++;
         }
-        for ($i = 1; $i <= diasMes($mes, $anio); $i++)
-        {
-            if ($cont < 5)
-            {
-         if (isCita($anio, $mes, $i)) { ?>
-                <td class="festivo" bgcolor="<?php echo $colorCitas ?>">
-                    <a class="pull-right" href="?dia=<?php echo " $i&mes=$mes "?>&anio=<?php echo $anio ?>">
-                        <?php echo $i ?>
-                    </a>
-                </td>
-                <?php
-                }
-                elseif(date('d') == $i && date('m') == $mes){
-                    ?>
-            <td class="actual" bgcolor="<?php echo $colorActual ?>">
-                <a class="pull-right" href="?dia=<?php echo $i ?>&mes=<?php echo $mes ?>&anio=<?php echo $anio ?>">
-                    <?php echo $i ?>
-                </a>
-            </td>
-            <?php
+        for ($i = 1; $i <= diasMes($mes, $anio); $i++){
+            if ($cont < 5){
+                if (isCita($anio, $mes, $i)) {
+                    celda($colorCitas, $i, $anio, $mes, "festivo");
+                }elseif(date('d') == $i && date('m') == $mes){
+                    celda($colorActual, $i, $anio, $mes, "actual");
                 }
                 else{
-                    ?>
-                <td bgcolor="<?php echo $colorLaborales ?>">
-                    <a class="pull-right" href="?dia=<?php echo $i ?>&mes=<?php echo $mes ?>&anio=<?php echo $anio ?>">
-                        <?php echo $i ?>
-                    </a>
-                </td>
-                <?php
+                    celda($colorLaborales, $i, $anio, $mes);
                 }
                 $celdas++;
                 $cont++;
             }else{
-                if (isCita($anio, $mes, $i))
-                {
-                    ?>
-                <td class="festivo" bgcolor="<?php echo $colorCitas ?>">
-                    <a class="pull-right" href="?dia=<?php echo " $i&mes=$mes "?>&anio=<?php echo $anio ?>">
-                        <?php echo $i ?>
-                    </a>
-                </td>
-                    <?php
+                if (isCita($anio, $mes, $i)){
+                    celda($colorCitas, $i, $anio, $mes, "festivo");
                 }elseif(date('d') == $i && date('m') == $mes){
-                    ?>
-                <td class="overlay" bgcolor="<?php echo $colorActual ?>">
-                    <a class="pull-right" href="?dia=<?php echo $i ?>&mes=<?php echo $mes ?>&anio=<?php echo $anio ?>">
-                        <?php echo $i ?>
-                    </a>
-                </td>
-                <?php
-                }
-                else
-                {
-                    ?>
-                <td bgcolor="<?php echo $colorFines ?>">
-                    <a class="pull-right" href="?dia=<?php echo $i ?>&mes=<?php echo $mes ?>&anio=<?php echo $anio ?>">
-                        <?php echo $i ?>
-                    </a>
-                </td>
-                <?php
+                    celda($colorActual, $i, $anio, $mes);
+                }else{
+                    celda($colorFines, $i, $anio, $mes);
                 }
                $celdas++;
                $cont++;
@@ -164,11 +129,11 @@ sesiones();
                 for ($i = $celdas; $i < 42; $i++)
                 {
                     ?>
-                <td class="next-month">
-                    <span class="pull-right"><?php echo $dia ?></span>
-                </td>
+    <td class="next-month">
+        <span class="pull-right"><?php echo $dia ?></span>
+    </td>
 
-                    <?php
+    <?php
                     $dia++;
                     $cont++;
                     if($cont % 7 == 0){
@@ -178,8 +143,8 @@ sesiones();
             }
         }
         ?>
-                    <tr>
-                </tbody>
+        <tr>
+            </tbody>
             </table>
             <?php
     }
@@ -220,96 +185,91 @@ sesiones();
         $marca = mktime(0, 0, 0, $m, 1, $a);
         return date('N', $marca);
     }
+
+    function celda($color, $i, $anio, $mes, $clase = ""){
+        ?>
+            <td class="<?php echo $clase ?>" bgcolor="<?php echo $color ?>">
+               <div class="row">
+                   <div class="col-md-12">
+                       <a class="pull-right" href="?dia=<?php echo $i ?>&mes=<?php echo $mes ?>&anio=<?php echo $anio ?>">
+                    <?php echo $i ?>
+                </a>
+                   </div>
+               </div>
+               <?php
+//                    $anio = $_GET['anio'];
+//                    $mes = $_GET['mes'];
+//                    $fecha = mktime(0,0,0, $mes, $anio);
+//                    $fecha = date('Y-m-d', $fecha);
+                ?>
+                <div class="scroll">
+                    <?php
+                        $fecha = mktime(0, 0, 0, $mes, $i, $anio);
+                        $fecha = date('Y-m-d', $fecha);
+                        echo $fecha;
+                        cita("select * from citas where fecha = $fecha order by hora");
+                    ?>
+
+                </div>
+
+            </td>
+    <?php
+    }
+
+    function cita($cons){
+        ?>
+        <div class="row">
+            <?php
+
+            $datos_cons = db_query($cons);
+                 while($fila = mysqli_fetch_array($datos_cons, MYSQLI_ASSOC)){
+                    ?>
+                     <div class="col-xs-8 col-xs-offset-2 celdac">
+                     <?php
+                     $fila['hora'];
+                     ?>
+                     </div>
+                     <?php
+                    }
+                    ?>
+        <?php
+        db_close();
+    }
+            ?>
+        </div>
+        <?php
+
     ?>
 
 
 <div class="container" id="wrap">
 
     <h1>Citas</h1>
-    <?php calendario(2018); ?>
-    <!--
-    <div class="row">
-        <div class="col-md-2">
-            <ul class="pagination" id="calendar-pag">
-                <li><a href="">Anterior</a></li>
-                <li><a href="">Siguiente</a></li>
-            </ul>
-        </div>
-        <div class="col-md-1">
-            <ul class="pagination" id="calendar-pag">
-                <li><a href="">Actual</a></li>
-            </ul>
-        </div>
-        <div class="col-md-6 col-md-offset-3">
-            <h2>Enero</h2>
-        </div>
+    <?php
+        $fecha = time();
+        $diasMesAnterior = array();
+
+        if(isset($_GET['mesAnterior'])){
+            $mes = $_GET['mesAnterior'];
+            $anio = $_GET['anio'];
+            calendario($anio, $mes, false);
+        }elseif(isset($_GET['mesPosterior'])){
+            $mes = $_GET['mesPosterior'];
+            $anio = $_GET['anio'];
+            calendario($anio, $mes, false);
+        }elseif(isset($_GET['mesActual'])){
+            $mes = $_GET['mesActual'];
+            calendario($anio, $mes);
+        }elseif(isset($_GET['dia'])){
+            $mes = $_GET['mes'];
+            $anio = $_GET['anio'];
+            calendario($anio, $mes, false);
+        }else{
+            calendario($anio);
+        }
+    ?>
     </div>
-    <div class="row">
-        <div class="table-responsive">
-            <table class="table table-bordered citas">
-                <thead>
-                    <th>Lunes</th>
-                    <th>Martes</th>
-                    <th>Miércoles</th>
-                    <th>Jueves</th>
-                    <th>Viernes</th>
-                    <th>Sábado</th>
-                    <th>Domingo</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                    </tr>
-                    <tr>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                    </tr>
-                    <tr>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                    </tr>
-                    <tr>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                    </tr>
-                    <tr>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                        <td><span class="pull-right">1</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
--->
-        </div>
-                <?php
+    <?php
     footer();
     ?>
     </body>
