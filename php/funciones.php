@@ -1,9 +1,23 @@
 <?php
 function sesiones($permiso = false){
     session_start();
-    if($permiso == false && $_SESSION['usuario'] != "admin"){
-        header("location:../acceso/acceder.php");
+
+    if(isset($_COOKIE['datos'])){
+        session_decode($_COOKIE['datos']);
     }
+
+    $datos_sesion = session_encode();
+
+    if(isset($_SESSION['login_remember']) && $_SESSION['login_remember'] == true){
+        echo "<script>console.log( 'Debug Objects: " . $_SESSION['login_remember'] . "' );</script>";
+        setcookie('datos', $datos_sesion, time()+(365*24*60*60), '/');
+
+    }
+
+    if($permiso == false && $_SESSION['usuario'] != "admin"){
+        header("location:../../index.php");
+    }
+
 }
 ?>
 <?php
@@ -141,7 +155,15 @@ function menu ($pag = 1)
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                        <?php
-                        if(isset($_SESSION['login_ok']) && $_SESSION['login_ok'] == true){
+                        if(isset($_SESSION['login_ok']) && $_SESSION['login_ok'] == true && $_SESSION['usuario'] == "admin"){
+                        ?>
+                            <li><a href="#" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> Bienvenido, <?php echo $_SESSION['usuario'] ?> <span class="fa fa-caret-square-o-down"></span></a><ul class="dropdown-menu">
+                                <li><a href="../cliente/datos.php"><i class="fa fa-id-card-o"></i> Datos personales</a></li>
+                                <li class="divider"></li>
+                                <li><a href="../acceso/log_out.php"><i class="fa fa-sign-out"></i> Salir</a></li>
+                            </ul></li>
+                        <?php
+                        }elseif(isset($_SESSION['login_ok']) && $_SESSION['login_ok'] == true){
                         ?>
                             <li><a href="#" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> Bienvenido, <?php echo $_SESSION['usuario'] ?> <span class="fa fa-caret-square-o-down"></span></a><ul class="dropdown-menu">
                                 <li><a href="../cliente/citas.php"><i class="fa fa-calendar"></i> Mis citas</a></li>
@@ -262,11 +284,15 @@ function fecha($f){
 
 function log_out(){
     session_start();
+
+    $_SESSION = array();
+
     session_unset();
     session_destroy();
 
+    setcookie('datos', "", time() - 70000000);
+
     header("location:../../index.php");
-    exit();
 }
 
 //Función que devuelve el nombre del mes en español

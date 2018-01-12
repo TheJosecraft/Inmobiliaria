@@ -1,5 +1,6 @@
 <?php
- include 'funciones.php';
+include'cookies.php';
+include 'funciones.php';
 sesiones(true);
 ?>
 <!DOCTYPE html>
