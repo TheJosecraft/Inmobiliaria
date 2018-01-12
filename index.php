@@ -1,10 +1,6 @@
 <?php
+include'cookies.php';
 include 'funciones.php';
-if(isset($_GET['e'])){
-    if($_GET['e'] == 4){
-        log_out();
-    }
-}
 sesiones(true);
 ?>
 <!DOCTYPE html>
