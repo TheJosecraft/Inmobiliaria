@@ -87,3 +87,7 @@ table-bordered > tfoot > tr > td,
 .calendario .next-month span {
     color: #7c8a95;
 }
+
+.table > thead > tr > th {
+    text-align: left;
+}
