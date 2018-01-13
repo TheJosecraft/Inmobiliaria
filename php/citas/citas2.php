@@ -191,9 +191,9 @@ sesiones();
             <td class="<?php echo $clase ?>" bgcolor="<?php echo $color ?>">
                <div class="row">
                    <div class="col-md-12">
-                       <a class="pull-right" href="?dia=<?php echo $i ?>&mes=<?php echo $mes ?>&anio=<?php echo $anio ?>">
+                       <span class="pull-right" href="?dia=<?php echo $i ?>&mes=<?php echo $mes ?>&anio=<?php echo $anio ?>">
                     <?php echo $i ?>
-                </a>
+                </span>
                    </div>
                </div>
                <?php
@@ -223,11 +223,24 @@ sesiones();
 
             $datos_cons = db_query($cons);
                  while($fila = mysqli_fetch_array($datos_cons, MYSQLI_ASSOC)){
-                    $contenido = "$fila[motivo] <br> $fila[lugar] <br> $fila[id_cliente]";
+                    $nombres = db_query("select nombre, apellidos from clientes where id = $fila[id_cliente]");
+                    $nombre = mysqli_fetch_array($nombres);
+                    db_close();
+
+                    $telefonos = db_query("select telefono1, telefono2 from clientes where id = $fila[id_cliente]");
+                    $telefono = mysqli_fetch_array($telefonos);
+                    db_close();
+
+                     if($telefono['telefono2'] != ""){
+                        $contenido = "$fila[motivo] <br><i class='fa fa-map-marker'></i> $fila[lugar] <br><i class='fa fa-user'></i> $nombre[nombre] $nombre[apellidos] <br><i class='fa fa-phone'></i> $telefono[telefono1] <br><i class='fa fa-mobile-phone'></i> $telefono[telefono2]";
+                     }else{
+                        $contenido = "$fila[motivo] <br><i class='fa fa-map-marker'></i> $fila[lugar] <br><i class='fa fa-user'></i> $nombre[nombre] $nombre[apellidos] <br><i class='fa fa-phone'></i> $telefono[telefono1]";
+                     }
+
                     ?>
-                     <div class="col-xs-8 col-xs-offset-2 celdac citajs">
-                     <span class="fa fa-clock-o"></span><a href="#" data-toggle="popover" title="Información" data-html="true" data-content="<?php echo $contenido ?>"> <?php echo substr($fila['hora'], 0, 5);?></a>
-                     </div>
+                    <div class="col-xs-8 col-xs-offset-2 celdac citajs">
+                    <span class="fa fa-clock-o"></span><a href="#" data-toggle="popover" title="Información" data-html="true" data-content="<?php echo $contenido ?>"> <?php echo substr($fila['hora'], 0, 5);?></a>
+                    </div>
                      <?php
                     }
                     ?>
@@ -238,13 +251,70 @@ sesiones();
         </div>
         <div class="flyout hidden">&nbsp;</div>
         <?php
-
+function tablaCitas($cons){
+    ?>
+    <br>
+    <div class="row">
+       <div class="col-sm-12">
+           <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Motivo</th>
+                        <th>Lugar</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Cliente</th>
+                        <th>Teléfono 1</th>
+                        <th>Teléfono 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Hola</td>
+                        <td>Montilla</td>
+                        <td>13/01/2018</td>
+                        <td>14:00</td>
+                        <td>José Carlos Raya León</td>
+                        <td>638564461</td>
+                        <td>957655755</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+       </div>
+    </div>
+    <?php
+}
     ?>
 
 
 <div class="container" id="wrap">
 
     <h1>Citas</h1>
+<div class="row">
+    <div class="col-sm-6 col-md-7 col-lg-8 hidden-xs">
+        <a href="insertar_cita.php" class="btn bg-primary"><span class="fa fa-calendar-plus-o"></span> Nueva Cita</a>
+    </div>
+
+    <div class="col-xs-12 hidden-sm hidden-md hidden-lg" id="btn-xs-ins">
+        <a href="insertar_cita.php" class="btn bg-primary btn-block"><span class="fa fa-calendar-plus-o"></span> Nueva Cita</a>
+    </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4 text-right">
+        <form action="#" method="get">
+            <div class="input-group">
+                <input class="form-control" type="text" name="buscar" placeholder="Fecha o cliente">
+
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit" name="enviarBuscar">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
     <?php
         $fecha = time();
         $diasMesAnterior = array();
@@ -264,6 +334,15 @@ sesiones();
             $mes = $_GET['mes'];
             $anio = $_GET['anio'];
             calendario($anio, $mes, false);
+        }else if(isset($_GET['enviarBuscar'])){
+            $busqueda = $_GET['buscar'];
+            $consulta_busqueda = "select cit.id cit_id, cit.fecha, cit.hora, cit.motivo, cit.lugar, cit.id_cliente, cli.id, cli.nombre
+                        from citas cit, clientes cli
+                        where cit.id_cliente = cli.id
+                        and (cit.fecha like '%$busqueda%'
+                        or cli.nombre like '%$busqueda%')
+                        order by fecha, hora";
+            tablaCitas($consulta_busqueda);
         }else{
             calendario($anio);
         }

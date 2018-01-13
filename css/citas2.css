@@ -1,4 +1,4 @@
-.table > tbody > tr > td {
+.calendario > tbody > tr > td {
     height: 110px;
     width: 100px;
 }
@@ -11,6 +11,18 @@
     color: #7c8a95;
 }
 
+
+.calendario td span {
+    color: white;
+}
+
+.calendario td.festivo span {
+    color: white;
+}
+
+.calendario td.actual span {
+    color: white
+}
 
 .calendario td a {
     color: white;
@@ -69,4 +81,9 @@ table-bordered > tfoot > tr > td,
 
 .hidden{
     visibility: hidden;
+}
+
+.calendario .prev-month span,
+.calendario .next-month span {
+    color: #7c8a95;
 }
