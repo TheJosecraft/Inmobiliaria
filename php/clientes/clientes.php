@@ -38,7 +38,7 @@ sesiones();
 
                             <div class="input-group-btn">
                                 <button class="btn btn-default" type="submit" name="enviarBuscar">
-                                    <i class="glyphicon glyphicon-search"></i>
+                                    <i class="fa fa-search"></i>
                                 </button>
                             </div>
                         </div>
@@ -69,7 +69,8 @@ sesiones();
             }else{
                 $cons_clientes = "select * from clientes
                                         where id > 0
-                                        order by nombre";
+                                        order by nombre
+                                        limit $_GET[pag],10";
                 tablaClientes($cons_clientes);
             }
             $cons_auto_inc = "SELECT AUTO_INCREMENT
@@ -210,6 +211,9 @@ sesiones();
                                 <?php
 
                     $clientes = db_query($cons);
+                    $paginacion = new Pagination(mysqli_num_rows($clientes));
+                    $limite = $paginacion->getNext();
+                    echo $limite;
                     while($fila = mysqli_fetch_array($clientes, MYSQLI_ASSOC)){
                         ?>
 
@@ -243,18 +247,11 @@ sesiones();
                         </table>
                     </div>
                 </div>
-                <div class="panel-footer">
+                <div class="panel-footer text-center">
                     <ul class="pagination">
-                        <li><a href="">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                        <li><a href="">4</a></li>
-                        <li><a href="">5</a></li>
-                        <li><a href="">6</a></li>
-                        <li><a href="">7</a></li>
-                        <li><a href="">8</a></li>
-                        <li><a href="">9</a></li>
-                        <li><a href="">10</a></li>
+                        <li><a href="clientes.php?pag=<?php echo $paginacion->getFirst(); ?>"><?php echo $paginacion->getFirst(); ?></a></li>
+                        <li><a href="<?php echo $paginacion->getRange(); ?>"><?php echo $paginacion->getRange(); ?></a></li>
+                        <li><a href="clientes.php?pag=<?php echo $paginacion->getLast(); ?>"><?php echo $paginacion->getLast(); ?></a></li>
                     </ul>
                 </div>
             </div>

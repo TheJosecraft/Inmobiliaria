@@ -39,7 +39,7 @@ sesiones();
 
                                     <div class="input-group-btn">
                                         <button class="btn btn-default" type="submit" name="enviarBuscar">
-                                    <i class="glyphicon glyphicon-search"></i>
+                                    <i class="fa fa-search"></i>
                                 </button>
                                     </div>
                                 </div>

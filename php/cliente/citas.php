@@ -18,6 +18,7 @@ sesiones(true);
     ?>
     <div class="container" id="wrap">
     <h1>Mis citas</h1>
+
      <?php
         $fecha = time();
         $diasMesAnterior = array();
