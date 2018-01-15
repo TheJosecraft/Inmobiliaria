@@ -62,10 +62,10 @@ sesiones(true);
               </div>
             </div>
                  <div class="panel-footer">
-                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-                        <span class="pull-right">
+
+
                             <a href="../clientes/mod_cliente.php?id=<?php echo $datos['id'] ?>" data-original-title="Modifica los datos" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
-                        </span>
+
                     </div>
 
           </div>

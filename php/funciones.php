@@ -290,7 +290,7 @@ function log_out(){
     session_unset();
     session_destroy();
 
-    setcookie('datos', "", time() - 70000000);
+    setcookie('datos', "", time() - 7, '/');
 
     header("location:../../index.php");
 }
@@ -552,10 +552,22 @@ function log_out(){
                     $telefono = mysqli_fetch_array($telefonos);
                     db_close();
 
+                    $fechaHoy = date('Y-m-d H:i:s');
+                    $fechaCita = $fila['fecha']." ".$fila['hora'];
                      if($telefono['telefono2'] != ""){
-                        $contenido = "$fila[motivo] <br><i class='fa fa-map-marker'></i> $fila[lugar] <br><i class='fa fa-user'></i> $nombre[nombre] $nombre[apellidos] <br><i class='fa fa-phone'></i> $telefono[telefono1] <br><i class='fa fa-mobile-phone'></i> $telefono[telefono2]";
+                         if(strtotime($fechaHoy) <= strtotime($fechaCita) && $_SESSION['usuario'] == "admin"){
+                             $contenido = "$fila[motivo] <br><i class='fa fa-map-marker'></i> $fila[lugar] <br><i class='fa fa-user'></i> $nombre[nombre] $nombre[apellidos] <br><i class='fa fa-phone'></i> $telefono[telefono1] <br><i class='fa fa-mobile-phone'></i> $telefono[telefono2] <br> <a class='btn-m' href='mod_cita.php?id=$fila[id]'><i class='fa fa-pencil'></i> Modificar</a> <a class='btn-r' href='del_cita.php?id=$fila[id]'><i class='fa fa-trash'></i> Eliminar</a>";
+                         }else{
+                             $contenido = "$fila[motivo] <br><i class='fa fa-map-marker'></i> $fila[lugar] <br><i class='fa fa-user'></i> $nombre[nombre] $nombre[apellidos] <br><i class='fa fa-phone'></i> $telefono[telefono1] <br><i class='fa fa-mobile-phone'></i> $telefono[telefono2]";
+                         }
+
                      }else{
-                        $contenido = "$fila[motivo] <br><i class='fa fa-map-marker'></i> $fila[lugar] <br><i class='fa fa-user'></i> $nombre[nombre] $nombre[apellidos] <br><i class='fa fa-phone'></i> $telefono[telefono1]";
+                         if(strtotime($fechaHoy) <= strtotime($fechaCita) && $_SESSION['usuario'] == "admin"){
+                            $contenido = "$fila[motivo] <br><i class='fa fa-map-marker'></i> $fila[lugar] <br><i class='fa fa-user'></i> $nombre[nombre] $nombre[apellidos] <br><i class='fa fa-phone'></i> $telefono[telefono1] <br> <a class='btn-m' href='mod_cita.php?id=$fila[id]'><i class='fa fa-pencil'></i> Modificar</a> <a class='btn-r' href='del_cita.php?id=$fila[id]'><i class='fa fa-trash'></i> Eliminar</a>";
+                         }else{
+                            $contenido = "$fila[motivo] <br><i class='fa fa-map-marker'></i> $fila[lugar] <br><i class='fa fa-user'></i> $nombre[nombre] $nombre[apellidos] <br><i class='fa fa-phone'></i> $telefono[telefono1]";
+                         }
+
                      }
 
                     ?>
@@ -620,3 +632,120 @@ class Pagination{
     }
 
 }
+
+ function inmuebles($cons){ ?>
+<div class="row">
+    <?php
+            $inmuebles = db_query($cons);
+            $cont = 0;
+        if(mysqli_num_rows($inmuebles) == 0){
+             ?>
+        <h2><span class="fa fa-info-circle text-info"></span> No se han encontrado inmuebles</h2>
+        <?php
+        }else{
+
+
+            while($fila = mysqli_fetch_array($inmuebles, MYSQLI_ASSOC)){
+
+                ?>
+
+            <div class="col-md-4 inmueble">
+                <div class="card inmueble">
+                    <a href="inmueble.php?id=<?php echo $fila['id'] ?>">
+                    <div class="row imagen-inmueble" style="background-image: url(../../img/inmuebles/<?php echo $fila['imagen']; ?>);">
+
+                    </div>
+                </a>
+                    <!--                <img src="../../img/inmuebles/<?php /*echo $fila['imagen'];*/ ?>" alt="Card image" style="width: 100%">-->
+                    <?php
+
+                    if($fila['id_cliente'] == 0){ ?>
+
+                        <div class="disponibilidad" style="background-color:palegreen">
+                            <strong>Disponible</strong>
+                        </div>
+
+                        <?php }else{ ?>
+
+                        <div class="disponibilidad" style="background-color:#FA5858">
+                            <strong>Vendido</strong>
+                        </div>
+                        <?php
+                        }
+                        ?>
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4 class="card-title text-center">
+                                            <a href="inmueble.php?id=<?php echo $fila['id'] ?>">
+                                                <?php echo $fila['direccion']; ?>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row text-center">
+                                    <h4>
+                                        <?php echo number_format($fila['precio'], 0, ',', '.'); ?> €</h4>
+                                </div>
+                                <div class="row text-center">
+                                    <?php
+                                    $nombres = db_query("select nombre, apellidos from clientes where id = $fila[id_cliente]");
+                                    $nombre = mysqli_fetch_array($nombres);
+
+
+                                    if($fila['id_cliente'] != 0){
+                                    ?>
+                                        <h5>
+                                            <?php echo $nombre['nombre']." ".$nombre['apellidos'] ?>
+                                        </h5>
+                                        <?php
+                                    }else{
+                                        echo '<h5>&nbsp</h5>';
+                                    }
+                                ?>
+                                </div>
+                                <?php
+                                    if($_SESSION['usuario'] == "admin"){
+                                        ?>
+                                        <hr>
+                                <div class="row center-block">
+                                    <div class="col-xs-12">
+
+                                        <div class="col-xs-6 col-md-12 col-lg-6 text-center"><span>
+                                                        <a class="btn-m" href="mod_inmueble.php?id=<?php echo $fila['id'] ?>" title="Modificar">
+                                                        <span class="fa fa-pencil"></span> Modificar</a>
+                                            </span>
+                                        </div>
+                                        <div class="col-xs-6 col-md-12 col-lg-6 text-center">
+                                            <a class="btn-r" href="del_inmueble.php?id=<?php echo $fila['id'] ?>" title="Eliminar">
+                                                        <span class="fa fa-trash"></span> Eliminar</a>
+                                        </div>
+                                        <!--
+                                                    <div class="col-xs-4 text-center">
+                                                            <a class="btn-e" href="inmueble.php?id=<?php echo $fila['id'] ?>">
+                                                            <span class="fa fa-eye"></span></a>
+                                                    </div>
+-->
+                                    </div>
+                                </div>
+                            </div>
+                                        <?php
+                                    }
+                                ?>
+                    </div>
+                </div>
+            </div>
+            <?php
+                $cont++;
+                if ($cont % 3 == 0){
+                ?>
+</div>
+<div class="row">
+    <?php
+                }
+            }
+        }
+            db_close();
+    }

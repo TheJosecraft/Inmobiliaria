@@ -71,9 +71,9 @@ sesiones(true);
                 $usuario = $_POST['usuario'];
                 $password = md5(md5($_POST['password']));
 
-                $datos = db_query("select id, nombre_usuario, pass from clientes");
+                $datos = db_query("select id, nombre_usuario, pass from clientes where nombre_usuario = '$usuario' and pass = '$password'");
+                $fila = mysqli_fetch_array($datos);
 
-                while($fila = mysqli_fetch_array($datos, MYSQLI_ASSOC)){
                     if($fila['nombre_usuario'] == $usuario && $fila['pass'] == $password){
                         $_SESSION['login_ok'] = true;
                         $_SESSION['usuario'] = $usuario;
@@ -87,7 +87,7 @@ sesiones(true);
                         <meta http-equiv="refresh" content="0;url=../../index.php">
                         <?php
                     }
-                }
+
             }
             ?>
         </div>

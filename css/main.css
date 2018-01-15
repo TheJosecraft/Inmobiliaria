@@ -82,6 +82,24 @@ img {
     background: rgba(0, 0, 0, 0.5);
 }
 
+::-moz-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-moz-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+::-moz-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+::-moz-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
 .hidden {
     display: none;
 }
