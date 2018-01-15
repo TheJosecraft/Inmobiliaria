@@ -49,7 +49,6 @@ sesiones();
                     <br>
                     <?php
             if(isset($_POST['buscar'])){
-
                 $busqueda = $_POST['buscar'];
                 inmuebles("select inm.id id_inm, inm.direccion, inm.descripcion, inm.precio, inm.id_cliente, inm.imagen, cli.nombre
                                 from inmuebles inm, clientes cli
@@ -65,12 +64,10 @@ sesiones();
                 </div>
             </div>
             <?php
-
             $cons_auto_inc = "SELECT AUTO_INCREMENT
                         FROM information_schema.TABLES
                         WHERE TABLE_SCHEMA =  'inmobiliaria'
 	                    and TABLE_NAME = 'inmuebles'";
-
     if (!$cons_auto_inc)
     {
         echo "Hay errores en la consulta";
@@ -111,12 +108,10 @@ sesiones();
                                         <select class="form-control" name="cliente" id="cliente">
                                             <?php
                                                 db_close();
-
                                                 $id_Cliente = db_query("select id, nombre, apellidos from clientes");
                                                 while($fila = mysqli_fetch_array($id_Cliente)){
                                                     echo "<option value=$fila[id]>$fila[nombre] $fila[apellidos]</option>";
                                                 }
-
                                                 db_close();
                                             ?>
                                         </select><span style="display:none"></span><span style="display:none"></span>
@@ -150,40 +145,32 @@ sesiones();
         $descripcion = $_POST['descripcion'];
         $precio = $_POST['precio'];
         $cliente = $_POST['cliente'];
-
         $imagen = $_FILES['imagen'];
-
         $rutaImg = "../../img/";
         $rutaInmuebles = $rutaImg."inmuebles/";
         $nombreImagen = "";
-
         //Se comprueba la dirección introducida
         if(!preg_match('`^[a-zA-Z0-9 ,ºáéíóúÁÉÍÓÚñÑ]{1,150}$`', $direccion)){
             $direccion = "Dirección errónea";
         }
-
         //Se comprueba el precio introducido
         if(!preg_match('`^[0-9]{1,12}$`', $precio)){
             $precio = "Precio erróneo";
         }
-
         if (!file_exists($rutaImg))
         {
             mkdir($rutaImg);
         }
-
         if (!file_exists($rutaInmuebles))
         {
             mkdir($rutaInmuebles);
         }
-
         switch ($imagen['type'])
         {
             case 'image/png':
                 $nombreImagen = "inmueble".$id.".png";
                 move_uploaded_file($imagen['tmp_name'], $rutaInmuebles.$nombreImagen);
                 break;
-
             case 'image/jpeg':
                 $nombreImagen = "inmueble".$id.".jpg";
                 move_uploaded_file($imagen['tmp_name'], $rutaInmuebles.$nombreImagen);
@@ -192,18 +179,14 @@ sesiones();
                 echo "El tipo de imagen no es correcto";
                 break;
         }
-
         $cons_ins_inmueble = "insert into inmuebles values (null,
                                                             '$direccion',
                                                             '$descripcion',
                                                             $precio,
                                                             $cliente,
                                                             '$nombreImagen')";
-
-
         db_query($cons_ins_inmueble);
         db_close();
-
         ?>
         <meta http-equiv="refresh" content="0;url=inmuebles.php?e=1">
         <?php

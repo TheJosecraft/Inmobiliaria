@@ -17,10 +17,14 @@ sesiones(true);
     ?>
     <div class="container" id="wrap">
        <h1>Mis inmuebles</h1>
-       <?php inmuebles("select * from inmuebles where id_cliente = $_SESSION[id_cliente]") ?>
+       <div class="row equal">
+           <?php inmuebles("select * from inmuebles where id_cliente = $_SESSION[id_cliente]") ?>
+        </div>
        </div>
     </div>
     </div>
+    </div>
+
     <?php
     footer();
     ?>
