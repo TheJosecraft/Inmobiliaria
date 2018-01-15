@@ -23,16 +23,18 @@ function tablaCitas($cons){
     ?>
     <br>
 <div class="row">
-    <div class="col-sm-12">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                Tabla de búsqueda
-            </div>
-            <div class="panel-body">
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
+   <div class="col-xs-12">
+       <div class="panel panel-primary">
+                       <div class="panel-heading">
+                           Tabla de citas
+                       </div>
+                       <div class="panel-body">
+
+
+
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
                                 <th>Motivo</th>
                                 <th>Lugar</th>
                                 <th>Fecha</th>
@@ -40,30 +42,81 @@ function tablaCitas($cons){
                                 <th>Cliente</th>
                                 <th>Teléfono 1</th>
                                 <th>Teléfono 2</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Hola</td>
-                                <td>Montilla</td>
-                                <td>13/01/2018</td>
-                                <td>14:00</td>
-                                <td>José Carlos Raya León</td>
-                                <td>638564461</td>
-                                <td>957655755</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                <th>Acciones</th>
+                            </thead>
+                            <tbody>
+                                <?php
+
+                    $clientes = db_query($cons);
+                    $paginacion = new Pagination(mysqli_num_rows($clientes));
+                    $limite = $paginacion->getNext();
+                    while($fila = mysqli_fetch_array($clientes, MYSQLI_ASSOC)){
+                        ?>
+
+                                    <tr>
+                                        <td>
+                                            <?php echo $fila['motivo']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $fila['lugar']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo date('d/m/Y', strtotime($fila['fecha'])) ?>
+                                        </td>
+                                        <td>
+                                            <?php echo substr($fila['hora'], 0, 5); ?>
+                                        </td>
+                                        <?php
+                                        $nombres = db_query("select nombre, apellidos from clientes where id = $fila[id_cliente]");
+                                        $nombre = mysqli_fetch_array($nombres);
+                                        ?>
+                                        <td>
+                                            <?php echo $nombre['nombre']. " " .$nombre['apellidos']; ?>
+                                        </td>
+                                        <?php
+                                        $telefonos = db_query("select telefono1, telefono2 from clientes where id = $fila[id_cliente]");
+                                        $telefono = mysqli_fetch_array($telefonos);
+                                        ?>
+                                        <td>
+                                            <?php echo $telefono['telefono1']; ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $telefono['telefono2']; ?>
+                                        </td>
+                                        <td>
+                                            <a class="btn-m" href="mod_cita.php?id=<?php echo $fila['id'] ?>">
+                                            <span class="fa fa-pencil"></span> Modificar   </a>
+
+                                            <a class="btn-r" href="del_cita.php?id=<?php echo $fila['id'] ?>">
+                                            <span class="fa fa-trash"></span> Eliminar</a>
+                                        </td>
+                                    </tr>
+
+                                    <?php
+                    }
+                    db_close();
+                    ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+<!--
+                <div class="panel-footer text-center">
+                    <ul class="pagination">
+                        <li><a href="clientes.php?pag=<?php echo $paginacion->getFirst(); ?>"><?php echo $paginacion->getFirst(); ?></a></li>
+                        <li><a href="<?php echo $paginacion->getRange(); ?>"><?php echo $paginacion->getRange(); ?></a></li>
+                        <li><a href="clientes.php?pag=<?php echo $paginacion->getLast(); ?>"><?php echo $paginacion->getLast(); ?></a></li>
+                    </ul>
+                </div>
+-->
             </div>
+   </div>
+
         </div>
 
-    </div>
-</div>
     <?php
-}
-    ?>
-
+    }
+        ?>
 
 <div class="container" id="wrap">
 
