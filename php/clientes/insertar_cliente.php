@@ -101,6 +101,43 @@ sesiones();
                     </form>
             </div>
             <?php
+            db_close();
+    if (isset($_POST['enviarInsCliente']))
+    {
+        $usuario = $_POST['usuario'];
+        $password = $_POST['password'];
+        $nombre = $_POST['nombre'];
+        $apellidos = $_POST['apellidos'];
+        $direccion = $_POST['direccion'];
+        $telefono1 = $_POST['telefono1'];
+        $telefono2 = $_POST['telefono2'];
+
+        if(!preg_match('`^[a-zA-Z ,ºáéíóúÁÉÍÓÚñÑ]{1,50}$`', $nombre)){
+            $nombre = "Nombre erróneo";
+        }
+
+        if(!preg_match('`^[a-zA-Z ,ºáéíóúÁÉÍÓÚñÑ]{1,50}$`', $apellidos)){
+            $apellidos = "Apellidos erróneos";
+        }
+
+        if(!preg_match('`^[0-9]{9}$`', $telefono1)){
+            $telefono1 = "Teléfono erróneo";
+        }
+
+        if(!preg_match('`^[0-9]{9}$`', $telefono2) && $telefono2 != ""){
+            $telefono2 = "Teléfono erróneo";
+        }
+
+        $password = md5(md5($password));
+
+        $insertar = db_query("insert into clientes values (null, '$nombre', '$apellidos', '$direccion', '$telefono1', '$telefono2', '$usuario', '$password')");
+        echo 'Los datos se han introducido correctamente';
+        db_close();
+        ?>
+                            <meta http-equiv="refresh" content="0;url=clientes.php?e=1">
+
+                            <?php
+    }
     footer();
     ?>
     </body>

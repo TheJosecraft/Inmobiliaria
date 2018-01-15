@@ -64,14 +64,53 @@ sesiones();
                         <input class="form-control" type="date" name="fecha" id="fecha"><span style="display:none"></span><span style="display:none"></span>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <a class="pull-left" href="citas.php">Volver</a>
                         <button type="submit" class="btn btn-primary" name="enviarInsCita" id="enviarInsCita">Insertar</button>
+                    </div>
+                    <div class="alert alert-warning" id="warning" style="display:none">
+
                     </div>
                     <div class="alert alert-danger" id="alerta" style="display:none">
 
                     </div>
                 </form>
             </div>
+            <?php
+            if(isset($_POST['enviarInsCita'])){
+                //Motivo de la cita
+                $motivo = $_POST['motivo'];
+
+                //Lugar de la cita
+                $lugar = $_POST['lugar'];
+
+                //Id de cliente
+                $cliente = $_POST['cliente'];
+
+                //Hora de la cita
+                $hora = $_POST['hora'];
+
+                //Fecha de la cita
+                $fecha = $_POST['fecha'];
+
+
+                if(!preg_match('`^[a-zA-Z0-9 ,ºáéíóúÁÉÍÓÚñÑ]{1,150}$`', $lugar)){
+                    $lugar = "Lugar erróneo";
+                }
+
+                if(!preg_match('`^[a-zA-Z ,ºáéíóúÁÉÍÓÚñÑ]{1,100}$`', $motivo)){
+                    $motivo = "Motivo erróneo";
+                }
+
+                //Inserción de datos en la base de datos
+                db_query("insert into citas values (null, '$fecha', '$hora', '$motivo', '$lugar', $cliente)");
+                db_close();
+                ?>
+<!--                   Recarga de la página para apreciar los cambios-->
+                       <meta http-equiv="refresh" content="0;url=citas.php?e=2">
+
+                        <?php
+            }
+        ?>
 
         <?php footer(); ?>
     </body>
