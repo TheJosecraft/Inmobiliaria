@@ -69,8 +69,7 @@ sesiones();
             }else{
                 $cons_clientes = "select * from clientes
                                         where id > 0
-                                        order by nombre
-                                        limit $_GET[pag],10";
+                                        order by nombre";
                 tablaClientes($cons_clientes);
             }
             $cons_auto_inc = "SELECT AUTO_INCREMENT
@@ -211,9 +210,9 @@ sesiones();
                                 <?php
 
                     $clientes = db_query($cons);
-                    $paginacion = new Pagination(mysqli_num_rows($clientes));
-                    $limite = $paginacion->getNext();
-                    echo $limite;
+//                    $paginacion = new Pagination(mysqli_num_rows($clientes));
+//                    $limite = $paginacion->getNext();
+//                    echo $limite;
                     while($fila = mysqli_fetch_array($clientes, MYSQLI_ASSOC)){
                         ?>
 
@@ -247,6 +246,7 @@ sesiones();
                         </table>
                     </div>
                 </div>
+<!--
                 <div class="panel-footer text-center">
                     <ul class="pagination">
                         <li><a href="clientes.php?pag=<?php echo $paginacion->getFirst(); ?>"><?php echo $paginacion->getFirst(); ?></a></li>
@@ -254,6 +254,7 @@ sesiones();
                         <li><a href="clientes.php?pag=<?php echo $paginacion->getLast(); ?>"><?php echo $paginacion->getLast(); ?></a></li>
                     </ul>
                 </div>
+-->
             </div>
 
                     <?php

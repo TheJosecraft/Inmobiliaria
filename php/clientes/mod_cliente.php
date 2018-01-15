@@ -1,3 +1,7 @@
+<?php
+include '../funciones.php';
+sesiones(true);
+?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -8,7 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar cliente</title>
     <?php
-    include '../funciones.php';
     cabecera();
     ?>
 </head>
@@ -43,13 +46,24 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                 <label for="nombre">Usuario</label>
-                                <input class="form-control" type="text" id="usuario" name="usuario" value="<?php echo $datos['nombre_usuario'] ?>" placeholder="Usuario"><span style="display:none"></span><span style="display:none"></span>
+                                <?php
+                                    if($_SESSION['usuario'] == "admin"){
+                                        ?>
+                                        <input class="form-control" type="text" id="usuario" name="usuario" value="<?php echo $datos['nombre_usuario'] ?>" placeholder="Usuario"><span style="display:none"></span><span style="display:none"></span>
+                                        <?php
+                                    }else{
+                                        ?>
+                                        <input class="form-control" type="text" id="usuario" name="usuario" value="<?php echo $datos['nombre_usuario'] ?>" placeholder="Usuario" readonly><span style="display:none"></span><span style="display:none"></span>
+                                        <?php
+                                    }
+                                ?>
                             </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                 <label for="nombre">Contraseña</label>
                                 <input class="form-control" type="password" id="password" name="password" placeholder="Contraseña"><span style="display:none"></span><span style="display:none"></span>
+
                         </div>
                             </div>
                         </div>
@@ -58,13 +72,35 @@
                             <div class="col-md-6">
                                 <div class=form-group>
                                 <label for="nombre">Nombre</label>
-                                <input class="form-control" type="text" id="nombre" name="nombre" value="<?php echo $datos['nombre'] ?>"><span style="display:none"></span><span style="display:none"></span>
+                                <?php
+                                    if($_SESSION['usuario'] == "admin"){
+                                        ?>
+                                        <input class="form-control" type="text" id="nombre" name="nombre" value="<?php echo $datos['nombre'] ?>"><span style="display:none"></span><span style="display:none"></span>
+                                        <?php
+                                    }else{
+                                        ?>
+                                        <input class="form-control" type="text" id="nombre" name="nombre" value="<?php echo $datos['nombre'] ?>" readonly><span style="display:none"></span><span style="display:none"></span>
+                                        <?php
+                                    }
+                                ?>
+
                         </div>
                             </div>
                             <div class="col-md-6">
                                 <div class=form-group>
                                 <label for="apellidos">Apellidos</label>
-                                <input class="form-control" type="text" id="apellidos" name="apellidos" value="<?php echo $datos['apellidos'] ?>"><span style="display:none"></span><span style="display:none"></span>
+                                <?php
+                                    if($_SESSION['usuario'] == "admin"){
+                                        ?>
+                                        <input class="form-control" type="text" id="apellidos" name="apellidos" value="<?php echo $datos['apellidos'] ?>"><span style="display:none"></span><span style="display:none"></span>
+                                        <?php
+                                    }else{
+                                        ?>
+                                        <input class="form-control" type="text" id="apellidos" name="apellidos" value="<?php echo $datos['apellidos'] ?>" readonly><span style="display:none"></span><span style="display:none"></span>
+                                        <?php
+                                    }
+                                ?>
+
                         </div>
                             </div>
                         </div>
@@ -129,8 +165,14 @@
             $telefono2 = "Teléfono erróneo";
         }
 
-        $password = md5(md5($password));
+        $viejaPassword = db_query("select pass from clientes where id = $_GET[id]");
+        $viejaPassword = mysqli_fetch_array($viejaPassword);
 
+        if($password != ""){
+            $password = md5(md5($password));
+        }else{
+            $password = $viejaPassword[0];
+        }
         $cons_mod = "update clientes
                     set nombre_usuario = '$usuario',
                     pass = '$password',
@@ -145,7 +187,7 @@
         db_close();
 
         ?>
-<!--        <meta http-equiv="refresh" content="0;url=clientes.php?e=1">-->
+        <meta http-equiv="refresh" content="0;url=../cliente/datos.php">
         <?php
     }
 

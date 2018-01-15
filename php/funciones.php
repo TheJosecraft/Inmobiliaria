@@ -734,7 +734,7 @@ class Pagination{
                                         <?php
                                     }
                                 ?>
-                    </div>
+
                 </div>
             </div>
             <?php
