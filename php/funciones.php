@@ -367,24 +367,25 @@ function log_out(){
         $cont = 0;
             ?>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-sm-5 col-md-3">
                     <ul class="pagination" id="calendar-pag">
                         <li><a href="?mesAnterior=<?php echo ($mes != 1 ? $mes - 1 : 12);?>&anio=<?php echo ($mes != 1 ? $anio : $anio - 1) ?>"><span class="fa fa-arrow-left"></span> Anterior</a></li>
                         <li><a href="?mesPosterior=<?php echo ($mes != 12 ? $mes + 1 : 1);?>&anio=<?php echo ($mes != 12 ? $anio : $anio + 1) ?>">Siguiente <span class="fa fa-arrow-right"></span></a></li>
                     </ul>
                 </div>
-                <div class="col-md-6 col-md-offset-2">
+                <div class="col-sm-5 col-md-6 col-md-offset-2">
                     <h2>
                         <?php echo nombreMes($mes).' '.$anio; ?>
                     </h2>
                 </div>
-                <div class="col-md-1">
+                <div class="col-sm-2 col-md-1">
                     <ul class="pagination" id="calendar-pag">
                         <li><a href="?mesActual=<?php echo date('m'); ?>">Actual</a></li>
                     </ul>
                 </div>
             </div>
-            <table class="table table-responsive table-bordered calendario">
+            <div class="table-responsive overflow">
+                <table class="table table-bordered calendario">
                <thead>
                 <tr>
                     <th>Lunes</th>
@@ -464,6 +465,7 @@ function log_out(){
         <tr>
             </tbody>
             </table>
+            </div>
             <?php
     }
 
@@ -717,12 +719,6 @@ function inmuebles($cons){
                                                     <a class="btn-r" href="del_inmueble.php?id=<?php echo $fila['id'] ?>" title="Eliminar">
                                                                 <span class="fa fa-trash"></span> Eliminar</a>
                                                 </div>
-                                                <!--
-                                                            <div class="col-xs-4 text-center">
-                                                                    <a class="btn-e" href="inmueble.php?id=<?php echo $fila['id'] ?>">
-                                                                    <span class="fa fa-eye"></span></a>
-                                                            </div>
-        -->
                                             </div>
                                         </div>
                                     <?php

@@ -5,6 +5,7 @@
 
 .table > thead > tr > th {
     text-align: center;
+    min-width: 100px;
 }
 
 .calendario tbody {
@@ -90,4 +91,8 @@ table-bordered > tfoot > tr > td,
 
 .table > thead > tr > th {
     text-align: left;
+}
+
+.overflow{
+    overflow-x: hidden;
 }
