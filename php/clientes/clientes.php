@@ -83,70 +83,7 @@ sesiones();
                 $fila = db_query($cons_auto_inc);
                 $id = mysqli_fetch_array($fila);
             }
-            ?>
-<!--                      Modal para insertar usuario-->
-                        <div class="modal fade" id="insCli" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Insertar cliente</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form action="#" method="post">
-                                            <div class="form-group">
-                                                <label for="id">Id</label>
-                                                <input class="form-control" type="text" name="id" value="<?php echo $id[0];?>" readonly>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="nombre">Usuario</label>
-                                                <input class="form-control" type="text" id="usuario" name="usuario" placeholder="Usuario"><span style="display:none"></span><span style="display:none"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="nombre">Contraseña</label>
-                                                <input class="form-control" type="password" id="password" name="password" placeholder="Contraseña"><span style="display:none"></span><span style="display:none"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="nombre">Nombre</label>
-                                                <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Nombre"><span style="display:none"></span><span style="display:none"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="apellidos">Apellidos</label>
-                                                <input class="form-control" type="text" id="apellidos" name="apellidos" placeholder="Apellidos"><span style="display:none"></span><span style="display:none"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="direccion">Dirección</label>
-                                                <input class="form-control" type="text" id="direccion" name="direccion" placeholder="Dirección"><span style="display:none"></span><span style="display:none"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="telefono1">Teléfono 1</label>
-                                                <input class="form-control" type="text" id="telefono1" name="telefono1" placeholder="Teléfono"><span style="display:none"></span><span style="display:none"></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="telefono2">Teléfono 2*</label>
-                                                <input class="form-control" type="text" id="telefono2" name="telefono2" placeholder="Teléfono"><span style="display:none"></span><span style="display:none"></span>
-                                            </div>
-                                            <p class="text-muted">* Estos campos son opcionales</p>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                                <button type="submit" class="btn btn-primary" id="enviarInsCliente" name="enviarInsCliente">Insertar</button>
-                                            </div>
-                                            <div class="alert alert-warning" id="warning" style="display:none">
 
-                                            </div>
-                                            <div class="alert alert-danger" id="alerta" style="display:none">
-
-                                            </div>
-                                        </form>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <?php
             db_close();
     if (isset($_POST['enviarInsCliente']))
     {
@@ -246,18 +183,9 @@ sesiones();
                         </table>
                     </div>
                 </div>
-<!--
-                <div class="panel-footer text-center">
-                    <ul class="pagination">
-                        <li><a href="clientes.php?pag=<?php echo $paginacion->getFirst(); ?>"><?php echo $paginacion->getFirst(); ?></a></li>
-                        <li><a href="<?php echo $paginacion->getRange(); ?>"><?php echo $paginacion->getRange(); ?></a></li>
-                        <li><a href="clientes.php?pag=<?php echo $paginacion->getLast(); ?>"><?php echo $paginacion->getLast(); ?></a></li>
-                    </ul>
-                </div>
--->
             </div>
 
-                    <?php
+        <?php
     }
     ?>
         </div>
