@@ -28,6 +28,7 @@ function menu ($pag = 1)
                             }else{
                             ?>
                             <li class="active"><a href="index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li><a href="php/inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
                             <li><a href="php/contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
 
                             <?php

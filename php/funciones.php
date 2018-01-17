@@ -50,6 +50,7 @@ function menu ($pag = 1)
                             }else{
                             ?>
                             <li class="active"><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
                             <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                         <?php
                             }
@@ -66,6 +67,7 @@ function menu ($pag = 1)
                             }else{
                             ?>
                             <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
                             <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                         <?php
                             }
@@ -82,6 +84,7 @@ function menu ($pag = 1)
                             }else{
                             ?>
                             <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
                             <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                         <?php
                             }
@@ -98,6 +101,7 @@ function menu ($pag = 1)
                             }else{
                             ?>
                             <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li class="active"><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
                             <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                         <?php
                             }
@@ -114,6 +118,7 @@ function menu ($pag = 1)
                             }else{
                             ?>
                             <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
                             <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                         <?php
                             }
@@ -130,6 +135,7 @@ function menu ($pag = 1)
                             }else{
                             ?>
                             <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
                             <li class="active"><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                         <?php
                             }
@@ -146,6 +152,7 @@ function menu ($pag = 1)
                             }else{
                             ?>
                             <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                            <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building-o"></i> Inmuebles</a></li>
                             <li><a href="../contacto/contacto.php"><i class="fa fa-envelope-o"></i> Contacto</a></li>
                         <?php
                             }
@@ -704,7 +711,7 @@ function inmuebles($cons){
                                 ?>
                                 </div>
                                 <?php
-                                if($_SESSION['usuario'] == "admin"){
+                                if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == "admin"){
                                     ?>
                                     <hr>
                                         <div class="row center-block">

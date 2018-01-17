@@ -1,6 +1,6 @@
 <?php
 include '../funciones.php';
-sesiones();
+sesiones(true);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +24,9 @@ sesiones();
                 <div class="col-md-12" id="ver">
                     <h1>Inmuebles</h1>
                     <div class="row">
+                       <?php
+                        if(isset($_SESSION['usuario']) && $_SESSION['usuario'] == "admin"){
+                            ?>
                         <div class="col-sm-6 col-md-7 col-lg-8 hidden-xs">
                             <a class="btn bg-primary" data-toggle="modal" data-target="#insInm"><span class="fa fa-building-o"></span> Nuevo Inmueble</a>
                         </div>
@@ -31,6 +34,9 @@ sesiones();
                         <div class="col-xs-12 hidden-sm hidden-md hidden-lg" id="btn-xs-ins">
                             <a class="btn bg-primary btn-block" data-toggle="modal" data-target="#insInm"><span class="fa fa-building-o"></span> Nuevo Inmueble</a>
                         </div>
+                            <?php
+                        }
+                        ?>
 
                         <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4 text-right">
                             <form action="#" method="post">
