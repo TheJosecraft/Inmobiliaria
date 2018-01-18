@@ -38,7 +38,7 @@
                 </div>
                 <div class="form-group">
                     <label for="descripcion">Descripción</label>
-                    <textarea class="form-control" name="descripcion" maxlength="560" rows="15" id="descripcion" placeholder="Introduce la descripción del inmueble"></textarea><span style="display:none"></span><span style="display:none"></span>
+                    <textarea class="form-control" name="descripcion" maxlength="560" rows="10" id="descripcion" placeholder="Introduce la descripción del inmueble"></textarea><span style="display:none"></span><span style="display:none"></span>
                 </div>
                 <div class="form-group">
                     <label for="precio">Precio</label>
