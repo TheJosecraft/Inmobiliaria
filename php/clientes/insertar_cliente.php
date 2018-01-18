@@ -7,6 +7,7 @@ sesiones();
 
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title>Insertar Cliente</title>
         <?php
     cabecera();
@@ -41,7 +42,7 @@ sesiones();
                             <div class="col-md-6">
                                 <div class="form-group">
                             <label for="nombre">Usuario</label>
-                            <input class="form-control" type="text" id="usuario" name="usuario" placeholder="Usuario"><span style="display:none"></span><span style="display:none"></span>
+                            <input class="form-control" type="text" id="usuario" name="usuario" placeholder="Usuario" autofocus><span style="display:none"></span><span style="display:none"></span>
                         </div>
                             </div>
                             <div class="col-md-6">

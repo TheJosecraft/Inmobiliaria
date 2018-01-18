@@ -7,6 +7,7 @@ sesiones(true);
 
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title>Acceder</title>
         <?php
     cabecera();
@@ -33,7 +34,7 @@ sesiones(true);
 
                                     <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                        <input id="usuario" type="text" class="form-control" name="usuario" value="" placeholder="usuario">
+                                        <input id="usuario" type="text" class="form-control" name="usuario" value="" placeholder="usuario" autofocus>
                                     </div>
 
                                     <div style="margin-bottom: 25px" class="input-group">

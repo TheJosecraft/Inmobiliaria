@@ -201,11 +201,11 @@ function footer ()
 <footer class="text-center footer">
     <div class="container-fluid text-center">
         <div class="row">
-          <div class="col-xs-12 col-md-4">
+          <div class="col-xs-12 col-sm-12 col-md-4">
                 <p>Realizado por José Carlos Raya León ©
                     <?php echo date('Y') ?> EAG.</p>
             </div>
-           <div class="col-xs-12 col-md-4">
+           <div class="col-xs-12 col-sm-12 col-md-4">
                 <ul class="list-inline">
                     <li><a href="http://instagram.com"><i class="fa fa-instagram fa-2x"></i></a></li>
                     <li><a href="http://facebook.com"><i class="fa fa-facebook fa-2x"></i></a></li>
@@ -213,7 +213,7 @@ function footer ()
                     <li><a href="http://plus.google.com"><i class="fa fa-google-plus fa-2x"></i></a></li>
                 </ul>
             </div>
-            <div class="col-xs-12 col-md-4">
+            <div class="col-xs-12 col-sm-12 col-md-4">
                <ul class="list-inline">
                    <li><i class="fa fa-phone"></i> 958625452</li>
                    <li><a href="../contacto/contacto.php"><i class="fa fa-envelope"></i> Contacto</a></li>
@@ -373,25 +373,48 @@ function log_out(){
         $celdas = 0;
         $cont = 0;
             ?>
-            <div class="row">
-                <div class="col-sm-5 col-md-3">
+            <div class="row hidden-xs">
+                <div class="col-sm-4 col-md-3">
                     <ul class="pagination" id="calendar-pag">
                         <li><a href="?mesAnterior=<?php echo ($mes != 1 ? $mes - 1 : 12);?>&anio=<?php echo ($mes != 1 ? $anio : $anio - 1) ?>"><span class="fa fa-arrow-left"></span> Anterior</a></li>
                         <li><a href="?mesPosterior=<?php echo ($mes != 12 ? $mes + 1 : 1);?>&anio=<?php echo ($mes != 12 ? $anio : $anio + 1) ?>">Siguiente <span class="fa fa-arrow-right"></span></a></li>
                     </ul>
                 </div>
-                <div class="col-sm-5 col-md-6 col-md-offset-2">
+                <div class=" col-sm-6 col-sm-offset-1 col-md-6 col-md-offset-2">
                     <h2>
                         <?php echo nombreMes($mes).' '.$anio; ?>
                     </h2>
                 </div>
-                <div class="col-sm-2 col-md-1">
+                <div class="col-sm-1 col-sm-pull-1 col-md-1">
                     <ul class="pagination" id="calendar-pag">
                         <li><a href="?mesActual=<?php echo date('m'); ?>">Actual</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="table-responsive overflow">
+            <div class="row visible-xs">
+                <div class=" col-sm-6 col-sm-offset-1 col-md-6 col-md-offset-2">
+                    <h2>
+                        <?php echo nombreMes($mes).' '.$anio; ?>
+                    </h2>
+                </div>
+            </div>
+            <div class="row visible-xs">
+                <div class="col-xs-9 col-sm-4 col-md-3">
+                    <ul class="pagination" id="calendar-pag">
+                        <li><a href="?mesAnterior=<?php echo ($mes != 1 ? $mes - 1 : 12);?>&anio=<?php echo ($mes != 1 ? $anio : $anio - 1) ?>"><span class="fa fa-arrow-left"></span> Anterior</a></li>
+                        <li><a href="?mesPosterior=<?php echo ($mes != 12 ? $mes + 1 : 1);?>&anio=<?php echo ($mes != 12 ? $anio : $anio + 1) ?>">Siguiente <span class="fa fa-arrow-right"></span></a></li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-3 col-sm-1 col-sm-pull-1 col-md-1">
+                    <ul class="pagination" id="calendar-pag">
+                        <li><a href="?mesActual=<?php echo date('m'); ?>">Actual</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="table-responsive overflow">
                 <table class="table table-bordered calendario">
                <thead>
                 <tr>
@@ -473,6 +496,9 @@ function log_out(){
             </tbody>
             </table>
             </div>
+                </div>
+            </div>
+
             <?php
     }
 

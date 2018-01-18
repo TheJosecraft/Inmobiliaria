@@ -21,13 +21,14 @@ sesiones(true);
 
         <div class="container" id="wrap">
             <div class="row">
-               <h1>Contacto</h1>
+              <div class="col-xs-12">
+                  <h1>Contacto</h1>
                 <form action="">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="form_name">Nombre *</label>
-                                <input id="form_name" type="text" name="name" class="form-control" placeholder="Por favor, introduce tu nombre *" required="required" data-error="El nombre es obligatorio.">
+                                <input id="form_name" type="text" name="name" class="form-control" placeholder="Por favor, introduce tu nombre *" required="required" data-error="El nombre es obligatorio." autofocus>
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
@@ -73,6 +74,8 @@ sesiones(true);
                         </div>
                     </div>
                 </form>
+              </div>
+
             </div>
         </div>
 

@@ -1,7 +1,3 @@
-var nombre = false;
-var apellidos = false;
-var direccion = false;
-var telefono1 = false;
 var descripcion = false;
 var titular = false;
 var contenido = false;
@@ -568,6 +564,6 @@ window.addEventListener("load", Inicio);
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
 
-    $('[data-toggle="popover"]').popover({container: 'body', trigger: 'click hover', placement: 'auto'});
+    $('[data-toggle="popover"]').popover({container: 'body', trigger: 'hover focus', placement: 'auto'});
 });
 

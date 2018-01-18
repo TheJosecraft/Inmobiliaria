@@ -7,7 +7,8 @@ sesiones();
 
     <head>
         <meta charset="UTF-8">
-        <title>Citas 2</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title>Citas</title>
         <?php
     cabecera();
     ?>
@@ -100,15 +101,6 @@ function tablaCitas($cons){
                         </table>
                     </div>
                 </div>
-<!--
-                <div class="panel-footer text-center">
-                    <ul class="pagination">
-                        <li><a href="clientes.php?pag=<?php echo $paginacion->getFirst(); ?>"><?php echo $paginacion->getFirst(); ?></a></li>
-                        <li><a href="<?php echo $paginacion->getRange(); ?>"><?php echo $paginacion->getRange(); ?></a></li>
-                        <li><a href="clientes.php?pag=<?php echo $paginacion->getLast(); ?>"><?php echo $paginacion->getLast(); ?></a></li>
-                    </ul>
-                </div>
--->
             </div>
    </div>
 

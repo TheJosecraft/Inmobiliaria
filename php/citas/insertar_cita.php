@@ -7,6 +7,7 @@ sesiones();
 
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title>Insertar cita</title>
         <?php cabecera() ?>
     </head>
@@ -36,7 +37,7 @@ sesiones();
                     </div>
                     <div class="form-group">
                         <label for="">Motivo</label>
-                        <input class="form-control" type="text" name="motivo" id="motivo"><span style="display:none"></span><span style="display:none"></span>
+                        <input class="form-control" type="text" name="motivo" id="motivo" autofocus><span style="display:none"></span><span style="display:none"></span>
                     </div>
                     <div class="form-group">
                         <label for="">Lugar</label>

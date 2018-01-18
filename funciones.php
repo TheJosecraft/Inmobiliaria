@@ -80,11 +80,11 @@ function footer ()
 <footer class="text-center footer">
     <div class="container-fluid text-center">
         <div class="row">
-          <div class="col-xs-12 col-md-4">
+          <div class="col-xs-12 col-sm-12 col-lg-4">
                 <p>Realizado por José Carlos Raya León ©
                     <?php echo date('Y') ?> EAG.</p>
             </div>
-           <div class="col-xs-12 col-md-4">
+           <div class="col-xs-12 col-sm-12 col-lg-4">
                 <ul class="list-inline">
                     <li><a href="http://instagram.com"><i class="fa fa-instagram fa-2x"></i></a></li>
                     <li><a href="http://facebook.com"><i class="fa fa-facebook fa-2x"></i></a></li>
@@ -92,7 +92,7 @@ function footer ()
                     <li><a href="http://plus.google.com"><i class="fa fa-google-plus fa-2x"></i></a></li>
                 </ul>
             </div>
-            <div class="col-xs-12 col-md-4">
+            <div class="col-xs-12 col-sm-12 col-lg-4">
                <ul class="list-inline">
                    <li><i class="fa fa-phone"></i> 958625452</li>
                    <li><a href="php/contacto/contacto.php"><i class="fa fa-envelope"></i> Contacto</a></li>

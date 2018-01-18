@@ -39,8 +39,19 @@ sesiones(true);
             ?>
                     <form action=# method=post>
                         <div class=form-group>
-                            <label for="id">Id</label>
-                            <input class="form-control" type="text" id="id" name="id" value="<?php echo $datos['id'] ?>" readonly>
+                            <?php
+                                    if($_SESSION['usuario'] == "admin"){
+                                        ?>
+                                        <label for="id">Id</label>
+                                        <input class="form-control" type="text" id="id" name="id" value="<?php echo $datos['id'] ?>" readonly>
+                                        <?php
+                                    }else{
+                                        ?>
+                                        <input class="form-control" type="hidden" id="id" name="id" value="<?php echo $datos['id'] ?>" readonly>
+                                        <?php
+                                    }
+                                ?>
+
                         </div>
                         <div class="row">
                             <div class="col-md-6">
