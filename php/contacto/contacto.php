@@ -64,13 +64,12 @@ sesiones(true);
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <input type="submit" class="btn btn-primary btn-send" value="Enviar">
-                        </div>
                     </div>
+                    <hr>
                     <div class="row">
                         <div class="col-md-12">
-                            <p class="text-muted"><strong>*</strong> Estos campos son obligatorios.</p>
+                            <p class="text-muted pull-left"><strong>*</strong> Estos campos son obligatorios.</p>
+                            <input type="submit" class="btn btn-primary btn-send pull-right" value="Enviar">
                         </div>
                     </div>
                 </form>

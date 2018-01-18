@@ -24,57 +24,65 @@
         $id = mysqli_fetch_array($fila);
     }
     ?>
-    <div class="container" id="wrap">
-        <div class="row">
-            <h1>Insertar inmueble</h1>
-            <form action="#" method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="id">Id</label>
-                    <input class="form-control" type="text" name="id" value="<?php echo $id[0];?>" readonly><span style="display:none"></span><span style="display:none"></span>
-                </div>
-                <div class="form-group">
-                    <label for="direccion">Dirección</label>
-                    <input class="form-control" type="text" name="direccion" id="direccion" placeholder="Introduce la dirección del inmueble"><span style="display:none"></span><span style="display:none"></span>
-                </div>
-                <div class="form-group">
-                    <label for="descripcion">Descripción</label>
-                    <textarea class="form-control" name="descripcion" maxlength="560" rows="10" id="descripcion" placeholder="Introduce la descripción del inmueble"></textarea><span style="display:none"></span><span style="display:none"></span>
-                </div>
-                <div class="form-group">
-                    <label for="precio">Precio</label>
-                    <input class="form-control" type="text" name="precio" id="precio" placeholder="Introduce el precio del inmueble"><span style="display:none"></span><span style="display:none"></span>
-                </div>
-                <div class="form-group">
-                    <label for="cliente">Cliente</label>
-                    <select class="form-control" name="cliente" id="cliente">
-                        <?php
-                            db_close();
-                            $id_Cliente = db_query("select id, nombre, apellidos from clientes");
-                            while($fila = mysqli_fetch_array($id_Cliente)){
-                                echo "<option value=$fila[id]>$fila[nombre] $fila[apellidos]</option>";
-                            }
-                            db_close();
-                        ?>
+        <div class="container" id="wrap">
+            <div class="row">
+                <h1>Insertar inmueble</h1>
+                <form action="#" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="id">Id</label>
+                        <input class="form-control" type="text" name="id" value="<?php echo $id[0];?>" readonly><span style="display:none"></span><span style="display:none"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion">Dirección</label>
+                        <input class="form-control" type="text" name="direccion" id="direccion" placeholder="Introduce la dirección del inmueble"><span style="display:none"></span><span style="display:none"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripción</label>
+                        <textarea class="form-control" name="descripcion" maxlength="560" rows="8" id="descripcion" placeholder="Introduce la descripción del inmueble"></textarea><span style="display:none"></span><span style="display:none"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="precio">Precio</label>
+                                <input class="form-control" type="text" name="precio" id="precio" placeholder="Introduce el precio del inmueble"><span style="display:none"></span><span style="display:none"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="cliente">Cliente</label>
+                                <select class="form-control" name="cliente" id="cliente">
+                                    <?php
+                                        db_close();
+                                        $id_Cliente = db_query("select id, nombre, apellidos from clientes");
+                                        while($fila = mysqli_fetch_array($id_Cliente)){
+                                            echo "<option value=$fila[id]>$fila[nombre] $fila[apellidos]</option>";
+                                        }
+                                        db_close();
+                                    ?>
                     </select><span style="display:none"></span><span style="display:none"></span>
-                </div>
-                <div class="form-group">
-                    <label for="imagen">Imagen</label>
-                    <input class="form-control" type="file" name="imagen" id="imagen"><span style="display:none"></span><span style="display:none"></span>
-                </div>
-                <div class="modal-footer">
-                    <a href="inmuebles.php" class="pull-left">Volver</a>
-                    <button type="submit" class="btn btn-primary" name="enviarInsInmueble" id="enviarInsInmueble">Insertar</button>
-                </div>
-                <div class="alert alert-warning" id="warning" style="display:none">
+                            </div>
+                        </div>
+                    </div>
 
-                </div>
-                <div class="alert alert-danger" id="alerta" style="display:none">
 
-                </div>
-            </form>
+                    <div class="form-group">
+                        <label for="imagen">Imagen</label>
+                        <input class="form-control" type="file" name="imagen" id="imagen"><span style="display:none"></span><span style="display:none"></span>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="inmuebles.php" class="pull-left">Volver</a>
+                        <button type="submit" class="btn btn-primary" name="enviarInsInmueble" id="enviarInsInmueble">Insertar</button>
+                    </div>
+                    <div class="alert alert-warning" id="warning" style="display:none">
+
+                    </div>
+                    <div class="alert alert-danger" id="alerta" style="display:none">
+
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-    <?php
+        <?php
     if (isset($_POST['enviarInsInmueble'])){
         $id = $_POST['id'];
         $direccion = $_POST['direccion'];
@@ -124,11 +132,11 @@
         db_query($cons_ins_inmueble);
         db_close();
         ?>
-        <meta http-equiv="refresh" content="0;url=inmuebles.php?e=1">
-        <?php
+            <meta http-equiv="refresh" content="0;url=inmuebles.php?e=1">
+            <?php
     }
     ?>
-    <?php footer() ?>
+                <?php footer() ?>
 </body>
 
 </html>
