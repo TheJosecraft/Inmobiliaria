@@ -2,23 +2,23 @@
 include '../funciones.php';
 sesiones(true);
 ?>
-<!DOCTYPE html>
+    <!DOCTYPE html>
 
-<html lang="en">
+    <html lang="en">
 
-<head>
+    <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modificar cliente</title>
-    <?php
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Modificar cliente</title>
+        <?php
     cabecera();
     ?>
-</head>
+    </head>
 
-<body>
+    <body>
 
-    <?php
+        <?php
 
          $cons_cliente = "select *
                             from clientes
@@ -27,24 +27,24 @@ sesiones(true);
             {
                 echo "Hay un error en la consulta";
             }?>
-        <?php
+            <?php
         menu(3);
         ?>
-            <div class="container" id="wrap">
-                <h1>Modificar cliente</h1>
+                <div class="container" id="wrap">
+                    <h1>Modificar cliente</h1>
 
-                <?php
+                    <?php
             $datos = db_query($cons_cliente);
             $datos = mysqli_fetch_array($datos, MYSQLI_ASSOC);
             ?>
-                    <form action=# method=post>
-                        <div class=form-group>
-                            <?php
+                        <form action=# method=post>
+                            <div class=form-group>
+                                <?php
                                     if($_SESSION['usuario'] == "admin"){
                                         ?>
-                                        <label for="id">Id</label>
-                                        <input class="form-control" type="text" id="id" name="id" value="<?php echo $datos['id'] ?>" readonly>
-                                        <?php
+                                    <label for="id">Id</label>
+                                    <input class="form-control" type="text" id="id" name="id" value="<?php echo $datos['id'] ?>" readonly>
+                                    <?php
                                     }else{
                                         ?>
                                         <input class="form-control" type="hidden" id="id" name="id" value="<?php echo $datos['id'] ?>" readonly>
@@ -52,101 +52,112 @@ sesiones(true);
                                     }
                                 ?>
 
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                <label for="nombre">Usuario</label>
-                                <?php
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="nombre">Usuario</label>
+                                        <?php
                                     if($_SESSION['usuario'] == "admin"){
                                         ?>
-                                        <input class="form-control" type="text" id="usuario" name="usuario" value="<?php echo $datos['nombre_usuario'] ?>" placeholder="Usuario"><span style="display:none"></span><span style="display:none"></span>
-                                        <?php
+                                            <input class="form-control" type="text" id="usuario" name="usuario" value="<?php echo $datos['nombre_usuario'] ?>" placeholder="Usuario"><span style="display:none"></span><span style="display:none"></span>
+                                            <?php
                                     }else{
                                         ?>
-                                        <input class="form-control" type="text" id="usuario" name="usuario" value="<?php echo $datos['nombre_usuario'] ?>" placeholder="Usuario" readonly><span style="display:none"></span><span style="display:none"></span>
-                                        <?php
+                                                <input class="form-control" type="text" id="usuario" name="usuario" value="<?php echo $datos['nombre_usuario'] ?>" placeholder="Usuario" readonly><span style="display:none"></span><span style="display:none"></span>
+                                                <?php
                                     }
                                 ?>
-                            </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                <label for="nombre">Contraseña</label>
-                                <input class="form-control" type="password" id="password" name="password" placeholder="Contraseña"><span style="display:none"></span><span style="display:none"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="nombre">Contraseña</label>
+                                        <input class="form-control" type="password" id="password" name="password" placeholder="Contraseña"><span style="display:none"></span><span style="display:none"></span>
 
-                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class=form-group>
-                                <label for="nombre">Nombre</label>
-                                <?php
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class=form-group>
+                                        <label for="nombre">Nombre</label>
+                                        <?php
                                     if($_SESSION['usuario'] == "admin"){
                                         ?>
-                                        <input class="form-control" type="text" id="nombre" name="nombre" value="<?php echo $datos['nombre'] ?>"><span style="display:none"></span><span style="display:none"></span>
-                                        <?php
+                                            <input class="form-control" type="text" id="nombre" name="nombre" value="<?php echo $datos['nombre'] ?>"><span style="display:none"></span><span style="display:none"></span>
+                                            <?php
                                     }else{
                                         ?>
-                                        <input class="form-control" type="text" id="nombre" name="nombre" value="<?php echo $datos['nombre'] ?>" readonly><span style="display:none"></span><span style="display:none"></span>
-                                        <?php
-                                    }
-                                ?>
-
-                        </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class=form-group>
-                                <label for="apellidos">Apellidos</label>
-                                <?php
-                                    if($_SESSION['usuario'] == "admin"){
-                                        ?>
-                                        <input class="form-control" type="text" id="apellidos" name="apellidos" value="<?php echo $datos['apellidos'] ?>"><span style="display:none"></span><span style="display:none"></span>
-                                        <?php
-                                    }else{
-                                        ?>
-                                        <input class="form-control" type="text" id="apellidos" name="apellidos" value="<?php echo $datos['apellidos'] ?>" readonly><span style="display:none"></span><span style="display:none"></span>
-                                        <?php
+                                                <input class="form-control" type="text" id="nombre" name="nombre" value="<?php echo $datos['nombre'] ?>" readonly><span style="display:none"></span><span style="display:none"></span>
+                                                <?php
                                     }
                                 ?>
 
-                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class=form-group>
+                                        <label for="apellidos">Apellidos</label>
+                                        <?php
+                                    if($_SESSION['usuario'] == "admin"){
+                                        ?>
+                                            <input class="form-control" type="text" id="apellidos" name="apellidos" value="<?php echo $datos['apellidos'] ?>"><span style="display:none"></span><span style="display:none"></span>
+                                            <?php
+                                    }else{
+                                        ?>
+                                                <input class="form-control" type="text" id="apellidos" name="apellidos" value="<?php echo $datos['apellidos'] ?>" readonly><span style="display:none"></span><span style="display:none"></span>
+                                                <?php
+                                    }
+                                ?>
+
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class=form-group>
-                            <label for="direccion">Dirección</label>
-                            <input class="form-control" type="text" id="direccion" name="direccion" value="<?php echo $datos['direccion'] ?>"><span style="display:none"></span><span style="display:none"></span>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class=form-group>
-                                <label for="telefono1">Teléfono 1</label>
-                                <input class="form-control" type="text" id="telefono1" name="telefono1" value="<?php echo $datos['telefono1'] ?>"><span style="display:none"></span><span style="display:none"></span>
-                        </div>
+                            <div class=form-group>
+                                <label for="direccion">Dirección</label>
+                                <input class="form-control" type="text" id="direccion" name="direccion" value="<?php echo $datos['direccion'] ?>"><span style="display:none"></span><span style="display:none"></span>
                             </div>
-                            <div class="col-md-6">
-                                <div class=form-group>
-                                <label for="telefono2">Telefono 2</label>
-                                <input class="form-control" type="text" id="telefono2" name="telefono2" value="<?php echo $datos['telefono2'] ?>"><span style="display:none"></span><span style="display:none"></span>
-                        </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class=form-group>
+                                        <label for="telefono1">Teléfono 1</label>
+                                        <input class="form-control" type="text" id="telefono1" name="telefono1" value="<?php echo $datos['telefono1'] ?>"><span style="display:none"></span><span style="display:none"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class=form-group>
+                                        <label for="telefono2">Telefono 2</label>
+                                        <input class="form-control" type="text" id="telefono2" name="telefono2" value="<?php echo $datos['telefono2'] ?>"><span style="display:none"></span><span style="display:none"></span>
+                                    </div>
+                                </div>
                             </div>
+
+                            <div class="form-group">
+                                <?php
+                                if($_SESSION['usuario'] == "admin"){
+                                  ?>
+                                    <a class="pull-left" href="clientes.php">Volver</a>
+                                    <?php
+                                }else{
+                                    ?>
+                                    <a class="pull-left" href="../cliente/datos.php">Volver</a>
+                                    <?php
+                                }
+                                ?>
+
+                                    <input class="btn btn-primary pull-right" type="submit" id="enviarInsCliente" name="enviarModCliente">
+                            </div>
+
+                        </form>
+                        <div class="alert alert-warning" id="warning" style="display:none">
+
                         </div>
+                        <div class="alert alert-danger" id="alerta" style="display:none">
 
-                        <div class="form-group">
-                            <input class="btn btn-primary" type="submit" id="enviarInsCliente" name="enviarModCliente">
-                            <input class="btn btn-default" type="reset">
                         </div>
-
-                    </form>
-                    <div class="alert alert-warning" id="warning" style="display:none">
-
-                    </div>
-                    <div class="alert alert-danger" id="alerta" style="display:none">
-
-                    </div>
-                    <?php
+                        <?php
             db_close();
 
     if (isset($_POST['enviarModCliente']))
@@ -198,16 +209,16 @@ sesiones(true);
         db_close();
 
         ?>
-        <meta http-equiv="refresh" content="0;url=../cliente/datos.php">
-        <?php
+                            <meta http-equiv="refresh" content="0;url=../cliente/datos.php">
+                            <?php
     }
 
     ?>
-            </div>
+                </div>
 
-            <?php
+                <?php
     footer();
     ?>
-</body>
+    </body>
 
-</html>
+    </html>

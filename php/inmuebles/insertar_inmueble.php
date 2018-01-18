@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <?php menu(3) ?>
+    <?php menu(4) ?>
     <?php
     $cons_auto_inc = "SELECT AUTO_INCREMENT
                 FROM information_schema.TABLES

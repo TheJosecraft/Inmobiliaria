@@ -1,22 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- version 4.2.7.1
+-- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-01-2018 a las 01:42:22
--- Versión del servidor: 10.1.26-MariaDB
--- Versión de PHP: 7.1.9
+-- Tiempo de generación: 18-01-2018 a las 13:02:57
+-- Versión del servidor: 5.6.20
+-- Versión de PHP: 5.5.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `inmobiliaria`
@@ -28,14 +26,14 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `citas`
 --
 
-CREATE TABLE `citas` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `citas` (
+`id` bigint(20) unsigned NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
   `motivo` varchar(100) NOT NULL,
   `lugar` varchar(150) NOT NULL,
   `id_cliente` bigint(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Volcado de datos para la tabla `citas`
@@ -54,8 +52,8 @@ INSERT INTO `citas` (`id`, `fecha`, `hora`, `motivo`, `lugar`, `id_cliente`) VAL
 -- Estructura de tabla para la tabla `clientes`
 --
 
-CREATE TABLE `clientes` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `clientes` (
+`id` bigint(20) unsigned NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
   `direccion` varchar(150) NOT NULL,
@@ -63,18 +61,32 @@ CREATE TABLE `clientes` (
   `telefono2` varchar(9) NOT NULL,
   `nombre_usuario` varchar(15) NOT NULL,
   `pass` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Volcado de datos para la tabla `clientes`
 --
 
 INSERT INTO `clientes` (`id`, `nombre`, `apellidos`, `direccion`, `telefono1`, `telefono2`, `nombre_usuario`, `pass`) VALUES
-(0, 'Disponible', '', '', '', '', '', ''),
-(1, 'José Carlos', 'Raya León', 'Avenida de la Constitución 17, 3ºP', '957655755', '638564461', 'rokkay', '1241bf48fccae086558fed2958eb188e'),
+(0, 'Administrador', 'Administrador', 'Calle Doctor Olóriz, 8', '958546982', '', 'admin', 'c3284d0f94606de1fd2af172aba15bf3'),
+(1, 'José Carlos', 'Raya León', 'Avenida de la Constitución 17, 4ºP', '957655755', '638564461', 'rokkay', '1241bf48fccae086558fed2958eb188e'),
 (2, 'Álvaro', 'Raya León', 'Calle la Parra 5, 2ºE', '957652162', '', 'ghostpower', '2418e2549d1fc9cbdfaae2c24faf013e'),
 (3, 'Antonio', 'Aguayo Torres', 'Calle Cuesta de las Caballeras', '957862154', '', '', ''),
-(6, 'Administrador', 'Administrador', 'Calle Doctor Olóriz, 8', '958546982', '', 'admin', 'c3284d0f94606de1fd2af172aba15bf3');
+(7, 'Abel', 'Villén', 'Calle Margarita 14 6E', '958674924', '', 'abel', '1f32aa4c9a1d2ea010adcf2348166a04'),
+(8, 'Isaac', 'Pérez', 'Avenida de la Gloria 47 2D', '958412356', '', 'isaac', '1f32aa4c9a1d2ea010adcf2348166a04'),
+(9, 'Alonso', 'de la Rosa', 'Calle Mulhacén 5', '642578951', '', 'alonso', '1f32aa4c9a1d2ea010adcf2348166a04'),
+(10, 'Carlos', 'Fernández', 'Calle el Boli 45', '958715632', '', 'carlos', '1f32aa4c9a1d2ea010adcf2348166a04'),
+(11, 'Antonio', 'Mesa', 'Avenida de la Aceituna 2', '951236857', '', 'antonio', '1f32aa4c9a1d2ea010adcf2348166a04'),
+(12, 'Jorge', 'Heyens', 'Calle Aquí al lado 23', '958745621', '', 'jorge', '1f32aa4c9a1d2ea010adcf2348166a04'),
+(13, 'Javier', 'Ureña', 'Avenida de los Gitanos 8 6A', '638457129', '', 'javier', '1f32aa4c9a1d2ea010adcf2348166a04'),
+(14, 'Marina', 'Jiménez', 'Calle Escuelas 3', '957641258', '', 'marina', '1f32aa4c9a1d2ea010adcf2348166a04'),
+(15, 'Pepe', 'Castillo', 'Plaza de la Merced 7', '952146523', '', 'pepe', '1f32aa4c9a1d2ea010adcf2348166a04'),
+(16, 'Germán', 'Bécker', 'Calle el Meme 54', '956784218', '', 'german', '1f32aa4c9a1d2ea010adcf2348166a04'),
+(17, 'Vanesa', 'Espín Martín', 'Calle Doctor Olóriz 8', '958761325', '', 'vanesa', '1f32aa4c9a1d2ea010adcf2348166a04'),
+(18, 'Chari', 'Vargas Plata', 'Calle Doctor Olóriz 8', '958476214', '', 'chari', '1f32aa4c9a1d2ea010adcf2348166a04'),
+(19, 'Manolo', 'Ramos', 'Calle Falsa 123', '666999666', '', 'manolo', '1f32aa4c9a1d2ea010adcf2348166a04'),
+(20, 'Rubén', 'Segura', 'Calle Teide 25', '956354721', '', 'ruben', '1f32aa4c9a1d2ea010adcf2348166a04'),
+(21, 'Alejandro', 'Pérez', 'Camino de Ronda 42', '987456123', '', 'alejandro', '1f32aa4c9a1d2ea010adcf2348166a04');
 
 -- --------------------------------------------------------
 
@@ -82,14 +94,14 @@ INSERT INTO `clientes` (`id`, `nombre`, `apellidos`, `direccion`, `telefono1`, `
 -- Estructura de tabla para la tabla `inmuebles`
 --
 
-CREATE TABLE `inmuebles` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `inmuebles` (
+`id` bigint(20) unsigned NOT NULL,
   `direccion` varchar(150) NOT NULL,
   `descripcion` varchar(560) NOT NULL,
   `precio` decimal(12,2) NOT NULL,
   `id_cliente` bigint(20) NOT NULL,
   `imagen` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Volcado de datos para la tabla `inmuebles`
@@ -100,7 +112,7 @@ INSERT INTO `inmuebles` (`id`, `direccion`, `descripcion`, `precio`, `id_cliente
 (2, 'Torrelodones', 'Chalet independiente de diseño en tres alturas construido en el año 2007 con vistas panorámicas del noroeste de Madrid y la sierra de Gredos. Situado en La Berzosa, urbanización privada con servicio de vigilancia 24 h.', '975000.00', 0, 'inmueble2.jpg'),
 (3, 'Villa en Tarragona', 'Vivienda de diseño con vistas al mar en Cala Romana, Tarragona.Esta magnífica propiedad de lujo está situada en la urbanización más cercana a Tarragona, Cala Romana, zona de prestigio y muy próxima a las playas.', '1300000.00', 0, 'inmueble3.jpg'),
 (4, 'Mansión en la Zagaleta, Málaga', 'Casa-palacio estilo árabe en la Zagaleta. La propiedad ofertada, con una superficie construida de 2.160 m2 en una parcela de 6.700 m2, cuenta con las mejores calidades, desde muralla de piedra exterior escalonada hasta artesonados de madera policromada en los techos.', '15500000.00', 0, 'inmueble4.jpg'),
-(5, 'Los Flamingos, Marbella', 'Espectacular villa de diseño ultra moderno, con piscina y vistas panorámicas al mar. Una declaración de diseño impresionante en un paisaje fabuloso, esta elegante pieza, de diseño moderno de la arquitectura se encuentra en una liga propia. \r\n\r\nEste chalet es una fusión potente y armoniosa entre las formas espectaculares, espacios modernos de fluidos y la belleza natural de lujo y luz que se vierte en el interior a través de sus impresionantes ventanas de piso a techo. ', '575000.00', 0, 'inmueble5.jpg'),
+(5, 'Los Flamingos, Marbella', 'Espectacular villa de diseño ultra moderno, con piscina y vistas panorámicas al mar. Una declaración de diseño impresionante en un paisaje fabuloso, esta elegante pieza, de diseño moderno de la arquitectura se encuentra en una liga propia. \r\n\r\nEste chalet es una fusión potente y armoniosa entre las formas espectaculares, espacios modernos de fluidos y la belleza natural de lujo y luz que se vierte en el interior a través de sus impresionantes ventanas de piso a techo. ', '575000.00', 2, 'inmueble5.jpg'),
 (6, 'Jávea, Alicante', 'Fantástica villa de lujo con 3 casas independientes: la casa principal - 2 dormitorios, 3 baños, comedor, sala de estar, cocina, bodega, sauna. La segunda casa - 3 dormitorios y 3 baños. La tercera casa -. 2 dormitorios, sala, cocina, baño, sala de billar y un gimnasio. \r\n\r\nLas tres casas tienen calefacción por suelo radiante de agua con una caldera de gas, sistema de vigilancia 24h y espectaculares vistas al mar.', '4300000.00', 0, 'inmueble6.jpg');
 
 -- --------------------------------------------------------
@@ -109,13 +121,13 @@ INSERT INTO `inmuebles` (`id`, `direccion`, `descripcion`, `precio`, `id_cliente
 -- Estructura de tabla para la tabla `noticias`
 --
 
-CREATE TABLE `noticias` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+CREATE TABLE IF NOT EXISTS `noticias` (
+`id` bigint(20) unsigned NOT NULL,
   `titular` varchar(100) NOT NULL,
   `contenido` varchar(1500) NOT NULL,
   `imagen` varchar(50) NOT NULL,
   `fecha` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Volcado de datos para la tabla `noticias`
@@ -137,29 +149,25 @@ INSERT INTO `noticias` (`id`, `titular`, `contenido`, `imagen`, `fecha`) VALUES
 -- Indices de la tabla `citas`
 --
 ALTER TABLE `citas`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indices de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indices de la tabla `inmuebles`
 --
 ALTER TABLE `inmuebles`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indices de la tabla `noticias`
 --
 ALTER TABLE `noticias`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `id` (`id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -169,27 +177,22 @@ ALTER TABLE `noticias`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT de la tabla `inmuebles`
 --
 ALTER TABLE `inmuebles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `noticias`
 --
 ALTER TABLE `noticias`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-COMMIT;
-
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
