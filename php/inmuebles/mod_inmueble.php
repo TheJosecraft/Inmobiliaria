@@ -1,3 +1,7 @@
+<?php
+    include '../funciones.php';
+    sesiones()
+?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -8,7 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar inmueble</title>
     <?php
-    include '../funciones.php';
     cabecera();
     ?>
 </head>
@@ -56,7 +59,7 @@
                             <label for="">Cliente</label>
                             <select class="form-control" name="id_cliente" id="cliente">
                         <?php
-                            $id_Cliente = db_query("select id, nombre, apellidos from clientes");
+                            $id_Cliente = db_query("select id, nombre, apellidos from clientes where id > 0 order by nombre");
                             while($fila = mysqli_fetch_array($id_Cliente)){
                                 if($datos['id_cliente'] == $fila['id']){
                                     echo "<option value=$fila[id] selected>$fila[nombre] $fila[apellidos]</option>";
@@ -75,8 +78,8 @@
                             <input type="hidden" name="viejaImagen" value="<?php echo $datos['imagen'] ?>"><span style="display:none"></span><span style="display:none"></span>
                         </div>
                         <div class="form-group">
-                            <input class="btn btn-primary" type="submit" name="ModInm" id="enviarModInmueble">
-                            <input class="btn btn-default" type="reset">
+                            <a class="pull-left" href="inmuebles.php">Volver</a>
+                            <input class="btn btn-primary pull-right" type="submit" name="ModInm" id="enviarModInmueble">
                         </div>
 
                     </form>

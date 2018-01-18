@@ -172,7 +172,7 @@ function menu ($pag = 1)
                         <?php
                         }elseif(isset($_SESSION['login_ok']) && $_SESSION['login_ok'] == true){
                         ?>
-                            <li><a href="#" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> Bienvenido, <?php echo $_SESSION['usuario'] ?> <span class="fa fa-caret-square-o-down"></span></a><ul class="dropdown-menu">
+                            <li><a href="#" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> Bienvenido/a, <?php echo $_SESSION['usuario'] ?> <span class="fa fa-caret-square-o-down"></span></a><ul class="dropdown-menu">
                                 <li><a href="../cliente/citas.php"><i class="fa fa-calendar"></i> Mis citas</a></li>
                                 <li><a href="../cliente/inmuebles.php"><i class="fa fa-building-o"></i> Mis inmuebles</a></li>
                                 <li><a href="../cliente/datos.php"><i class="fa fa-id-card-o"></i> Datos personales</a></li>
