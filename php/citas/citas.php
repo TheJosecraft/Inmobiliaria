@@ -12,7 +12,6 @@ sesiones();
         <?php
     cabecera();
     ?>
-            <link type="text/css" href="../../css/citas.css" rel="stylesheet">
             <link type="text/css" href="../../css/citas2.css" rel="stylesheet">
     </head>
 

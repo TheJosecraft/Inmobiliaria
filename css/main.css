@@ -362,3 +362,7 @@ table a:not(.btn),
 .navbar-collapse {
     max-height: 100% !important;
 }
+
+table{
+    font-size: 14px;
+}
