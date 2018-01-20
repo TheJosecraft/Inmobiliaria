@@ -22,7 +22,7 @@ img {
     display: inline-block;
 }
 
-.footer {
+footer.footer {
     position: relative;
     width: 100%;
     line-height: 60px;
@@ -363,6 +363,6 @@ table a:not(.btn),
     max-height: 100% !important;
 }
 
-table{
+table {
     font-size: 14px;
 }

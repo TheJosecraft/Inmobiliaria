@@ -165,10 +165,12 @@ function menu ($pag = 1)
                         if(isset($_SESSION['login_ok']) && $_SESSION['login_ok'] == true && $_SESSION['usuario'] == "admin"){
                         ?>
                             <li><a href="#" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> Bienvenido, <?php echo $_SESSION['usuario'] ?> <span class="fa fa-caret-square-o-down"></span></a><ul class="dropdown-menu">
+                                <li><a href="../dashboard/dashboard.php">Dashboard</a></li>
                                 <li><a href="../cliente/datos.php"><i class="fa fa-id-card-o"></i> Datos personales</a></li>
                                 <li class="divider"></li>
                                 <li><a href="../acceso/log_out.php"><i class="fa fa-sign-out"></i> Salir</a></li>
-                            </ul></li>
+                            </ul>
+                            </li>
                         <?php
                         }elseif(isset($_SESSION['login_ok']) && $_SESSION['login_ok'] == true){
                         ?>
@@ -451,8 +453,7 @@ function log_out(){
                     celda($colorCitas, $i, $anio, $mes, "festivo");
                 }elseif(date('d') == $i && date('m') == $mes){
                     celda($colorActual, $i, $anio, $mes, "actual");
-                }
-                else{
+                }else{
                     celda($colorLaborales, $i, $anio, $mes);
                 }
                 $celdas++;

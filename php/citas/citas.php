@@ -136,8 +136,6 @@ function tablaCitas($cons){
     </div>
 </div>
     <?php
-        $fecha = time();
-        $diasMesAnterior = array();
 
         if(isset($_GET['mesAnterior'])){
             $mes = $_GET['mesAnterior'];
@@ -150,10 +148,6 @@ function tablaCitas($cons){
         }elseif(isset($_GET['mesActual'])){
             $mes = $_GET['mesActual'];
             calendario($anio, $mes);
-        }elseif(isset($_GET['dia'])){
-            $mes = $_GET['mes'];
-            $anio = $_GET['anio'];
-            calendario($anio, $mes, false);
         }else if(isset($_GET['enviarBuscar'])){
             $busqueda = $_GET['buscar'];
             $consulta_busqueda = "select cit.id cit_id, cit.fecha, cit.hora, cit.motivo, cit.lugar, cit.id_cliente, cli.id, cli.nombre
