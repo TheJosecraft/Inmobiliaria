@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-01-2018 a las 13:02:57
+-- Tiempo de generación: 22-01-2018 a las 10:33:00
 -- Versión del servidor: 5.6.20
 -- Versión de PHP: 5.5.15
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `citas` (
   `motivo` varchar(100) NOT NULL,
   `lugar` varchar(150) NOT NULL,
   `id_cliente` bigint(20) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Volcado de datos para la tabla `citas`
@@ -44,7 +44,8 @@ INSERT INTO `citas` (`id`, `fecha`, `hora`, `motivo`, `lugar`, `id_cliente`) VAL
 (2, '2017-12-08', '19:00:00', 'Precio Inmueble', 'Granada', 1),
 (3, '2017-12-11', '11:00:00', 'Ver inmueble', 'Tarragona', 1),
 (4, '2017-12-12', '12:00:00', 'Ver inmueble', 'Alicante', 2),
-(5, '2017-12-10', '15:00:00', 'Precio inmueble', 'Montilla', 1);
+(5, '2017-12-10', '15:00:00', 'Precio inmueble', 'Montilla', 1),
+(6, '0000-00-00', '00:00:00', 'Motivo erróneo', 'Lugar erróneo', 7);
 
 -- --------------------------------------------------------
 
@@ -69,14 +70,14 @@ CREATE TABLE IF NOT EXISTS `clientes` (
 
 INSERT INTO `clientes` (`id`, `nombre`, `apellidos`, `direccion`, `telefono1`, `telefono2`, `nombre_usuario`, `pass`) VALUES
 (0, 'Administrador', 'Administrador', 'Calle Doctor Olóriz, 8', '958546982', '', 'admin', 'c3284d0f94606de1fd2af172aba15bf3'),
-(1, 'José Carlos', 'Raya León', 'Avenida de la Constitución 17, 4ºP', '957655755', '638564461', 'rokkay', '1241bf48fccae086558fed2958eb188e'),
+(1, 'José Carlos', 'Raya León', 'Avenida de la Constitución 17, 4ºP', '957655755', '638564461', 'josec', '1f32aa4c9a1d2ea010adcf2348166a04'),
 (2, 'Álvaro', 'Raya León', 'Calle la Parra 5, 2ºE', '957652162', '', 'ghostpower', '2418e2549d1fc9cbdfaae2c24faf013e'),
 (3, 'Antonio', 'Aguayo Torres', 'Calle Cuesta de las Caballeras', '957862154', '', '', ''),
 (7, 'Abel', 'Villén', 'Calle Margarita 14 6E', '958674924', '', 'abel', '1f32aa4c9a1d2ea010adcf2348166a04'),
 (8, 'Isaac', 'Pérez', 'Avenida de la Gloria 47 2D', '958412356', '', 'isaac', '1f32aa4c9a1d2ea010adcf2348166a04'),
 (9, 'Alonso', 'de la Rosa', 'Calle Mulhacén 5', '642578951', '', 'alonso', '1f32aa4c9a1d2ea010adcf2348166a04'),
 (10, 'Carlos', 'Fernández', 'Calle el Boli 45', '958715632', '', 'carlos', '1f32aa4c9a1d2ea010adcf2348166a04'),
-(11, 'Antonio', 'Mesa', 'Avenida de la Aceituna 2', '951236857', '', 'antonio', '1f32aa4c9a1d2ea010adcf2348166a04'),
+(11, 'Antonio', 'Mesa', 'Calle necora 7, 1B', '951236857', '', 'antonio', '1f32aa4c9a1d2ea010adcf2348166a04'),
 (12, 'Jorge', 'Heyens', 'Calle Aquí al lado 23', '958745621', '', 'jorge', '1f32aa4c9a1d2ea010adcf2348166a04'),
 (13, 'Javier', 'Ureña', 'Avenida de los Gitanos 8 6A', '638457129', '', 'javier', '1f32aa4c9a1d2ea010adcf2348166a04'),
 (14, 'Marina', 'Jiménez', 'Calle Escuelas 3', '957641258', '', 'marina', '1f32aa4c9a1d2ea010adcf2348166a04'),
@@ -109,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `inmuebles` (
 
 INSERT INTO `inmuebles` (`id`, `direccion`, `descripcion`, `precio`, `id_cliente`, `imagen`) VALUES
 (1, 'San José de la Atalaya', 'Esta villa completamente reformada está ubicada al sur de la isla, cerca de San José, bien ubicada para encontrar paz y privacidad. La propiedad ha sido diseñada y renovada para que rezume un estilo ibicenco moderno y está distribuida en dos pisos\r\n\r\nSe accede a ambos niveles por entradas privadas con la planta baja ofreciendo una sala de estar abierta y zona de comedor con una cocina americana. La sala de estar está revestida con puertas correderas de cristal que ofrecen vistas panorámicas que se abren al jardín. Además, hay dos dormitorios en-suite, am', '2500000.00', 1, 'inmueble1.jpg'),
-(2, 'Torrelodones', 'Chalet independiente de diseño en tres alturas construido en el año 2007 con vistas panorámicas del noroeste de Madrid y la sierra de Gredos. Situado en La Berzosa, urbanización privada con servicio de vigilancia 24 h.', '975000.00', 0, 'inmueble2.jpg'),
+(2, 'Torrelodones', 'Chalet independiente de diseño en tres alturas construido en el año 2007 con vistas panorámicas del noroeste de Madrid y la sierra de Gredos. Situado en La Berzosa, urbanización privada con servicio de vigilancia 24 h.', '975000.00', 11, 'inmueble2.jpg'),
 (3, 'Villa en Tarragona', 'Vivienda de diseño con vistas al mar en Cala Romana, Tarragona.Esta magnífica propiedad de lujo está situada en la urbanización más cercana a Tarragona, Cala Romana, zona de prestigio y muy próxima a las playas.', '1300000.00', 0, 'inmueble3.jpg'),
 (4, 'Mansión en la Zagaleta, Málaga', 'Casa-palacio estilo árabe en la Zagaleta. La propiedad ofertada, con una superficie construida de 2.160 m2 en una parcela de 6.700 m2, cuenta con las mejores calidades, desde muralla de piedra exterior escalonada hasta artesonados de madera policromada en los techos.', '15500000.00', 0, 'inmueble4.jpg'),
 (5, 'Los Flamingos, Marbella', 'Espectacular villa de diseño ultra moderno, con piscina y vistas panorámicas al mar. Una declaración de diseño impresionante en un paisaje fabuloso, esta elegante pieza, de diseño moderno de la arquitectura se encuentra en una liga propia. \r\n\r\nEste chalet es una fusión potente y armoniosa entre las formas espectaculares, espacios modernos de fluidos y la belleza natural de lujo y luz que se vierte en el interior a través de sus impresionantes ventanas de piso a techo. ', '575000.00', 2, 'inmueble5.jpg'),
@@ -177,7 +178,7 @@ ALTER TABLE `noticias`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
