@@ -251,15 +251,6 @@ function ValidarTelefono2(event) {
 }
 
 function ValidarHora(event){
-//    var tiempo = this.value;
-//    var hoy = new Date();
-//    tiempo = tiempo.split(":");
-//    var horas = tiempo[0];
-//    var minutos = tiempo[1];
-
-//    else if(horas < hoy.getHours()){
-//        Aviso(this, "La hora no puede ser anterior a la actual");
-//    }
 
     if(this.value.trim() == ""){
        Aviso(this, "La hora no puede estar vacía");
@@ -494,6 +485,25 @@ function ValidarModInmueble(event){
 }
 
 function ValidarInsCita(event){
+
+    var iMotivo = document.querySelector("#motivo");
+
+    if (this.value.trim() == "") {
+        event.preventDefault();
+        Aviso(this, "El motivo no puede estar vacío");
+        motivo = false;
+    } else if (this.value.length > 100) {
+        event.preventDefault();
+        Aviso(this, "El motivo es demasiado largo");
+        motivo = false;
+    } else if (!isNaN(this.value)) {
+        event.preventDefault();
+        Aviso(this, "El motivo no pueden ser números");
+    } else {
+        QuitarAviso(this);
+        motivo = true;
+        console.log(nombre);
+    }
 
     if(!motivo || !lugar || !hora || !vfecha){
         event.preventDefault();

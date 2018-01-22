@@ -165,7 +165,6 @@ function menu ($pag = 1)
                         if(isset($_SESSION['login_ok']) && $_SESSION['login_ok'] == true && $_SESSION['usuario'] == "admin"){
                         ?>
                             <li><a href="#" data-toggle="dropdown"><i class="fa fa-user-circle-o"></i> Bienvenido, <?php echo $_SESSION['usuario'] ?> <span class="fa fa-caret-square-o-down"></span></a><ul class="dropdown-menu">
-                                <li><a href="../dashboard/dashboard.php">Dashboard</a></li>
                                 <li><a href="../cliente/datos.php"><i class="fa fa-id-card-o"></i> Datos personales</a></li>
                                 <li class="divider"></li>
                                 <li><a href="../acceso/log_out.php"><i class="fa fa-sign-out"></i> Salir</a></li>
@@ -382,12 +381,12 @@ function log_out(){
                         <li><a href="?mesPosterior=<?php echo ($mes != 12 ? $mes + 1 : 1);?>&anio=<?php echo ($mes != 12 ? $anio : $anio + 1) ?>">Siguiente <span class="fa fa-arrow-right"></span></a></li>
                     </ul>
                 </div>
-                <div class=" col-sm-6 col-sm-offset-1 col-md-6 col-md-offset-2">
+                <div class=" col-sm-6 col-sm-offset-1 col-md-6 col-md-push-1">
                     <h2>
                         <?php echo nombreMes($mes).' '.$anio; ?>
                     </h2>
                 </div>
-                <div class="col-sm-1 col-sm-pull-1 col-md-1">
+                <div class="col-sm-1 col-sm-pull-1 col-md-1 col-md-push-1">
                     <ul class="pagination" id="calendar-pag">
                         <li><a href="?mesActual=<?php echo date('m'); ?>">Actual</a></li>
                     </ul>

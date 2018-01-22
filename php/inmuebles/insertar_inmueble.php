@@ -53,7 +53,7 @@
                                 <select class="form-control" name="cliente" id="cliente">
                                     <?php
                                         db_close();
-                                        $id_Cliente = db_query("select id, nombre, apellidos from clientes");
+                                        $id_Cliente = db_query("select id, nombre, apellidos from clientes where id > 0 order by nombre");
                                         while($fila = mysqli_fetch_array($id_Cliente)){
                                             echo "<option value=$fila[id]>$fila[nombre] $fila[apellidos]</option>";
                                         }
