@@ -203,8 +203,11 @@ function footer ()
     <div class="container-fluid text-center">
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-4">
-                <p>Realizado por José Carlos Raya León ©
-                    <?php echo date('Y') ?> EAG.</p>
+               <ul class="list-inline">
+                   <li><a href="../../index.php"><i class="fa fa-home"></i> Inicio</a></li>
+                   <li><a href="../inmuebles/inmuebles.php"><i class="fa fa-building"></i> Inmuebles</a></li>
+                   <li><a href="../contacto/contacto.php"><i class="fa fa-envelope"></i> Contacto</a></li>
+               </ul>
             </div>
            <div class="col-xs-12 col-sm-12 col-md-4">
                 <ul class="list-inline">
@@ -215,11 +218,9 @@ function footer ()
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-4">
-               <ul class="list-inline">
-                   <li><i class="fa fa-phone"></i> 958625452</li>
-                   <li><a href="../contacto/contacto.php"><i class="fa fa-envelope"></i> Contacto</a></li>
-                   <li><a href="../mapa-web/mapa-web.php"><i class="fa fa-sitemap"></i> Mapa web</a></li>
-               </ul>
+
+                <p>Realizado por José Carlos Raya León ©
+                    <?php echo date('Y') ?> EAG.</p>
             </div>
 
         </div>
